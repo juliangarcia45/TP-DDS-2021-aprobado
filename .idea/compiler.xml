@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TP-DDS" />
         <module name="TP-DDS 2" />
+        <module name="2021-mi-no-grupo_07" />
       </profile>
     </annotationProcessing>
   </component>
