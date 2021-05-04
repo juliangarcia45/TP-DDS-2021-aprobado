@@ -1,6 +1,6 @@
 package domain.organizacion;
 
 public class Documento {
-    private int numero;
+    private float numero;
     private String tipo;
 }
