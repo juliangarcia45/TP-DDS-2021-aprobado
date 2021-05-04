@@ -1,5 +1,6 @@
 package domain.organizacion;
 
+import java.awt.*;
 import java.util.List;
 
 public class Mascota {
@@ -10,9 +11,9 @@ public class Mascota {
     private Duenio duenio;
     private Integer edad;
     private boolean especie;
-    private List<Foto> fotos;
+    private List<Image> fotos;
 
-    public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<Foto> fotos, Duenio duenio) {
+    public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<Image> fotos, Duenio duenio) {
         this.nombre = nombre;
         this.sexo = sexo;
         this.apodo = apodo;
