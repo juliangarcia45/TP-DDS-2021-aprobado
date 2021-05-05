@@ -9,6 +9,7 @@
         <module name="TP-DDS" />
         <module name="TP-DDS 2" />
         <module name="2021-mi-no-grupo_07" />
+        <module name="Diseño en sistemas" />
       </profile>
     </annotationProcessing>
   </component>

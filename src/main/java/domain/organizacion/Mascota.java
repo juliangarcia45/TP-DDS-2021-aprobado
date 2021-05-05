@@ -1,6 +1,7 @@
 package domain.organizacion;
 
-import java.awt.*;
+import java.util.Map;
+import java.awt.Image;
 import java.util.List;
 
 public class Mascota {
@@ -12,8 +13,9 @@ public class Mascota {
     private Integer edad;
     private boolean especie;
     private List<Image> fotos;
+    private Map<String,String> caracteristicas;
 
-    public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<Image> fotos, Duenio duenio) {
+    public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<Image> fotos, Duenio duenio, Map<String,String> caracteristicas) {
         this.nombre = nombre;
         this.sexo = sexo;
         this.apodo = apodo;
@@ -22,5 +24,14 @@ public class Mascota {
         this.especie = especie;
         this.fotos = fotos;
         this.duenio= duenio;
+        this.caracteristicas=caracteristicas;
+    }
+
+    public void setFotos(List<Image> fotos) {
+        this.fotos = fotos;
+    }
+
+    public List<Image> getFotos() {
+        return fotos;
     }
 }
