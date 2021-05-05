@@ -1,5 +1,6 @@
 *.dat
 .vscode/
 .settings/
+.target/
 .project
 .classpath
