@@ -19,7 +19,7 @@ import java.util.List;
 
 
 public class normalizarFoto {
-    Organizacion organizacion;
+   /* Organizacion organizacion;
     BufferedImage bImage = null;
 
     @Test
@@ -32,7 +32,7 @@ public class normalizarFoto {
         String path = "assets\\image.jpg";
         imageIoWrite(tamanioEstandar, formato, path);
         fotosMascota.add(bImage);
-        Mascota mascota = new Mascota("tuli", true, null, null, null, true, fotosMascota, null);
+        Mascota mascota = new Mascota("tuli", true, null, null, null, true, fotosMascota, null,null);
         System.out.println(fotosMascota);
     }
 
@@ -45,6 +45,6 @@ public class normalizarFoto {
         } catch (IOException e) {
             System.out.println("Exception occured :" + e.getMessage());
         }
-    }
+    }*/
 }
 

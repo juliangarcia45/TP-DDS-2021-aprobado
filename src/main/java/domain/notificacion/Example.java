@@ -18,7 +18,7 @@ public class Example {
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("whatsapp:+5491156956024"),
             new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
-            "Que onda juli")
+            "Que onda samu")
             .create();
 
         System.out.println(message.getBody());
