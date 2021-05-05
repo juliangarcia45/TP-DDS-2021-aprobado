@@ -1,7 +1,5 @@
 package domain.organizacion;
-
 import domain.autenticacion.Usuario;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
