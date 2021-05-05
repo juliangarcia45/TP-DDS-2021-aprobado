@@ -13,7 +13,7 @@ public class Mascota {
     private Integer edad;
     private boolean especie;
     private List<Image> fotos;
-
+    private Map<String,String> caracteristica;
     public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<Image> fotos, Duenio duenio , Map<String,String> caracteristica) {
         this.nombre = nombre;
         this.sexo = sexo;
@@ -33,7 +33,7 @@ public class Mascota {
         this.fotos = fotos;
     }
 
-    private Map<String,String> caracteristica;
+
 
 
 }
