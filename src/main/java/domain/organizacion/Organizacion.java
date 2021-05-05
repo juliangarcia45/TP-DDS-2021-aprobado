@@ -1,27 +1,20 @@
 package domain.organizacion;
 
 import domain.autenticacion.Usuario;
-
-import java.io.*;
 import java.util.List;
 
 public class Organizacion {
     private List<Usuario> usuarios;
-    private String tamanioEstandar;
+    private int anchoFoto;
+    private int largoFoto;
     private String formatoEstandar;
 
-    public Organizacion(String tamanioEstandar, String formatoEstandar){
-        this.tamanioEstandar = tamanioEstandar;
+    public Organizacion(int anchoFoto,int largoFoto, String formatoEstandar){
+        this.anchoFoto = anchoFoto;
+        this.largoFoto = largoFoto;
         this.formatoEstandar = formatoEstandar;
     }
 
-    public String getTamanioEstandar() {
-        return tamanioEstandar;
-    }
-
-    public void setTamanioEstandar(String tamanioEstandar) {
-        this.tamanioEstandar = tamanioEstandar;
-    }
 
     public String getFormatoEstandar() {
         return formatoEstandar;
@@ -31,6 +24,19 @@ public class Organizacion {
         this.formatoEstandar = formatoEstandar;
     }
 
-    public Organizacion() {
+    public int getAnchoFoto() {
+        return anchoFoto;
+    }
+
+    public void setAnchoFoto(int anchoFoto) {
+        this.anchoFoto = anchoFoto;
+    }
+
+    public int getLargoFoto() {
+        return largoFoto;
+    }
+
+    public void setLargoFoto(int largoFoto) {
+        this.largoFoto = largoFoto;
     }
 }

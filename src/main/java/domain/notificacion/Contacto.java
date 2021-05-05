@@ -1,7 +1,5 @@
 package domain.notificacion;
 
-import jdk.nashorn.internal.codegen.DumpBytecode;
-
 import java.util.List;
 
 public class Contacto {
