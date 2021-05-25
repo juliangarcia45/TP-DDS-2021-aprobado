@@ -1,7 +1,7 @@
 package domain.organizacion;
 
 import java.util.Map;
-import java.awt.Image;
+import java.awt.*;
 import java.util.List;
 
 public class Mascota {
@@ -35,3 +35,4 @@ public class Mascota {
         return fotos;
     }
 }
+
