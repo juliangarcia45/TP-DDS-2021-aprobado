@@ -1,7 +1,11 @@
 package domain.organizacion;
 
 import java.util.Map;
+<<<<<<< HEAD
 import java.awt.Image;
+=======
+import java.awt.*;
+>>>>>>> main
 import java.util.List;
 
 public class Mascota {
@@ -25,6 +29,7 @@ public class Mascota {
         this.fotos = fotos;
         this.duenio= duenio;
         this.caracteristicas=caracteristicas;
+<<<<<<< HEAD
     }
 
     public void setFotos(List<Image> fotos) {
@@ -35,3 +40,16 @@ public class Mascota {
         return fotos;
     }
 }
+=======
+    }
+
+    public void setFotos(List<Image> fotos) {
+        this.fotos = fotos;
+    }
+
+    public List<Image> getFotos() {
+        return fotos;
+    }
+}
+
+>>>>>>> main

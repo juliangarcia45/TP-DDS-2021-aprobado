@@ -20,7 +20,12 @@ import java.util.List;
 
 /*
 public class normalizarFoto {
+<<<<<<< HEAD
     Organizacion organizacion= new Organizacion(300,300, "png");
+=======
+   /* Organizacion organizacion;
+    BufferedImage bImage = null;
+>>>>>>> main
 
     @Test
     public void normalizar() throws IOException {
@@ -63,4 +68,10 @@ public class normalizarFoto {
         } catch (IOException e) {
             System.out.println("Exception occured :" + e.getMessage());
         }
+<<<<<<< HEAD
     }     */
+=======
+    }
+}
+*/
+>>>>>>> main

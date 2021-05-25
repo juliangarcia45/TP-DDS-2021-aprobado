@@ -1,5 +1,10 @@
 package domain.notificacion;
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 import java.util.List;
 
 public class Contacto {
