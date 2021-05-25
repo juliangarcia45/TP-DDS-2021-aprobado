@@ -1,13 +1,10 @@
 package domain.organizacion;
 import domain.autenticacion.Usuario;
-<<<<<<< HEAD
-=======
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
->>>>>>> main
 import java.util.List;
 
 public class Organizacion {
@@ -16,43 +13,11 @@ public class Organizacion {
     private int largoFoto;
     private String formatoEstandar;
 
-<<<<<<< HEAD
-    public Organizacion(int anchoFoto,int largoFoto, String formatoEstandar){
-=======
     public void definirTamanioYFormatoEstandar(int anchoFoto,int largoFoto, String formatoEstandar){
->>>>>>> main
         this.anchoFoto = anchoFoto;
         this.largoFoto = largoFoto;
         this.formatoEstandar = formatoEstandar;
     }
-<<<<<<< HEAD
-
-
-    public String getFormatoEstandar() {
-        return formatoEstandar;
-    }
-
-    public void setFormatoEstandar(String formatoEstandar) {
-        this.formatoEstandar = formatoEstandar;
-    }
-
-    public int getAnchoFoto() {
-        return anchoFoto;
-    }
-
-    public void setAnchoFoto(int anchoFoto) {
-        this.anchoFoto = anchoFoto;
-    }
-
-    public int getLargoFoto() {
-        return largoFoto;
-    }
-
-    public void setLargoFoto(int largoFoto) {
-        this.largoFoto = largoFoto;
-    }
-}
-=======
     private void normalizarFoto(Mascota mascota, String path){
         int anchoFoto = this.getAnchoFoto();
         int largoFoto = this.getLargoFoto();
@@ -80,4 +45,3 @@ public class Organizacion {
     public int getAnchoFoto() { return anchoFoto; }
     public int getLargoFoto() { return largoFoto; }
 }
->>>>>>> main
