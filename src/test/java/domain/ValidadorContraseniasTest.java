@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class ValidadorContraseniasTest {
         @Test
         public void validarContrasenias() {
-            Duenio jorge= new Duenio("jorge", "jorge", "jorge","gonzalez",null,null,null);
+            Duenio jorge= new Duenio("jorge", "jorge");
             Mascota mascota = new Mascota("gato",true,null,null,null,true,null,jorge,null);
             jorge.registrarMascota(mascota);
 

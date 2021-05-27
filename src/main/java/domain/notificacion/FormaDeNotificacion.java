@@ -2,6 +2,6 @@ package domain.notificacion;
 
 public interface FormaDeNotificacion {
 
-     void notificar();
+     void notificar(Integer telefono,String mensaje);
 
 }

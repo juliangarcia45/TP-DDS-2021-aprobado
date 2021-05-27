@@ -5,10 +5,18 @@ public class MedioDeNotificacion  {
     private Contacto contactoANotificar;
     private FormaDeNotificacion estrategiaNotificacion;
 
-    private void cambiarFormaDeNotificacion(FormaDeNotificacion formaDeNotificacion){
+    public void cambiarFormaDeNotificacion(FormaDeNotificacion formaDeNotificacion){
 
     }
-    private void notificar(){
+    public void notificar(Integer telefono,String mensaje){
+    this.estrategiaNotificacion.notificar(telefono,mensaje);
+    }
 
+    public FormaDeNotificacion getEstrategiaNotificacion() {
+        return estrategiaNotificacion;
+    }
+
+    public void setEstrategiaNotificacion(FormaDeNotificacion estrategiaNotificacion) {
+        this.estrategiaNotificacion = estrategiaNotificacion;
     }
 }

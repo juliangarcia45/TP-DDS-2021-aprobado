@@ -1,8 +1,4 @@
 package domain.autenticacion;
-
-
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
 import domain.notificacion.Contacto;
 import domain.organizacion.Documento;
 
@@ -13,18 +9,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Administrador extends Usuario{
-
     public static Map<String, String> nombreMap = new HashMap<String, String>();
 
-    public Administrador(String usuario, String contrasenia, String nombre, String apellido, List<Contacto> mediosDeContacto, Documento documento, Date fechaNacimiento) {
-        super(usuario, contrasenia, nombre, apellido, mediosDeContacto, documento, fechaNacimiento);
+    public Administrador(String usuario, String contrasenia) {
+        super(usuario, contrasenia);
     }
 
     public void agregarCaracteristica (String caracteristica , String valor){
         nombreMap.put(caracteristica, valor);
     }
 
-    public void agregarMapAlFile(FileOutputStream organizacionConfig){
+    public void agregarMapAlFile(FileOutputStream organizacionConfig) {
         try {
             organizacionConfig = new FileOutputStream("src\\main\\java\\domain\\autenticacion\\configOrganizacion.ser");
             ObjectOutputStream out = new ObjectOutputStream(organizacionConfig);
@@ -35,7 +30,8 @@ public class Administrador extends Usuario{
         } catch (IOException i) {
             i.printStackTrace();
         }
-    }public Map<String, String> leerMapDelFile(FileOutputStream organizacionConfig) {
+    }
+    public Map<String, String> leerMapDelFile(FileOutputStream organizacionConfig) {
         Map<String, String> mapAux = null;
         try {
             FileInputStream fileIn = new FileInputStream("src\\main\\java\\domain\\autenticacion\\configOrganizacion.ser");

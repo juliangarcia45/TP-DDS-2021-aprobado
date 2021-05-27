@@ -11,7 +11,7 @@ public class ContraseniasInvalidas implements Requisito{
         BufferedReader lectorPalabra = null; // lee una palabra al detectar un \n
 
         try {
-            archivo = new File("src\\main\\java\\domain\\autenticacion\\validadorDeContrasenias\\Contrasenias10000.txt");
+            archivo = new File("src/main/java/domain/autenticacion/validadorDeContrasenias/Contrasenias10000.txt");
             lectorCaracter = new FileReader (archivo);
             lectorPalabra = new BufferedReader(lectorCaracter);
             String linea;
