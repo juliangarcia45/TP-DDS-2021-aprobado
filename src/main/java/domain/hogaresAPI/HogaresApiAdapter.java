@@ -37,10 +37,11 @@ public class HogaresApiAdapter {
         Response<String> responseToken = requestToken.execute();
         return responseToken.body();
     }
-    public HogaresResponseApi getListaHogares () throws IOException {
+    public HogaresResponseApi getListaHogares (int pagina) throws IOException {
         HogaresApiService hogaresApiService = this.retrofit.create(HogaresApiService.class);
-        Call<HogaresResponseApi> listaHogares = hogaresApiService.listaHogares(1);
+        Call<HogaresResponseApi> listaHogares = hogaresApiService.listaHogares(pagina);
         Response<HogaresResponseApi> responseList = listaHogares.execute();
+
         return responseList.body();
     }
 }

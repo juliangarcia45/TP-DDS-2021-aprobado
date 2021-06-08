@@ -8,6 +8,7 @@ public interface HogaresApiService {
 
     @POST("usuarios")
     Call<String> getToken(@Body String email);
+
     @Headers({"Accept: application/json",
                 "Authorization: Bearer xBOdLcFoihrx3MtrphGp7MVfz4LCyd4ac9D9Z4SokfGvQ5nh9k3Z9Q83ipHA"})
     @GET("hogares")

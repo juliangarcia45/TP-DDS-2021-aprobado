@@ -2,7 +2,9 @@ package domain.hogaresAPI;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.rmi.ssl.SslRMIClientSocketFactory;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HogaresResponseApi {
@@ -16,8 +18,15 @@ public class HogaresResponseApi {
 
     public static void main(String[] args) throws IOException {
         HogaresApiAdapter hogaresApiAdapter = HogaresApiAdapter.getInstance();
-        HogaresResponseApi json = hogaresApiAdapter.getListaHogares();
-        json.hogares.forEach(hogarDeTransito -> System.out.println(hogarDeTransito.getNombre()));
+        List<HogarDeTransito> hogaresDeTransito =new ArrayList<>();
+        int totalPaginas;
+        HogaresResponseApi json = hogaresApiAdapter.getListaHogares(1);
+        totalPaginas= json.total/10;
+        for(int i =1;i<=totalPaginas;i++){
+             json = hogaresApiAdapter.getListaHogares(i);
+             hogaresDeTransito.addAll(json.hogares);
+
+        }
     }
 
 }
