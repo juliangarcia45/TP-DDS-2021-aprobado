@@ -13,7 +13,6 @@ public class HogaresApiAdapter {
     private static HogaresApiAdapter instancia = null;
     private static final String urlAPI = "https://api.refugiosdds.com.ar/api/";
     private Retrofit retrofit;
-    private String token = "xBOdLcFoihrx3MtrphGp7MVfz4LCyd4ac9D9Z4SokfGvQ5nh9k3Z9Q83ipHA";
 
     private HogaresApiAdapter(){
         Gson gson = new GsonBuilder()

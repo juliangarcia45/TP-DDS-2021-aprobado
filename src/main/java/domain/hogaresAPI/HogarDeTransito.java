@@ -12,7 +12,7 @@ public class HogarDeTransito {
     @SerializedName("ubicacion")
     private Ubicacion ubicacion;
 
-    private class Ubicacion{
+    private static class Ubicacion{
         @SerializedName("direccion")
         private String direccion;
         @SerializedName("lat")

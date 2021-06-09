@@ -2,25 +2,24 @@ package domain;
 
 
 import domain.autenticacion.Administrador;
-import domain.autenticacion.Usuario;
-import domain.organizacion.Duenio;
-import domain.organizacion.Mascota;
+
 import org.junit.Test;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class agregarCaracteristica {
+
     @Test
-    public void agregarCaracteristica() throws FileNotFoundException {
+    public void agregarCaracteristicaTest() throws FileNotFoundException {
         Administrador admin = new Administrador("admin","admin");
         admin.agregarCaracteristica("Caracteristica1", "Valor Caracteristica1");
         admin.agregarCaracteristica("Caracteristica2", "Valor Caracteristica2");
         admin.agregarCaracteristica("Caracteristica3", "Valor Caracteristica3");
+        admin.agregarCaracteristica("Caracteristica4", "Valor Caracteristica4");
+
         FileOutputStream organizacionConfig = new FileOutputStream("src\\main\\java\\domain\\autenticacion\\configOrganizacion.txt");
         admin.agregarMapAlFile(organizacionConfig);
 
