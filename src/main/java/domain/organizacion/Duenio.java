@@ -10,7 +10,7 @@ public class Duenio extends Usuario {
     public Duenio(String usuario, String contrasenia) {
         super(usuario, contrasenia);
     }
-
+    
     public List<Mascota> getMascotas() {
         return mascotas;
     }

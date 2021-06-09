@@ -3,6 +3,7 @@ package domain.autenticacion;
 import domain.notificacion.Contacto;
 import domain.organizacion.Documento;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,13 +12,16 @@ public abstract class Usuario {
     private String contrasenia;
     private String nombre;
     private String apellido;
-    private List<Contacto> mediosDeContacto;
+    private List<Contacto>  mediosDeContacto;
     private Documento documento;
     private Date fechaNacimiento;
+    
 
     public Usuario(String usuario, String contrasenia) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
+
+        mediosDeContacto = new ArrayList<>();
     }
 
     public String getUsuario() {
@@ -56,6 +60,9 @@ public abstract class Usuario {
         return mediosDeContacto;
     }
 
+    public void setMedioDeContacto(Contacto contacto){
+        this.mediosDeContacto.add(contacto);
+    }
     public void setMediosDeContacto(List<Contacto> mediosDeContacto) {
         this.mediosDeContacto = mediosDeContacto;
     }

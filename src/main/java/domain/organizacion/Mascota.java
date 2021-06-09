@@ -34,5 +34,9 @@ public class Mascota {
     public List<Image> getFotos() {
         return fotos;
     }
+
+    public Duenio getDuenio() {
+        return duenio;
+    }
 }
 

@@ -17,7 +17,7 @@ public class cargarConfigOrganizacion {
     }
     @Test
     public void normalizarFoto2() throws IOException {
-            organizacion.normalizarFoto2("assets/perro.jpeg","assets/");
+            organizacion.normalizarFoto2("assets/perro.png","assets/");
     }
 
 }

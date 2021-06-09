@@ -20,4 +20,9 @@ public class Contacto {
             medioDeNotificacion.notificar(telefono,mensaje);
         }
     }
+
+    public String getContacto(){
+        return nombre+ " " + apellido +" "+ email + " " + telefono.toString();
+    }
+
 }
