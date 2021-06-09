@@ -55,6 +55,9 @@ public abstract class Usuario {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+    public Contacto getMediodeContacto(){
+        return mediosDeContacto.get(0);
+    }
 
     public List<Contacto> getMediosDeContacto() {
         return mediosDeContacto;

@@ -7,7 +7,7 @@ public class Voluntario extends Usuario {
         super(usuario, contrasenia);
     }
 
-    public Boolean aprobarPublicacion(Publicacion aviso){
+    public Boolean aprobarPublicacion(Publicacion solicitudPublicacion){
 
         return true;
     }
