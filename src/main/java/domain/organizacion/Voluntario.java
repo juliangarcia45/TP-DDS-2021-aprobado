@@ -9,6 +9,6 @@ public class Voluntario extends Usuario {
 
     public Boolean aprobarPublicacion(Publicacion solicitudPublicacion){
 
-        return true;
+        return true ;// deberiamos validar la publicacion
     }
 }

@@ -1,7 +1,7 @@
 package domain.autenticacion;
 
 import domain.notificacion.Contacto;
-import domain.organizacion.Documento;
+import domain.organizacion.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,15 +15,46 @@ public abstract class Usuario {
     private List<Contacto>  mediosDeContacto;
     private Documento documento;
     private Date fechaNacimiento;
-    
+    private Organizacion organizacionAsociada;
+    private GeneradorPublicaciones generadorPublicaciones;
+
 
     public Usuario(String usuario, String contrasenia) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
-
         mediosDeContacto = new ArrayList<>();
     }
 
+    public void informarMascotaPerdida(String estadoMascota, List<String> fotos, String descripcion ){
+
+         generadorPublicaciones.generarPublicacion(this, estadoMascota, fotos , descripcion);
+
+    }
+    public List<Publicacion> buscarMascotaPerdida(){
+       return this.getOrganizacionAsociada().getListaPublicaciones();
+    }
+    public void contactarAlQueLaRescato(Publicacion publicacion){
+        this.contactar(publicacion.getAutor());
+    }
+    public void contactar(Usuario usuario){
+        // contactarlo
+    }
+    public void darEnAdopcion(Mascota mascota){
+        generadorPublicaciones.generarPublicacion();
+        mascota.setEstado("En adopcion")
+
+    }
+    public void quieroAdoptarUnaMascota(){
+        generadorPublicaciones.generarPublicacion();
+    }
+
+
+
+
+
+    public Organizacion getOrganizacionAsociada() {
+        return organizacionAsociada;
+    }
     public String getUsuario() {
         return usuario;
     }

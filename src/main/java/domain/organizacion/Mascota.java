@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Mascota {
     private String nombre;
+    private Integer idMascota;
     private boolean sexo;
     private String apodo;
     private String descripcion;
@@ -14,6 +15,7 @@ public class Mascota {
     private boolean especie;
     private List<Image> fotos;
     private Map<String,String> caracteristicas;
+    private EstadoMascota estado;
 
     public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<Image> fotos, Duenio duenio, Map<String,String> caracteristicas) {
         this.nombre = nombre;
@@ -37,6 +39,10 @@ public class Mascota {
 
     public Duenio getDuenio() {
         return duenio;
+    }
+
+    public Integer getIdMascota() {
+        return idMascota;
     }
 }
 

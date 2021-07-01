@@ -7,6 +7,7 @@ import java.util.List;
 public class Duenio extends Usuario {
     private List<Mascota> mascotas = new ArrayList<Mascota>();
 
+
     public Duenio(String usuario, String contrasenia) {
         super(usuario, contrasenia);
     }
@@ -22,4 +23,6 @@ public class Duenio extends Usuario {
     public void registrarMascota(Mascota mascota){
         this.mascotas.add(mascota);
     }
+
+
 }

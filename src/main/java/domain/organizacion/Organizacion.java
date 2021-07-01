@@ -5,6 +5,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import java.io.*;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class Organizacion {
     private List<Usuario> usuarios;
@@ -13,7 +14,7 @@ public class Organizacion {
     private Integer largoFoto;
     private String formatoEstandar;
     private RegistroDeUsuarios registroDeUsuarios;
-    Voluntario voluntarioAsociado;
+
 
     public void definirTamanioYFormatoEstandar() throws IOException {
         InputStream ip = Organizacion.class.getClassLoader().getResourceAsStream("config.properties");
@@ -28,7 +29,9 @@ public class Organizacion {
     }
     public Integer getAnchoFoto() { return anchoFoto; }
     public Integer getLargoFoto() { return largoFoto; }
-
+    public List<Publicacion> getListaPublicaciones() {
+        return listaPublicaciones;
+    }
     public void registrarUsuario(Usuario usuario){
         Usuario registrado = this.registroDeUsuarios.registrar(usuario);
         this.usuarios.add(registrado);
@@ -41,8 +44,13 @@ public class Organizacion {
                 .toFile("assets/thumbnail."+this.getFormatoEstandar());
     }
     public void agregarPublicacion(Publicacion publicacion){
-        if (this.voluntarioAsociado.aprobarPublicacion(publicacion)) {
+        // deberia mandarle la publicacion a los voluntarios pero aca le mando solamente todas al primero de la lista...
+        if (this.getVoluntarios().get(0).aprobarPublicacion(publicacion)) {
             listaPublicaciones.add(publicacion);
         }
     }
+    public List<Voluntario> getVoluntarios(){
+        return usuarios.stream().filter(usuario -> /*usuario = Voluntario*/ ).collect(Collectors.toList());
+    }
+
 }
