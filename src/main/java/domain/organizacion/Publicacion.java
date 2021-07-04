@@ -5,27 +5,34 @@ import domain.autenticacion.Usuario;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Publicacion {
-    private Usuario autor;
-    private LocalDateTime fechaDePublicacion;
-    private List<String> fotosMascota;
-    private String estadoMascota;
+public abstract class Publicacion {
+    private Usuario usuario;
+    private List<String> fotos;
     private String descripcion;
+    private LocalDateTime fechaDePublicacion;
 
-    public Publicacion(Usuario autor, String estadoMascota, List<String> fotosMascota,String descripcion) {
-        this.autor = autor;
-        this.fechaDePublicacion = LocalDateTime.now();
-        this.fotosMascota = fotosMascota;
-        this.estadoMascota = estadoMascota;
-        this.descripcion= descripcion;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Usuario getAutor() {
-        return autor;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public void setAutor(Rescatista autor) {
-        this.autor = autor;
+    public List<String> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(List<String> fotos) {
+        this.fotos = fotos;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public LocalDateTime getFechaDePublicacion() {

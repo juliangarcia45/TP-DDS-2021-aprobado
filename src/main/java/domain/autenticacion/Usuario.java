@@ -2,7 +2,6 @@ package domain.autenticacion;
 
 import domain.notificacion.Contacto;
 import domain.organizacion.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,10 +12,9 @@ public abstract class Usuario {
     private String nombre;
     private String apellido;
     private List<Contacto>  mediosDeContacto;
-    private Documento documento;
+    private  Documento documento;
     private Date fechaNacimiento;
     private Organizacion organizacionAsociada;
-    private GeneradorPublicaciones generadorPublicaciones;
 
 
     public Usuario(String usuario, String contrasenia) {
@@ -25,18 +23,20 @@ public abstract class Usuario {
         mediosDeContacto = new ArrayList<>();
     }
 
-    public void informarMascotaPerdida(String estadoMascota, List<String> fotos, String descripcion ){
+    public void informarMascotaPerdida (List<String> fotos, String descripcion ){
 
-         generadorPublicaciones.generarPublicacion(this, estadoMascota, fotos , descripcion);
+         GeneradorPublicaciones.generarPublicacionMascotaPerdida(this, descripcion , fotos);
 
     }
     //esto de buscar mascota perdida creo que va en duenio
     public List<Publicacion> buscarMascotaPerdida(){
        return this.getOrganizacionAsociada().getListaPublicaciones();
     }
+
     public void contactarAlQueLaRescato(Publicacion publicacion){
-        this.contactar(publicacion.getAutor());
+        this.contactar(publicacion.getUsuario());
     }
+
     public void contactar(Usuario usuario){
         List <Contacto> listaContactosDuenio = usuario.getMediosDeContacto();
         for(Contacto contacto : listaContactosDuenio){
@@ -45,18 +45,14 @@ public abstract class Usuario {
         // contactarlo
         // con eso el rescatista tendria que recibir numero de telefono y mail del dueño de la mascota
     }
-    public void darEnAdopcion(Mascota mascota,MascotaEnAdopcion mascotaEnAdopcion){
-        generadorPublicaciones.generarPublicacion();
-        mascota.setEstado(mascotaEnAdopcion);
+    public void darEnAdopcion(String descripcion, List<String> fotos){
+        GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion((Duenio) this,descripcion,fotos);
+
     }
 
-    public void quieroAdoptarUnaMascota(){
-        generadorPublicaciones.generarPublicacion();
+    public PublicacionAdoptante quieroAdoptarUnaMascota(String descripcion , List<String> fotos){
+        return GeneradorPublicaciones.generarPublicacionAdoptante(this,descripcion,fotos);
     }
-
-
-
-
 
     public Organizacion getOrganizacionAsociada() {
         return organizacionAsociada;

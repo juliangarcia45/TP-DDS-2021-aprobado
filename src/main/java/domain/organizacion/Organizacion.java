@@ -43,14 +43,14 @@ public class Organizacion {
                 .outputFormat(this.getFormatoEstandar())
                 .toFile("assets/thumbnail."+this.getFormatoEstandar());
     }
-    public void agregarPublicacion(Publicacion publicacion){
+  /*  public void agregarPublicacion(Publicacion publicacion){
         // deberia mandarle la publicacion a los voluntarios pero aca le mando solamente todas al primero de la lista...
         if (this.getVoluntarios().get(0).aprobarPublicacion(publicacion)) {
             listaPublicaciones.add(publicacion);
         }
     }
     public List<Voluntario> getVoluntarios(){
-        return usuarios.stream().filter(usuario -> /*usuario = Voluntario*/ ).collect(Collectors.toList());
+        return usuarios.stream().filter(usuario -> usuario instanceof Voluntario ).collect(Collectors.toList());
     }
-
+*/
 }

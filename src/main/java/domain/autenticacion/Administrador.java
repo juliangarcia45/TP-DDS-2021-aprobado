@@ -1,11 +1,7 @@
 package domain.autenticacion;
-import domain.notificacion.Contacto;
-import domain.organizacion.Documento;
 
 import java.io.*;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Administrador extends Usuario{

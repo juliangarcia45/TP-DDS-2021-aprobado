@@ -24,5 +24,8 @@ public class Duenio extends Usuario {
         this.mascotas.add(mascota);
     }
 
+    public void generarPublicacionAdopcion(Mascota mascotaEnAdopcion){
+
+    }
 
 }

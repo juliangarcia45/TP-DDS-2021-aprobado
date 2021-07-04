@@ -31,8 +31,8 @@ public class TestQRCode{
                 "jorgito@gmail.com",1156956024,mediosDeNotificacion);
 
        this.duenio = new Duenio("jorge", "jorge123");
-
-       this.duenio.setMedioDeContacto(contactoDuenio);
+       List<Contacto> listaContactosDuenio = Arrays.asList(contactoDuenio);
+       this.duenio.setMediosDeContacto(listaContactosDuenio);
 
         this.mascota = new Mascota("gato",true,null,null,null,true,null,duenio,null);
         this.duenio.registrarMascota(mascota);
