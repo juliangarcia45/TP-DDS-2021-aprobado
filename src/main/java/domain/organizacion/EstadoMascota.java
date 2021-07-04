@@ -1,4 +1,5 @@
 package domain.organizacion;
 
-public interface EstadoMascota {
+public abstract class EstadoMascota {
+    public abstract void mostrarEstado();
 }

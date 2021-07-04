@@ -30,6 +30,7 @@ public abstract class Usuario {
          generadorPublicaciones.generarPublicacion(this, estadoMascota, fotos , descripcion);
 
     }
+    //esto de buscar mascota perdida creo que va en duenio
     public List<Publicacion> buscarMascotaPerdida(){
        return this.getOrganizacionAsociada().getListaPublicaciones();
     }
@@ -37,13 +38,18 @@ public abstract class Usuario {
         this.contactar(publicacion.getAutor());
     }
     public void contactar(Usuario usuario){
+        List <Contacto> listaContactosDuenio = usuario.getMediosDeContacto();
+        for(Contacto contacto : listaContactosDuenio){
+            contacto.notificar(this.getNombre() + " " + this.getApellido() + " se reportó como el dueño de la mascota que encontraste, sus contactos son: " + this.getMediosDeContacto() );
+        }
         // contactarlo
+        // con eso el rescatista tendria que recibir numero de telefono y mail del dueño de la mascota
     }
-    public void darEnAdopcion(Mascota mascota){
+    public void darEnAdopcion(Mascota mascota,MascotaEnAdopcion mascotaEnAdopcion){
         generadorPublicaciones.generarPublicacion();
-        mascota.setEstado("En adopcion")
-
+        mascota.setEstado(mascotaEnAdopcion);
     }
+
     public void quieroAdoptarUnaMascota(){
         generadorPublicaciones.generarPublicacion();
     }
@@ -86,17 +92,11 @@ public abstract class Usuario {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public Contacto getMediodeContacto(){
-        return mediosDeContacto.get(0);
-    }
 
     public List<Contacto> getMediosDeContacto() {
         return mediosDeContacto;
     }
 
-    public void setMedioDeContacto(Contacto contacto){
-        this.mediosDeContacto.add(contacto);
-    }
     public void setMediosDeContacto(List<Contacto> mediosDeContacto) {
         this.mediosDeContacto = mediosDeContacto;
     }

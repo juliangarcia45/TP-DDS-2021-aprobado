@@ -15,7 +15,7 @@ public class Mascota {
     private boolean especie;
     private List<Image> fotos;
     private Map<String,String> caracteristicas;
-    private EstadoMascota estado;
+    private EstadoMascota estadoMascota;
 
     public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<Image> fotos, Duenio duenio, Map<String,String> caracteristicas) {
         this.nombre = nombre;
@@ -27,6 +27,16 @@ public class Mascota {
         this.fotos = fotos;
         this.duenio= duenio;
         this.caracteristicas=caracteristicas;
+        this.estadoMascota=new MascotaFeliz();
+    }
+
+    public void setEstado( EstadoMascota nuevoEstadoMascota ) {
+        this.estadoMascota = nuevoEstadoMascota;
+    }
+
+
+    public void mostrarEstado() {
+        this.estadoMascota.mostrarEstado();
     }
 
     public void setFotos(List<Image> fotos) {
