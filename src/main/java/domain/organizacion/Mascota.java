@@ -10,14 +10,24 @@ public class Mascota {
     private boolean sexo;
     private String apodo;
     private String descripcion;
+
+    public void setDuenio(Duenio duenio) {
+        this.duenio = duenio;
+    }
+
     private Duenio duenio;
     private Integer edad;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
     private boolean especie;
-    private List<Image> fotos;
+    private List<String> fotos;
     private Map<String,String> caracteristicas;
     private EstadoMascota estadoMascota;
 
-    public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<Image> fotos, Duenio duenio, Map<String,String> caracteristicas) {
+    public Mascota(String nombre, boolean sexo, String apodo, String descripcion, Integer edad, boolean especie, List<String> fotos, Duenio duenio, Map<String,String> caracteristicas) {
         this.nombre = nombre;
         this.sexo = sexo;
         this.apodo = apodo;
@@ -39,11 +49,11 @@ public class Mascota {
         this.estadoMascota.mostrarEstado();
     }
 
-    public void setFotos(List<Image> fotos) {
+    public void setFotos(List<String> fotos) {
         this.fotos = fotos;
     }
 
-    public List<Image> getFotos() {
+    public List<String> getFotos() {
         return fotos;
     }
 
@@ -54,5 +64,6 @@ public class Mascota {
     public Integer getIdMascota() {
         return idMascota;
     }
+
 }
 

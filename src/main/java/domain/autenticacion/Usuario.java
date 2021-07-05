@@ -50,6 +50,13 @@ public abstract class Usuario {
 
     }
 
+    public void adoptarMascota(Mascota mascota) {
+        List <Contacto> mediosDeContacto = mascota.getDuenio().getMediosDeContacto();
+        for(Contacto contacto : mediosDeContacto){
+            contacto.notificar("Quieren adoptar a tu mascota");
+        }
+    }
+
     public PublicacionAdoptante quieroAdoptarUnaMascota(String descripcion , List<String> fotos){
         return GeneradorPublicaciones.generarPublicacionAdoptante(this,descripcion,fotos);
     }
