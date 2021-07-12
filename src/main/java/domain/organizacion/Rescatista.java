@@ -12,7 +12,7 @@ public class Rescatista extends Usuario {
     String descripcionMascota;
     String direccionRescatista;
     String direccionEncuentroMascota;
-    List fotoMascota;
+    List<String> fotoMascota;
     HogaresResponseApi hogaresResponseApi;
 
     public Rescatista(String usuario, String contrasenia) {

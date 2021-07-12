@@ -11,6 +11,12 @@ public abstract class Publicacion {
     private String descripcion;
     private LocalDateTime fechaDePublicacion;
 
+    public Publicacion(Usuario autor, List<String> fotos, String descripcion) {
+        this.usuario = autor;
+        this.fotos = fotos;
+        this.descripcion = descripcion;
+        this.fechaDePublicacion = LocalDateTime.now();
+    }
     public Usuario getUsuario() {
         return usuario;
     }

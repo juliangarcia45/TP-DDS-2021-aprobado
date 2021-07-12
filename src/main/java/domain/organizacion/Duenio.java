@@ -32,12 +32,7 @@ public class Duenio extends Usuario {
 
     }
     public void darEnAdopcion(Mascota mascota){
-        List<Mascota> mascotasDuenio = mascota.getDuenio().getMascotas();
-        for(Mascota mascotaABuscar : mascotasDuenio){
-            if(mascotaABuscar.getIdMascota() == (mascota.getIdMascota())){
-                PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion = GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion(this,mascota.getDescripcion(),mascota.getFotos());
-                
-            }
+        PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion = GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion(this,mascota.getDescripcion(),mascota.getFotos());
         }
     }
-}
+
