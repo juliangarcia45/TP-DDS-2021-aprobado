@@ -1,6 +1,7 @@
 package domain.organizacion;
 
 import domain.autenticacion.Usuario;
+import domain.notificacion.Contacto;
 
 import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
@@ -28,11 +29,40 @@ public class Duenio extends Usuario {
         mascota.setDuenio(this);
     }
 
-    public void generarPublicacionAdopcion(Mascota mascotaEnAdopcion){
-
+    //Mascota perdida
+    public List<Publicacion> buscarMascotaPerdida(){
+        return this.getOrganizacionAsociada().getListaPublicaciones();
     }
+
+    public void contactarAlQueLaRescato(Publicacion publicacion){
+        this.contactar(publicacion.getUsuario());
+    }
+
+    public void contactar(Usuario usuario){
+        List <Contacto> listaContactosDuenio = usuario.getMediosDeContacto();
+        for(Contacto contacto : listaContactosDuenio){
+            contacto.notificar(this.getNombre() + " " + this.getApellido() + " se reportó como el dueño de la mascota que encontraste, sus contactos son: " + this.getMediosDeContacto() );
+        }
+    }
+    //Mascota adoptada
+
+
     public void darEnAdopcion(Mascota mascota){
         PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion = GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion(this,mascota.getDescripcion(),mascota.getFotos());
         }
+
+    public void adoptarMascota(Mascota mascota) {
+        List <Contacto> mediosDeContacto = mascota.getDuenio().getMediosDeContacto();
+        for(Contacto contacto : mediosDeContacto){
+            contacto.notificar("Quieren adoptar a tu mascota");
+        }
     }
+
+    public PublicacionAdoptante quieroAdoptarUnaMascota(String descripcion , List<String> fotos){
+        return GeneradorPublicaciones.generarPublicacionAdoptante(this,descripcion,fotos);
+    }
+
+
+    }
+
 

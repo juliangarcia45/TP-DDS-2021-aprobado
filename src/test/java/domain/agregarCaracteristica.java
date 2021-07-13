@@ -20,10 +20,9 @@ public class agregarCaracteristica {
         admin.agregarCaracteristica("Caracteristica3", "Valor Caracteristica3");
         admin.agregarCaracteristica("Caracteristica4", "Valor Caracteristica4");
 
-        FileOutputStream organizacionConfig = new FileOutputStream("src\\main\\java\\domain\\autenticacion\\configOrganizacion.txt");
-        admin.agregarMapAlFile(organizacionConfig);
+        admin.agregarAlMapCaracteristicas();
 
-        Map<String,String> mapLeido = admin.leerMapDelFile(organizacionConfig);
+        Map<String,String> mapLeido = admin.leerMapCaracteristicas();
 
         assertEquals("Valor Caracteristica1",mapLeido.get("Caracteristica1"));
         System.out.println("Los values del map son: \n" + mapLeido.values());;

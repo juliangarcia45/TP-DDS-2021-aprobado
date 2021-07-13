@@ -24,42 +24,11 @@ public abstract class Usuario {
     }
 
     public void informarMascotaPerdida (List<String> fotos, String descripcion ){
-
          GeneradorPublicaciones.generarPublicacionMascotaPerdida(this, descripcion , fotos);
 
     }
-    //esto de buscar mascota perdida creo que va en duenio
-    public List<Publicacion> buscarMascotaPerdida(){
-       return this.getOrganizacionAsociada().getListaPublicaciones();
-    }
 
-    public void contactarAlQueLaRescato(Publicacion publicacion){
-        this.contactar(publicacion.getUsuario());
-    }
 
-    public void contactar(Usuario usuario){
-        List <Contacto> listaContactosDuenio = usuario.getMediosDeContacto();
-        for(Contacto contacto : listaContactosDuenio){
-            contacto.notificar(this.getNombre() + " " + this.getApellido() + " se reportó como el dueño de la mascota que encontraste, sus contactos son: " + this.getMediosDeContacto() );
-        }
-        // contactarlo
-        // con eso el rescatista tendria que recibir numero de telefono y mail del dueño de la mascota
-    }
-    public void darEnAdopcion(String descripcion, List<String> fotos){
-        GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion((Duenio) this,descripcion,fotos);
-
-    }
-
-    public void adoptarMascota(Mascota mascota) {
-        List <Contacto> mediosDeContacto = mascota.getDuenio().getMediosDeContacto();
-        for(Contacto contacto : mediosDeContacto){
-            contacto.notificar("Quieren adoptar a tu mascota");
-        }
-    }
-
-    public PublicacionAdoptante quieroAdoptarUnaMascota(String descripcion , List<String> fotos){
-        return GeneradorPublicaciones.generarPublicacionAdoptante(this,descripcion,fotos);
-    }
 
     public Organizacion getOrganizacionAsociada() {
         return organizacionAsociada;
