@@ -1,7 +1,6 @@
 package domain.organizacion;
 
 import domain.autenticacion.Usuario;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,12 +9,18 @@ public abstract class Publicacion {
     private List<String> fotos;
     private String descripcion;
     private LocalDateTime fechaDePublicacion;
+    private EstadoPublicacion estado;
+
+    public void aprobarPublicacion(){
+        this.setEstado(EstadoPublicacion.APROBADO);
+    }
 
     public Publicacion(Usuario autor, List<String> fotos, String descripcion) {
         this.usuario = autor;
         this.fotos = fotos;
         this.descripcion = descripcion;
         this.fechaDePublicacion = LocalDateTime.now();
+        this.setEstado(EstadoPublicacion.EN_ESPERA);
     }
     public Usuario getUsuario() {
         return usuario;
@@ -47,5 +52,13 @@ public abstract class Publicacion {
 
     public void setFechaDePublicacion(LocalDateTime fechaDePublicacion) {
         this.fechaDePublicacion = fechaDePublicacion;
+    }
+
+    public EstadoPublicacion getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoPublicacion estado) {
+        this.estado = estado;
     }
 }

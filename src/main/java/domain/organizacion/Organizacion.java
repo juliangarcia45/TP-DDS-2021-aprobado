@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Organizacion {
     private List<Usuario> usuarios;
@@ -14,6 +15,10 @@ public class Organizacion {
     private Integer largoFoto;
     private String formatoEstandar;
     private RegistroDeUsuarios registroDeUsuarios;
+
+    public List<Publicacion> obtenerPublicacionesEnEspera(){
+        return this.getListaPublicaciones().stream().filter(Publicacion -> Publicacion.getEstado()==EstadoPublicacion.EN_ESPERA).collect(Collectors.toList());
+    }
 
 
     public void definirTamanioYFormatoEstandar() throws IOException {
