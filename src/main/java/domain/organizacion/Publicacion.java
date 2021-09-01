@@ -15,6 +15,7 @@ public abstract class Publicacion {
         this.setEstado(EstadoPublicacion.APROBADO);
     }
 
+
     public Publicacion(Usuario autor, List<String> fotos, String descripcion) {
         this.usuario = autor;
         this.fotos = fotos;

@@ -26,6 +26,8 @@ public class Rescatista extends Usuario {
        }
 
    }
+
+   
     public void setHogaresResponseApi(HogaresResponseApi hogaresResponseApi) {
         this.hogaresResponseApi = hogaresResponseApi;
     }

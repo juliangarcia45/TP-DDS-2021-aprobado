@@ -9,11 +9,14 @@ public class Voluntario extends Usuario {
     }
 
     public Publicacion obtenerPublicacion(){
-       return organizacion.obtenerPublicacionesEnEspera().get(0);
+       return organizacion.obtenerPublicacionesSegun(EstadoPublicacion.EN_ESPERA).get(0);
     }
 
-    public void aprobarPublicacion(Publicacion solicitudPublicacion){
+    public void aprobar(Publicacion solicitudPublicacion){
         solicitudPublicacion.aprobarPublicacion();
     }
 
+    public void rechazar(Publicacion solicitudPublicacion){
+        organizacion.obtenerPublicacionesSegun(EstadoPublicacion.EN_ESPERA).remove(solicitudPublicacion);
+    }
 }

@@ -3,6 +3,7 @@ import domain.autenticacion.Usuario;
 import net.coobird.thumbnailator.Thumbnails;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -10,15 +11,12 @@ import java.util.stream.Stream;
 
 public class Organizacion {
     private List<Usuario> usuarios;
-    private List<Publicacion> listaPublicaciones;
+    private List<Publicacion> listaPublicaciones = new ArrayList<>();
     private Integer anchoFoto;
     private Integer largoFoto;
     private String formatoEstandar;
     private RegistroDeUsuarios registroDeUsuarios;
 
-    public List<Publicacion> obtenerPublicacionesEnEspera(){
-        return this.getListaPublicaciones().stream().filter(Publicacion -> Publicacion.getEstado()==EstadoPublicacion.EN_ESPERA).collect(Collectors.toList());
-    }
 
 
     public void definirTamanioYFormatoEstandar() throws IOException {
@@ -34,9 +32,7 @@ public class Organizacion {
     }
     public Integer getAnchoFoto() { return anchoFoto; }
     public Integer getLargoFoto() { return largoFoto; }
-    public List<Publicacion> getListaPublicaciones() {
-        return listaPublicaciones;
-    }
+
     public void registrarUsuario(Usuario usuario){
         Usuario registrado = this.registroDeUsuarios.registrar(usuario);
         this.usuarios.add(registrado);
@@ -48,6 +44,27 @@ public class Organizacion {
                 .outputFormat(this.getFormatoEstandar())
                 .toFile("assets/thumbnail."+this.getFormatoEstandar());
     }
+    public void addPublicacion(Publicacion publicacion){
+        this.listaPublicaciones.add(publicacion);
+    }
+    public List<Publicacion> getListaPublicaciones() {
+        return listaPublicaciones;
+    }
+    public List<Publicacion> publicacionesAprob(){
+        return this.obtenerPublicacionesSegun(EstadoPublicacion.APROBADO);
+    }
+    
+    public List<Publicacion> obtenerPublicacionesSegun(EstadoPublicacion estado ){
+        return this.getListaPublicaciones().stream().filter(Publicacion -> Publicacion.getEstado()==estado).collect(Collectors.toList());
+    }
+    
+    public List<Publicacion> publicacionesDeMascotasPerdidas(){
+        return this.publicacionesAprob().stream().filter(publicacion -> publicacion instanceof PublicacionMascotaPerdida).collect(Collectors.toList());
+    }
+    public List<Publicacion> publicacionesDeMascotasEnAdopcion(){
+        return this.publicacionesAprob().stream().filter(publicacion -> publicacion instanceof PublicacionMascotaEnAdopcion).collect(Collectors.toList());
+    }
+
   /*  public void agregarPublicacion(Publicacion publicacion){
         // deberia mandarle la publicacion a los voluntarios pero aca le mando solamente todas al primero de la lista...
         if (this.getVoluntarios().get(0).aprobarPublicacion(publicacion)) {

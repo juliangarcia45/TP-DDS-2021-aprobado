@@ -20,7 +20,4 @@ public class GeneradorPublicaciones {
         return new PublicacionMascotaEnAdopcion(duenio,descripcionMascota,fotosMascota);
     }
 
-    public static PublicacionAdoptante generarPublicacionAdoptante(Usuario usuarioAdoptante,String descripcion, List<String> fotosAdoptante ) {
-        return new PublicacionAdoptante(usuarioAdoptante,descripcion,fotosAdoptante);
-    }
 }

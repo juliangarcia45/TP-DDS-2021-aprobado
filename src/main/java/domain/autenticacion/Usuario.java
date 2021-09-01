@@ -23,12 +23,6 @@ public abstract class Usuario {
         mediosDeContacto = new ArrayList<>();
     }
 
-    public void informarMascotaPerdida (List<String> fotos, String descripcion ){
-         GeneradorPublicaciones.generarPublicacionMascotaPerdida(this, descripcion , fotos);
-
-    }
-
-
 
     public Organizacion getOrganizacionAsociada() {
         return organizacionAsociada;
