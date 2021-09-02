@@ -7,6 +7,7 @@ public class MascotaPerdida extends EstadoMascota {
     public void mostrarEstado() {
         System.out.println("Mascota perdida");
     }
+
 }
 /*public class Perdida implements EstadoMascota{
     private Mascota mascota;

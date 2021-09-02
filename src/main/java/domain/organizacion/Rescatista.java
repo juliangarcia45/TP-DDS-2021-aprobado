@@ -4,6 +4,8 @@ import domain.autenticacion.Usuario;
 import domain.hogaresAPI.HogarDeTransito;
 import domain.hogaresAPI.HogaresResponseApi;
 import domain.notificacion.Contacto;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,19 +21,15 @@ public class Rescatista extends Usuario {
         super(usuario, contrasenia);
     }
 
-   public void escanearQr(Mascota mascotaPerdida){
-        List <Contacto> listaContactosDuenio = mascotaPerdida.getDuenio().getMediosDeContacto();
-       for(Contacto contacto : listaContactosDuenio){
-           contacto.notificar("Encontre a tu mascota");
-       }
-
-   }
-   public void informarMascotaPerdida (List<String> fotos, String descripcion ){
-        GeneradorPublicaciones.generarPublicacionMascotaPerdida(this, descripcion , fotos);
+   public void notificarDuenio(Mascota unaMascota){
+       unaMascota.notificarDuenio("encontramos a tu mascota");
    }
 
+   public File getQrCode(Mascota mascotaPerdida){
+      return mascotaPerdida.generateQR();
+   }
    public void informarMascotaPerdida(Mascota unaMascota){
-       
+       GeneradorPublicaciones.generarPublicacionMascotaPerdida(this,unaMascota.getDescripcion(),unaMascota.getFotos());
    }
    
     public void setHogaresResponseApi(HogaresResponseApi hogaresResponseApi) {

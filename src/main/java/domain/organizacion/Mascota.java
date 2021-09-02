@@ -19,6 +19,7 @@ public class Mascota {
     private final boolean especie;
     private final List<String> fotos;
     private final Map<String,String> caracteristicas;
+    private EstadoMascota estado;
    
     private Mascota(MascotaBuilder builder) {
         this.nombre = builder.nombre;
@@ -30,12 +31,18 @@ public class Mascota {
         this.fotos = builder.fotos;
         this.caracteristicas= builder.caracteristicas;
         this.idMascota=  builder.idMascota;
+        this.duenio = builder.duenio;
+        this.estado = builder.estado;
         this.qr = new GeneradorQR();
     }
     public void setDuenio(Duenio duenio) {
         this.duenio = duenio;
-        this.generateQR();
     }
+
+    public void setEstado(EstadoMascota estado){
+        this.estado = estado;
+    }
+
 
     public String getDescripcion() {
         return descripcion;
@@ -54,7 +61,12 @@ public class Mascota {
         return idMascota;
     }
 
-    public void generateQR() {
+    public void notificarDuenio(String mensaje){
+        this.getDuenio().getMediosDeContacto().stream().forEach(contacto -> contacto.notificar(mensaje));
+    }
+
+
+    public File generateQR() {
         File f = new File("qrCode.png");
         String text = this.duenio.getMediosDeContacto().get(0).getContacto();
     
@@ -67,10 +79,12 @@ public class Mascota {
             String qrString = qr.decoder(f);
             System.out.println("Text QRCode: " + qrString);
 
+     
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+        return f;
     }
     public void leerQr(File f){
         try{
@@ -92,6 +106,8 @@ public class Mascota {
         private List<String> fotos;
         private Map<String,String> caracteristicas;
         private Integer edad;
+        private Duenio duenio;
+        private EstadoMascota estado;
         
         public MascotaBuilder(List<String> fotos , String descripcion){
             this.descripcion = descripcion;
@@ -130,6 +146,14 @@ public class Mascota {
         }
         public MascotaBuilder fotos(List<String> fotos){
             this.fotos= fotos;
+            return this;
+        }
+        public MascotaBuilder duenio(Duenio  duenio){
+            this.duenio =duenio;
+            return this;
+        }
+        public MascotaBuilder estado(EstadoMascota estado){
+            this.estado =estado;
             return this;
         }
 

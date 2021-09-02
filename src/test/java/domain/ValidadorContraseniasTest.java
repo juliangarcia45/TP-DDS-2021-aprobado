@@ -1,6 +1,4 @@
 package domain;
-
-import domain.autenticacion.Usuario;
 import domain.organizacion.Duenio;
 import domain.organizacion.Mascota;
 import org.junit.Test;

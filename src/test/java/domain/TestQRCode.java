@@ -3,8 +3,6 @@ package domain;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.generadorQR.*;
-import domain.autenticacion.Usuario;
 import domain.organizacion.Duenio;
 import domain.organizacion.Mascota;
 
@@ -45,7 +43,8 @@ public class TestQRCode{
     
     @Test
     public void generateQR() {
-        mascota.generateQR();
+        File f = mascota.generateQR();
+        mascota.leerQr(f);
     }
 
     @Test
