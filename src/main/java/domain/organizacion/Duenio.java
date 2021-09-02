@@ -24,7 +24,6 @@ public class Duenio extends Usuario {
     }
 
     public void registrarMascota(Mascota mascota){
-
         this.mascotas.add(mascota);
         mascota.setDuenio(this);
     }
@@ -50,9 +49,11 @@ public class Duenio extends Usuario {
         return this.getOrganizacionAsociada().publicacionesDeMascotasEnAdopcion();
     }
     
-    public void darEnAdopcion(Mascota mascota){
-        PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion = GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion(this,mascota.getDescripcion(),mascota.getFotos());
-        }
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacionFav){
+        GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion(this,mascota.getDescripcion(),mascota.getFotos(), organizacionFav);
+        this.getMascotas().remove(mascota);
+        mascota.setDuenio(null);
+    }
 
     public void adoptarMascota(Mascota mascota) {
         List <Contacto> mediosDeContacto = mascota.getDuenio().getMediosDeContacto();

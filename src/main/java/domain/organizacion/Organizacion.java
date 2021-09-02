@@ -1,5 +1,5 @@
 package domain.organizacion;
-import domain.autenticacion.Usuario;
+import domain.autenticacion.Administrador;
 import net.coobird.thumbnailator.Thumbnails;
 
 import java.io.*;
@@ -7,15 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Organizacion {
-    private List<Usuario> usuarios;
+    private List<Voluntario> voluntarios=new ArrayList<>();
+    private List<Administrador> administradores=new ArrayList<>();
     private List<Publicacion> listaPublicaciones = new ArrayList<>();
+    private Ubicacion ubicacion;
     private Integer anchoFoto;
     private Integer largoFoto;
     private String formatoEstandar;
-    private RegistroDeUsuarios registroDeUsuarios;
+
+    public void agregarVoluntario(Voluntario voluntario){
+        this.voluntarios.add(voluntario);
+    }
+    public void agregarAdmin(Administrador administrador){
+        this.administradores.add(administrador);
+    }
+
 
 
 
@@ -33,10 +41,6 @@ public class Organizacion {
     public Integer getAnchoFoto() { return anchoFoto; }
     public Integer getLargoFoto() { return largoFoto; }
 
-    public void registrarUsuario(Usuario usuario){
-        Usuario registrado = this.registroDeUsuarios.registrar(usuario);
-        this.usuarios.add(registrado);
-    }
 
     public void normalizarFoto2(String path, String outputPath) throws IOException {
         Thumbnails.of(path)
@@ -63,6 +67,28 @@ public class Organizacion {
     }
     public List<Publicacion> publicacionesDeMascotasEnAdopcion(){
         return this.publicacionesAprob().stream().filter(publicacion -> publicacion instanceof PublicacionMascotaEnAdopcion).collect(Collectors.toList());
+    }
+
+
+    public List<Administrador> getAdministradores() {
+        return administradores;
+    }
+    public void setAdministradores(List<Administrador> administradores) {
+        this.administradores = administradores;
+    }
+
+    public List<Voluntario> getVoluntarios() {
+        return voluntarios;
+    }
+    public void setVoluntarios(List<Voluntario> voluntarios) {
+        this.voluntarios = voluntarios;
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
   /*  public void agregarPublicacion(Publicacion publicacion){

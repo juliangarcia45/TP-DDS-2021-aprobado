@@ -13,7 +13,7 @@ public class Rescatista extends Usuario {
 
     String descripcionMascota;
     String direccionRescatista;
-    String direccionEncuentroMascota;
+    Ubicacion direccionEncuentroMascota;
     List<String> fotoMascota;
     HogaresResponseApi hogaresResponseApi;
 
@@ -28,6 +28,7 @@ public class Rescatista extends Usuario {
    public File getQrCode(Mascota mascotaPerdida){
       return mascotaPerdida.generateQR();
    }
+
    public void informarMascotaPerdida(Mascota unaMascota){
        GeneradorPublicaciones.generarPublicacionMascotaPerdida(this,unaMascota.getDescripcion(),unaMascota.getFotos());
    }
@@ -38,6 +39,14 @@ public class Rescatista extends Usuario {
 
     public List<HogarDeTransito> buscarHogarDeTransito(String latitud, String longitud) throws IOException {
         return this.hogaresResponseApi.getRespuestaApi();
+    }
+
+
+    public Ubicacion getDireccionEncuentroMascota() {
+        return direccionEncuentroMascota;
+    }
+    public void setDireccionEncuentroMascota(Ubicacion direccionEncuentroMascota) {
+        this.direccionEncuentroMascota = direccionEncuentroMascota;
     }
 
 }

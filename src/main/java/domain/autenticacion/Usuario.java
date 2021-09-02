@@ -23,6 +23,8 @@ public abstract class Usuario {
         mediosDeContacto = new ArrayList<>();
     }
 
+    public void registrarUsuario(Usuario usuario){Usuario registrado = RegistroDeUsuarios.registrar(usuario);}
+
  
 
 

@@ -7,6 +7,7 @@ import domain.notificacion.Sms;
 import domain.notificacion.WhatsApp;
 import domain.organizacion.Duenio;
 import domain.organizacion.Mascota;
+import domain.organizacion.Organizacion;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,11 +19,13 @@ public class entrega3Test {
         Duenio cliente;
         Usuario usuario;
     Mascota mascotaDuenio;
+    Organizacion organizacion;
         @Before
         public void init(){
             // Creo un cliente
             cliente = new Duenio("cliente","cliente123");
             mascotaDuenio = new Mascota.MascotaBuilder(null,null).nombre("Mascota").build();
+            organizacion= new Organizacion();
             // Creo medios de notificacion y les asigno su estrategia de notificacion
             MedioDeNotificacion whatsapp = new MedioDeNotificacion();
             whatsapp.setEstrategiaNotificacion(new WhatsApp());
@@ -39,7 +42,7 @@ public class entrega3Test {
         public void notificarUsuario()  {
             cliente.registrarMascota(mascotaDuenio);
             System.out.println(mascotaDuenio.getDuenio());
-            cliente.darEnAdopcion(mascotaDuenio);
+            cliente.darEnAdopcion(mascotaDuenio, organizacion);
 
         }
     }

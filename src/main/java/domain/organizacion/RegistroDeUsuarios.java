@@ -14,7 +14,7 @@ public class RegistroDeUsuarios {
         return instance;
     }
 
-    public Usuario registrar(Usuario usuario){
+    public static Usuario registrar(Usuario usuario){
          usuario = new Usuario("default","default") {
         };
         return usuario;
