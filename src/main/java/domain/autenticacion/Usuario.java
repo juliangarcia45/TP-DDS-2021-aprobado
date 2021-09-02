@@ -23,6 +23,8 @@ public abstract class Usuario {
         mediosDeContacto = new ArrayList<>();
     }
 
+ 
+
 
     public Organizacion getOrganizacionAsociada() {
         return organizacionAsociada;

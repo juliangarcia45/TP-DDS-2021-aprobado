@@ -22,7 +22,7 @@ public class entrega3Test {
         public void init(){
             // Creo un cliente
             cliente = new Duenio("cliente","cliente123");
-            mascotaDuenio = new Mascota("Mascota",true,null,null,null,true,null,null,null);
+            mascotaDuenio = new Mascota.MascotaBuilder(null,null).nombre("Mascota").build();
             // Creo medios de notificacion y les asigno su estrategia de notificacion
             MedioDeNotificacion whatsapp = new MedioDeNotificacion();
             whatsapp.setEstrategiaNotificacion(new WhatsApp());

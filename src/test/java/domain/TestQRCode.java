@@ -33,8 +33,8 @@ public class TestQRCode{
        this.duenio = new Duenio("jorge", "jorge123");
        List<Contacto> listaContactosDuenio = Arrays.asList(contactoDuenio);
        this.duenio.setMediosDeContacto(listaContactosDuenio);
-
-        this.mascota = new Mascota("gato",true,null,null,null,true,null,duenio,null);
+       mascota = new Mascota.MascotaBuilder(null,null).nombre("gato").build();
+    
         this.duenio.registrarMascota(mascota);
         this.duenio.setNombre("jorgito");
         String nombre = this.mascota.getDuenio().getNombre();
@@ -45,23 +45,14 @@ public class TestQRCode{
     
     @Test
     public void generateQR() {
-        GeneradorQR qr = new GeneradorQR();
-        File f = new File("qrCode.png");
-        String text = contacto.getContacto();
-    
-
-        try {
-
-            qr.generateQR(f, text, 300, 300);
-            System.out.println("QRCode Generated: " + f.getAbsolutePath());
-
-            String qrString = qr.decoder(f);
-            System.out.println("Text QRCode: " + qrString);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
+        mascota.generateQR();
     }
+
+    @Test
+    public void leerQr(){
+        File f = new File("qrCode.png");
+        mascota.leerQr(f);
+    }
+
 
 }

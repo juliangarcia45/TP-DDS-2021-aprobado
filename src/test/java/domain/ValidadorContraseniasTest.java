@@ -13,7 +13,8 @@ public class ValidadorContraseniasTest {
         @Test
         public void validarContrasenias() {
             Duenio jorge= new Duenio("jorge", "jorge");
-            Mascota mascota = new Mascota("gato",true,null,null,null,true,null,jorge,null);
+            Mascota mascota = new Mascota.MascotaBuilder(null,null).nombre("gato").build();
+            mascota.setDuenio(jorge);
             jorge.registrarMascota(mascota);
 
             assertEquals(mascota,jorge.getMascotas().get(0));

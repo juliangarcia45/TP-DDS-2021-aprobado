@@ -26,7 +26,13 @@ public class Rescatista extends Usuario {
        }
 
    }
+   public void informarMascotaPerdida (List<String> fotos, String descripcion ){
+        GeneradorPublicaciones.generarPublicacionMascotaPerdida(this, descripcion , fotos);
+   }
 
+   public void informarMascotaPerdida(Mascota unaMascota){
+       
+   }
    
     public void setHogaresResponseApi(HogaresResponseApi hogaresResponseApi) {
         this.hogaresResponseApi = hogaresResponseApi;
