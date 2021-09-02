@@ -1,11 +1,7 @@
 package domain.publicaciones;
 
 
-import domain.organizacion.Organizacion;
-import domain.organizacion.Publicacion;
-import domain.organizacion.PublicacionMascotaEnAdopcion;
-import domain.organizacion.PublicacionMascotaPerdida;
-import domain.organizacion.Rescatista;
+import domain.organizacion.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,31 +14,35 @@ import java.util.List;
 
 public class obtenerPublicacionesMascotasPerdidasTest {
     Organizacion patitas = new Organizacion();
+    Organizacion patitasDos = new Organizacion();
     List<Publicacion> publicaciones;
     Rescatista clark = new Rescatista("clark", "xD");
+    Duenio aaa = new Duenio(null,null);
     @Before
     public void initPublicaciones() throws IOException{
         Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null);
         
         Publicacion donJonny = new PublicacionMascotaPerdida(clark, null, null);
 
-        Publicacion yuumi = new PublicacionMascotaEnAdopcion(null, null, null);
+        Publicacion yuumi = new PublicacionMascotaPerdida(clark, null, null);
 
         donPepe.aprobarPublicacion();
         yuumi.aprobarPublicacion();
 
+
         publicaciones = new ArrayList<>();
         publicaciones.add(donPepe);
+        publicaciones.add(yuumi);
 
         patitas.addPublicacion(donJonny);
         patitas.addPublicacion(yuumi);
-        patitas.addPublicacion(donPepe);
+        patitasDos.addPublicacion(donPepe);
     }
 
     @Test
     public void filtrarMascotasPerdidas() throws IOException {
 
-        assertEquals(publicaciones,patitas.publicacionesDeMascotasPerdidas());
+        assertEquals(publicaciones,aaa.buscarMascotaPerdida());
     }
 
 }

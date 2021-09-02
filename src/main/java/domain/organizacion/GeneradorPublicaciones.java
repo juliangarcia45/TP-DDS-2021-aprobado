@@ -22,7 +22,15 @@ public class GeneradorPublicaciones {
     public static GeneradorPublicaciones getInstance() {
         return instance;
     }
-
+//VER ACA CON TEST OBTENERMASCOTASPERDIDASTEST
+    public static List<Publicacion> obtenerPublicacionesMascPerdidas(){
+        List<Publicacion> publicaciones=new ArrayList<>();
+        List<List<Publicacion>> aux= organizaciones.stream().map(Organizacion -> Organizacion.publicacionesDeMascotasPerdidas()).collect(Collectors.toList());
+        for(int i=0 ;i<= aux.size();i++){
+            aux.get(i).forEach(Publicacion->publicaciones.add(Publicacion));
+        }
+        return publicaciones;
+    }
     public static void generarPublicacionMascotaPerdida(Rescatista rescatista, String estadoMascota, List<String> fotosMascota) {
         Organizacion org= obtenerOrgMasCercana(rescatista.getDireccionEncuentroMascota());
         org.getListaPublicaciones().add(new PublicacionMascotaPerdida(rescatista,fotosMascota,estadoMascota));

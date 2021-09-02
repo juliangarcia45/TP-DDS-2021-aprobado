@@ -14,7 +14,7 @@ public abstract class Usuario {
     private List<Contacto>  mediosDeContacto;
     private  Documento documento;
     private Date fechaNacimiento;
-    private Organizacion organizacionAsociada;
+
 
 
     public Usuario(String usuario, String contrasenia) {
@@ -25,12 +25,7 @@ public abstract class Usuario {
 
     public void registrarUsuario(Usuario usuario){Usuario registrado = RegistroDeUsuarios.registrar(usuario);}
 
- 
 
-
-    public Organizacion getOrganizacionAsociada() {
-        return organizacionAsociada;
-    }
     public String getUsuario() {
         return usuario;
     }

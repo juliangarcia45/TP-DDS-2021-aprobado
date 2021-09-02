@@ -30,7 +30,7 @@ public class Duenio extends Usuario {
 
     //Mascota perdida
     public List<Publicacion> buscarMascotaPerdida(){
-        return this.getOrganizacionAsociada().publicacionesDeMascotasPerdidas();
+        return GeneradorPublicaciones.obtenerPublicacionesMascPerdidas();
     }
 
     public void contactarAlQueLaRescato(Publicacion publicacion){
@@ -44,10 +44,10 @@ public class Duenio extends Usuario {
         }
     }
     //Mascota adoptada
-
-    public List<Publicacion> buscarMascotasEnAdopcion(){
-        return this.getOrganizacionAsociada().publicacionesDeMascotasEnAdopcion();
-    }
+//VER ACA
+   // public List<Publicacion> buscarMascotasEnAdopcion(){
+     //   return GeneradorPublicaciones.obtenerPublicacionesMascEnAdopcion();
+    //}
     
     public void darEnAdopcion(Mascota mascota, Organizacion organizacionFav){
         GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion(this,mascota.getDescripcion(),mascota.getFotos(), organizacionFav);
