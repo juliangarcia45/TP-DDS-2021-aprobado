@@ -18,6 +18,7 @@ public class obtenerPublicacionesMascotasPerdidasTest {
     List<Publicacion> publicaciones;
     Rescatista clark = new Rescatista("clark", "xD");
     Duenio aaa = new Duenio(null,null);
+    GeneradorPublicaciones generador= new GeneradorPublicaciones();
     @Before
     public void initPublicaciones() throws IOException{
         Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null);
@@ -31,12 +32,16 @@ public class obtenerPublicacionesMascotasPerdidasTest {
 
 
         publicaciones = new ArrayList<>();
-        publicaciones.add(donPepe);
         publicaciones.add(yuumi);
+        publicaciones.add(donPepe);
 
         patitas.addPublicacion(donJonny);
         patitas.addPublicacion(yuumi);
         patitasDos.addPublicacion(donPepe);
+        
+      
+        generador.agregarOrganizacion(patitas);
+        generador.agregarOrganizacion(patitasDos);
     }
 
     @Test

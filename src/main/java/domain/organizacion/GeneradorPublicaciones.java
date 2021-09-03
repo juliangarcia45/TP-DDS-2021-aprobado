@@ -25,10 +25,7 @@ public class GeneradorPublicaciones {
 //VER ACA CON TEST OBTENERMASCOTASPERDIDASTEST
     public static List<Publicacion> obtenerPublicacionesMascPerdidas(){
         List<Publicacion> publicaciones=new ArrayList<>();
-        List<List<Publicacion>> aux= organizaciones.stream().map(Organizacion -> Organizacion.publicacionesDeMascotasPerdidas()).collect(Collectors.toList());
-        for(int i=0 ;i<= aux.size();i++){
-            aux.get(i).forEach(Publicacion->publicaciones.add(Publicacion));
-        }
+       organizaciones.stream().forEach(Organizacion -> Organizacion.publicacionesDeMascotasPerdidas().forEach(Publicacion -> publicaciones.add(Publicacion)));
         return publicaciones;
     }
     public static void generarPublicacionMascotaPerdida(Rescatista rescatista, String estadoMascota, List<String> fotosMascota) {
