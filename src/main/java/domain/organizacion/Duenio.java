@@ -1,5 +1,7 @@
 package domain.organizacion;
 
+import domain.PreguntasAdopcion.RespuestaAdopcion;
+import domain.RepositorioAdoptantes.RepositorioAdoptantes;
 import domain.autenticacion.Usuario;
 import domain.notificacion.Contacto;
 
@@ -9,7 +11,6 @@ import java.util.List;
 
 public class Duenio extends Usuario {
     private List<Mascota> mascotas = new ArrayList<Mascota>();
-
 
     public Duenio(String usuario, String contrasenia) {
         super(usuario, contrasenia);
@@ -30,37 +31,31 @@ public class Duenio extends Usuario {
 
     //Mascota perdida
     public List<Publicacion> buscarMascotaPerdida(){
-        return GeneradorPublicaciones.obtenerPublicacionesMascPerdidas();
+        return GestorPublicaciones.obtenerPublicacionesMascPerdidas();
     }
 
-    public void contactarAlQueLaRescato(Publicacion publicacion){
-        this.contactar(publicacion.getUsuario());
-    }
-
-    public void contactar(Usuario usuario){
-        List <Contacto> listaContactosDuenio = usuario.getMediosDeContacto();
-        for(Contacto contacto : listaContactosDuenio){
-            contacto.notificar(this.getNombre() + " " + this.getApellido() + " se reportó como el dueño de la mascota que encontraste, sus contactos son: " + this.getMediosDeContacto() );
-        }
-    }
     //Mascota adoptada
 //VER ACA
-   // public List<Publicacion> buscarMascotasEnAdopcion(){
-     //   return GeneradorPublicaciones.obtenerPublicacionesMascEnAdopcion();
-    //}
+    public List<Publicacion> buscarMascotasEnAdopcion(){
+       return GestorPublicaciones.obtenerPublicacionesMascEnAdopcion();
+    }
     
-    public void darEnAdopcion(Mascota mascota, Organizacion organizacionFav){
-        GeneradorPublicaciones.generarPublicacionMascotaEnAdopcion(this,mascota.getDescripcion(),mascota.getFotos(), organizacionFav);
+    public void darEnAdopcion(Mascota mascota, List<Organizacion> organizaciones){
+        organizaciones.stream().forEach(organizacion->GestorPublicaciones.generarPublicacionMascotaEnAdopcion(this,mascota, organizacion));
         this.getMascotas().remove(mascota);
         mascota.setDuenio(null);
     }
 
-    public void adoptarMascota(Mascota mascota) {
-        List <Contacto> mediosDeContacto = mascota.getDuenio().getMediosDeContacto();
-        for(Contacto contacto : mediosDeContacto){
-            contacto.notificar("Quieren adoptar a tu mascota");
-        }
+    //Duenio interesado en adoptar
+    public void suscribirseARecomendacionesDeAdopcion(List<RespuestaAdopcion> preferencias){
+        RepositorioAdoptantes.crearPublicacionAdoptante(this,preferencias);
     }
+    public void desuscribirseARecomendacionesDeAdopcion(){
+        RepositorioAdoptantes.eliminarPublicacionAdoptante(this);
+    }
+
+
+
 
     // public PublicacionAdoptante quieroAdoptarUnaMascota(String descripcion , List<String> fotos){
     //     return GeneradorPublicaciones.generarPublicacionAdoptante(this,descripcion,fotos);

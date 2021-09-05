@@ -5,11 +5,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public abstract class Publicacion {
-    private Usuario usuario;
+    private Usuario autor;
     private List<String> fotos;
     private String descripcion;
     private LocalDateTime fechaDePublicacion;
     private EstadoPublicacion estado;
+
 
     public void aprobarPublicacion(){
         this.setEstado(EstadoPublicacion.APROBADO);
@@ -17,18 +18,18 @@ public abstract class Publicacion {
 
 
     public Publicacion(Usuario autor, List<String> fotos, String descripcion) {
-        this.usuario = autor;
+        this.autor = autor;
         this.fotos = fotos;
         this.descripcion = descripcion;
         this.fechaDePublicacion = LocalDateTime.now();
         this.setEstado(EstadoPublicacion.EN_ESPERA);
     }
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getAutor() {
+        return autor;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setAutor(Usuario usuario) {
+        this.autor = usuario;
     }
 
     public List<String> getFotos() {

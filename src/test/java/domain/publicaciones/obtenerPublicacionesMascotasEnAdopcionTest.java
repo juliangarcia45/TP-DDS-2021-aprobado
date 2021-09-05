@@ -25,7 +25,7 @@ public class obtenerPublicacionesMascotasEnAdopcionTest {
         
         Publicacion donJonny = new PublicacionMascotaPerdida(clark, null, null);
 
-        Publicacion yuumi = new PublicacionMascotaEnAdopcion(null, null, null);
+        Publicacion yuumi = new PublicacionMascotaEnAdopcion(null, null);
 
         donPepe.aprobarPublicacion();
         yuumi.aprobarPublicacion();

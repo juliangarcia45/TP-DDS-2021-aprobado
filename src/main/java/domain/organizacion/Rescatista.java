@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class Rescatista extends Usuario {
-
     String descripcionMascota;
     String direccionRescatista;
     Ubicacion direccionEncuentroMascota;
@@ -30,7 +29,7 @@ public class Rescatista extends Usuario {
    }
 
    public void informarMascotaPerdida(Mascota unaMascota){
-       GeneradorPublicaciones.generarPublicacionMascotaPerdida(this,unaMascota.getDescripcion(),unaMascota.getFotos());
+       GestorPublicaciones.generarPublicacionMascotaPerdida(this,unaMascota.getDescripcion(),unaMascota.getFotos());
    }
    
     public void setHogaresResponseApi(HogaresResponseApi hogaresResponseApi) {

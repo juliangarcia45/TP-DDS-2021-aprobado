@@ -1,17 +1,40 @@
 package domain.organizacion;
 
+import domain.PreguntasAdopcion.RespuestaAdopcion;
 import domain.autenticacion.Usuario;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class PublicacionAdoptante extends Publicacion{
-    private List<String> preferencias;
-    private List<String> comodidades;
+public class PublicacionAdoptante{
+    private Duenio interesado;
+    private List<RespuestaAdopcion> respuestasPreferencias;
 
-    public PublicacionAdoptante( Usuario usuarioAdoptante, String descripcion, List<String> fotosAdoptante) {
-        super(usuarioAdoptante, fotosAdoptante, descripcion);
+    public PublicacionAdoptante(Duenio interesado, List<RespuestaAdopcion> respuestasPreferencias) {
+        this.interesado = interesado;
+        this.respuestasPreferencias=respuestasPreferencias;
     }
+
+    public void agregarRespuesta(RespuestaAdopcion respuesta) {
+        this.respuestasPreferencias.add(respuesta);
+    }
+
+    public void eliminarRespuesta(RespuestaAdopcion respuesta) {
+        this.respuestasPreferencias.remove(respuesta);
+    }
+
+    public List<RespuestaAdopcion> getRespuestas() {
+        return respuestasPreferencias;
+    }
+
+    public Duenio getInteresado() {
+        return interesado;
+    }
+    public void setInteresado(Duenio interesado) {
+        this.interesado = interesado;
+    }
+
+
 
 
 

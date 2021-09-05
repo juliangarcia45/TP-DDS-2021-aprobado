@@ -18,7 +18,7 @@ public class obtenerPublicacionesMascotasPerdidasTest {
     List<Publicacion> publicaciones;
     Rescatista clark = new Rescatista("clark", "xD");
     Duenio aaa = new Duenio(null,null);
-    GeneradorPublicaciones generador= new GeneradorPublicaciones();
+    GestorPublicaciones generador= new GestorPublicaciones();
     @Before
     public void initPublicaciones() throws IOException{
         Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null);

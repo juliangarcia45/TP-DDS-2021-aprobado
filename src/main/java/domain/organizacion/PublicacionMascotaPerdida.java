@@ -15,4 +15,8 @@ public class PublicacionMascotaPerdida extends Publicacion{
         super(rescatista, fotosMascota, estadoMascota);
     }
 
+    public void esMiMascota(String contactoDuenio){
+        this.getAutor().getMediosDeContacto().stream().forEach(contacto -> contacto.notificar("El duenio encontro la publicacion de su mascota"+ contactoDuenio));
+    }
+
 }
