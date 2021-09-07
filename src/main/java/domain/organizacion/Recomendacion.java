@@ -20,13 +20,11 @@ public class Recomendacion {
         List<Publicacion> publicaciones=GestorPublicaciones.obtenerPublicacionesMascEnAdopcion();
         int index = 0;
         for (Publicacion publicacion : publicaciones) {
-            while (publicaciones.iterator().hasNext()) {
                 if(publicacion instanceof PublicacionMascotaEnAdopcion){
                     if(((PublicacionMascotaEnAdopcion) publicacion).getRespuestas().equals(publicacionInteresado.getRespuestas())){
                         index=publicaciones.indexOf(publicacion);
                     }
                 }
-            }
         }
         return publicaciones.get(index);
     }

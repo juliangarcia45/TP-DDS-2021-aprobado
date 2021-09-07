@@ -23,7 +23,7 @@ public class obtenerRecomendacionTest {
     Mascota mascotahh = new Mascota.MascotaBuilder(null,null).nombre("gato").apodo("jhol").build();
     PublicacionMascotaEnAdopcion oka = new PublicacionMascotaEnAdopcion(null, mascotahh);
     PublicacionMascotaEnAdopcion koro = new PublicacionMascotaEnAdopcion(null, mascotahh);
-    PublicacionAdoptante as=new PublicacionAdoptante(raul,null);
+    PublicacionAdoptante as=new PublicacionAdoptante(raul,new ArrayList<>());
 
     @Before
     public void initPublicaciones() throws IOException {
