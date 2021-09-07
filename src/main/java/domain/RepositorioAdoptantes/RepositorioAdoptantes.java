@@ -8,10 +8,14 @@ import domain.organizacion.Recomendacion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class RepositorioAdoptantes {
     private static final RepositorioAdoptantes instance = new RepositorioAdoptantes();
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     private static List<PublicacionAdoptante> interesados=new ArrayList<>();
 
@@ -39,10 +43,10 @@ public class RepositorioAdoptantes {
         interesados.remove(interesados.get(index));
     }
 
-    public static void recomendarPublicaciones(){
-        //CREO QUE ACA HAY QUE PONER EL SCHEDULER Y LLAMAR A RECOMENDARPUBLICACION PARA QUE LES RECOMIENDE A CADA INTERESADO
-        Recomendacion.recomendarPublicacion();
+        public void recomendacionSemanal(){
+            scheduler.scheduleAtFixedRate(Recomendacion.recomendarPublicacion(), 7, 7, TimeUnit.DAYS);
+        }
 
-    }
+
 
 }

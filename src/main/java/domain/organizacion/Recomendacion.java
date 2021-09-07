@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Recomendacion {
     private static final Recomendacion instance = new Recomendacion();
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
 
 
     public static Recomendacion getInstance() {
@@ -34,7 +34,5 @@ public class Recomendacion {
         return null;
     }
 
-    public void recomendacionSemanal(){
-        scheduler.scheduleAtFixedRate(recomendarPublicacion(), 7, 7, TimeUnit.DAYS);
-    }
+
 }
