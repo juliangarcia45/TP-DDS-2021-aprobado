@@ -1,10 +1,16 @@
 package domain.PreguntasAdopcion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RespuestaAdopcion {
     PreguntaAdopcion pregunta;
-    List<String> valor;
+    List<String> valor=new ArrayList<>();
+
+    public RespuestaAdopcion(PreguntaAdopcion pregunta,List<String> valor) {
+        this.pregunta=pregunta;
+        this.valor = valor;
+    }
 
     public void setPregunta(PreguntaAdopcion pregunta) {
         this.pregunta = pregunta;

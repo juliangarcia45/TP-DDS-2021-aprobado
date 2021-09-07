@@ -46,7 +46,7 @@ public class GestorPublicaciones {
 
 
 
-    public void agregarOrganizacion(Organizacion organizacion){
+    public static void agregarOrganizacion(Organizacion organizacion){
         organizaciones.add(organizacion);
     }
 }

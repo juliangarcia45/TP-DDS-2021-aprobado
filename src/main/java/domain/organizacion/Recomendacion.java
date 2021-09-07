@@ -2,10 +2,15 @@ package domain.organizacion;
 
 import domain.RepositorioAdoptantes.RepositorioAdoptantes;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class Recomendacion {
     private static final Recomendacion instance = new Recomendacion();
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
 
     public static Recomendacion getInstance() {
         return instance;
@@ -26,7 +31,12 @@ public class Recomendacion {
         return publicaciones.get(index);
     }
 
-    public static void recomendarPublicacion(){
+    public static Runnable recomendarPublicacion(){
         RepositorioAdoptantes.getInteresados().stream().forEach(interesado->obtenerRecomendacion(interesado));
+        return null;
+    }
+
+    public void recomendacionSemanal(){
+        scheduler.scheduleAtFixedRate(recomendarPublicacion(), 7, 7, TimeUnit.DAYS);
     }
 }

@@ -4,11 +4,12 @@ import domain.PreguntasAdopcion.RespuestaAdopcion;
 import domain.autenticacion.Usuario;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PublicacionAdoptante{
     private Duenio interesado;
-    private List<RespuestaAdopcion> respuestasPreferencias;
+    private List<RespuestaAdopcion> respuestasPreferencias=new ArrayList<>();
 
     public PublicacionAdoptante(Duenio interesado, List<RespuestaAdopcion> respuestasPreferencias) {
         this.interesado = interesado;
