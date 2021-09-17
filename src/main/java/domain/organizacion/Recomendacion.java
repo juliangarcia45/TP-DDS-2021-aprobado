@@ -2,6 +2,7 @@ package domain.organizacion;
 
 import domain.RepositorioAdoptantes.RepositorioAdoptantes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,17 +17,17 @@ public class Recomendacion {
         return instance;
     }
 
-    public static Publicacion obtenerRecomendacion(PublicacionAdoptante publicacionInteresado){
+    public static List<Publicacion> obtenerRecomendacion(PublicacionAdoptante publicacionInteresado){
         List<Publicacion> publicaciones=GestorPublicaciones.obtenerPublicacionesMascEnAdopcion();
-        int index = 0;
+        List<Publicacion> recomendaciones=new ArrayList<>();
         for (Publicacion publicacion : publicaciones) {
                 if(publicacion instanceof PublicacionMascotaEnAdopcion){
                     if(((PublicacionMascotaEnAdopcion) publicacion).getRespuestas().equals(publicacionInteresado.getRespuestas())){
-                        index=publicaciones.indexOf(publicacion);
+                        recomendaciones.add(publicacion);
                     }
                 }
         }
-        return publicaciones.get(index);
+        return recomendaciones;
     }
 
     public static Runnable recomendarPublicacion(){

@@ -18,7 +18,7 @@ public class obtenerPublicacionesMascotasPerdidasTest {
     List<Publicacion> publicaciones;
     Rescatista clark = new Rescatista("clark", "xD");
     Duenio aaa = new Duenio(null,null);
-    GestorPublicaciones generador= new GestorPublicaciones();
+
     @Before
     public void initPublicaciones() throws IOException{
         Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null);
@@ -40,8 +40,8 @@ public class obtenerPublicacionesMascotasPerdidasTest {
         patitasDos.addPublicacion(donPepe);
         
       
-        generador.agregarOrganizacion(patitas);
-        generador.agregarOrganizacion(patitasDos);
+        RepositorioOrganizaciones.agregarOrganizacion(patitas);
+        RepositorioOrganizaciones.agregarOrganizacion(patitasDos);
     }
 
     @Test

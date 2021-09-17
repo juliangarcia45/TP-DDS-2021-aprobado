@@ -7,31 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GestorPublicaciones {
-
-    private static final GestorPublicaciones instance = new GestorPublicaciones();
-    private static List<Organizacion> organizaciones= new ArrayList<>();
+public abstract class GestorPublicaciones {
 
     protected static Organizacion obtenerOrgMasCercana(Ubicacion ubicacion){
-        List<Ubicacion> ubicacionesOrg=organizaciones.stream().map(Organizacion -> Organizacion.getUbicacion()).collect(Collectors.toList());
+        List<Ubicacion> ubicacionesOrg=RepositorioOrganizaciones.getOrganizaciones().stream().map(Organizacion -> Organizacion.getUbicacion()).collect(Collectors.toList());
         int index=ubicacion.distanciaMasCortaA(ubicacionesOrg);
-        return organizaciones.get(index);
+        return RepositorioOrganizaciones.getOrganizaciones().get(index);
     }
 
-
-    public static GestorPublicaciones getInstance() {
-        return instance;
-    }
 //VER ACA CON TEST OBTENERMASCOTASPERDIDASTEST
     public static List<Publicacion> obtenerPublicacionesMascPerdidas(){
         List<Publicacion> publicaciones=new ArrayList<>();
-       organizaciones.stream().forEach(Organizacion -> Organizacion.publicacionesDeMascotasPerdidas().forEach(Publicacion -> publicaciones.add(Publicacion)));
+       RepositorioOrganizaciones.getOrganizaciones().stream().forEach(Organizacion -> Organizacion.publicacionesDeMascotasPerdidas().forEach(Publicacion -> publicaciones.add(Publicacion)));
         return publicaciones;
     }
 
     public static List<Publicacion> obtenerPublicacionesMascEnAdopcion(){
         List<Publicacion> publicaciones=new ArrayList<>();
-        organizaciones.stream().forEach(Organizacion -> Organizacion.publicacionesDeMascotasEnAdopcion().forEach(Publicacion -> publicaciones.add(Publicacion)));
+        RepositorioOrganizaciones.getOrganizaciones().stream().forEach(Organizacion -> Organizacion.publicacionesDeMascotasEnAdopcion().forEach(Publicacion -> publicaciones.add(Publicacion)));
         return publicaciones;
     }
 
@@ -42,11 +35,5 @@ public class GestorPublicaciones {
 
     public static void generarPublicacionMascotaEnAdopcion(Duenio duenio, Mascota mascota, Organizacion organizacion) {
         organizacion.getListaPublicaciones().add(new PublicacionMascotaEnAdopcion(duenio,mascota));
-    }
-
-
-
-    public static void agregarOrganizacion(Organizacion organizacion){
-        organizaciones.add(organizacion);
     }
 }

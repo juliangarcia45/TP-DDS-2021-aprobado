@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class RepositorioAdoptantes {
     private static final RepositorioAdoptantes instance = new RepositorioAdoptantes();
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     private static List<PublicacionAdoptante> interesados=new ArrayList<>();
 
@@ -32,20 +32,11 @@ public class RepositorioAdoptantes {
     public static List<PublicacionAdoptante> getInteresados() {
         return interesados;
     }
-
-    public static void crearPublicacionAdoptante(Duenio interesado,List<RespuestaAdopcion> preferencias){
-        agregarInteresado(new PublicacionAdoptante(interesado,preferencias));
+    public static ScheduledExecutorService getScheduler() {
+        return scheduler;
     }
 
-    public static void eliminarPublicacionAdoptante(Duenio duenio){
-        List<Duenio> duenios=interesados.stream().map(publicacion->publicacion.getInteresado()).collect(Collectors.toList());
-        int index=duenios.indexOf(duenio);
-        interesados.remove(interesados.get(index));
-    }
 
-        public void recomendacionSemanal(){
-            scheduler.scheduleAtFixedRate(Recomendacion.recomendarPublicacion(), 7, 7, TimeUnit.DAYS);
-        }
 
 
 

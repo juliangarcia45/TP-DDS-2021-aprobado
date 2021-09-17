@@ -24,6 +24,7 @@ public class obtenerRecomendacionTest {
     PublicacionMascotaEnAdopcion oka = new PublicacionMascotaEnAdopcion(null, mascotahh);
     PublicacionMascotaEnAdopcion koro = new PublicacionMascotaEnAdopcion(null, mascotahh);
     PublicacionAdoptante as=new PublicacionAdoptante(raul,new ArrayList<>());
+    List<Publicacion> publicacionesEsp=new ArrayList<>();
 
     @Before
     public void initPublicaciones() throws IOException {
@@ -39,11 +40,13 @@ public class obtenerRecomendacionTest {
         patitas.addPublicacion(oka);
         patitas.addPublicacion(koro);
 
+        publicacionesEsp.add(oka);
+
         RepositorioAdoptantes.agregarInteresado(as);
-        GestorPublicaciones.agregarOrganizacion(patitas);
+        RepositorioOrganizaciones.agregarOrganizacion(patitas);
     }
     @Test
     public void obtenerRecomen() throws IOException {
-        assertEquals(oka,Recomendacion.obtenerRecomendacion(as));
+        assertEquals(publicacionesEsp,Recomendacion.obtenerRecomendacion(as));
     }
 }

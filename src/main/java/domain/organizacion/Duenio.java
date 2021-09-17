@@ -1,6 +1,7 @@
 package domain.organizacion;
 
 import domain.PreguntasAdopcion.RespuestaAdopcion;
+import domain.RepositorioAdoptantes.GestorInteresados;
 import domain.RepositorioAdoptantes.RepositorioAdoptantes;
 import domain.autenticacion.Usuario;
 import domain.notificacion.Contacto;
@@ -48,20 +49,12 @@ public class Duenio extends Usuario {
 
     //Duenio interesado en adoptar
     public void suscribirseARecomendacionesDeAdopcion(List<RespuestaAdopcion> preferencias){
-        RepositorioAdoptantes.crearPublicacionAdoptante(this,preferencias);
+        GestorInteresados.crearPublicacionAdoptante(this,preferencias);
     }
     public void desuscribirseARecomendacionesDeAdopcion(){
-        RepositorioAdoptantes.eliminarPublicacionAdoptante(this);
+        GestorInteresados.eliminarPublicacionAdoptante(this);
     }
 
-
-
-
-    // public PublicacionAdoptante quieroAdoptarUnaMascota(String descripcion , List<String> fotos){
-    //     return GeneradorPublicaciones.generarPublicacionAdoptante(this,descripcion,fotos);
-    // }
-
-
-    }
+}
 
 
