@@ -2,19 +2,37 @@ package domain.organizacion;
 import domain.autenticacion.Administrador;
 import net.coobird.thumbnailator.Thumbnails;
 
+import javax.persistence.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name="organizacion")
 public class Organizacion {
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Transient
     private List<Voluntario> voluntarios=new ArrayList<>();
+    @Transient
     private List<Administrador> administradores=new ArrayList<>();
+    @Transient
     private List<Publicacion> listaPublicaciones = new ArrayList<>();
+
+    @Transient
     private Ubicacion ubicacion;
+
+    @Column
     private Integer anchoFoto;
+
+    @Column
     private Integer largoFoto;
+
+    @Column
     private String formatoEstandar;
 
     public void agregarVoluntario(Voluntario voluntario){
