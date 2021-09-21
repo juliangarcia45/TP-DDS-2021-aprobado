@@ -6,11 +6,17 @@ import domain.RepositorioAdoptantes.RepositorioAdoptantes;
 import domain.autenticacion.Usuario;
 import domain.notificacion.Contacto;
 
+import javax.persistence.*;
 import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="duenio")
+@PrimaryKeyJoinColumn(name="id")
 public class Duenio extends Usuario {
+
+    @Transient
     private List<Mascota> mascotas = new ArrayList<Mascota>();
 
     public Duenio(String usuario, String contrasenia) {

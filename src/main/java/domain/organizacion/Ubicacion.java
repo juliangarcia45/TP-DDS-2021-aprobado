@@ -1,11 +1,19 @@
 package domain.organizacion;
 
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Entity
+@Table(name="ubicacion")
 public class Ubicacion {
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column
     private double latitud;
+    @Column
     private double longitud;
 
     public double distanciaCoord(Ubicacion ubicacion) {

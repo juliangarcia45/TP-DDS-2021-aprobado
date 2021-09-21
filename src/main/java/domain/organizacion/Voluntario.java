@@ -2,8 +2,18 @@ package domain.organizacion;
 
 import domain.autenticacion.Usuario;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="voluntario")
+@PrimaryKeyJoinColumn(name="id")
 public class Voluntario extends Usuario {
+
+
+    @ManyToOne
+    @JoinColumn(name="organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
+
     public Voluntario(String usuario, String contrasenia) {
         super(usuario, contrasenia);
     }

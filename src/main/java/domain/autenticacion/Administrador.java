@@ -5,15 +5,25 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import domain.notificacion.Contacto;
 import domain.organizacion.Documento;
+import domain.organizacion.Organizacion;
 
+import javax.persistence.*;
 import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Entity
+@Table(name="administrador")
+@PrimaryKeyJoinColumn(name="id")
 public class Administrador extends Usuario{
 
+    @ManyToOne
+    @JoinColumn(name="organizacion_id", referencedColumnName = "id")
+    private Organizacion organizacion;
+
+    @Transient
     public static Map<String, String> nombreMap = new HashMap<String, String>();
 
     public Administrador(String usuario, String contrasenia) {

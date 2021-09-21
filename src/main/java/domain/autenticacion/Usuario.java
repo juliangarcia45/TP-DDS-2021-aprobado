@@ -2,17 +2,38 @@ package domain.autenticacion;
 
 import domain.notificacion.Contacto;
 import domain.organizacion.*;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name="usuario")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Usuario {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column
     private String usuario;
+
+    @Column
     private String contrasenia;
+
+    @Column
     private String nombre;
+
+    @Column
     private String apellido;
+
+    @Transient
     private List<Contacto>  mediosDeContacto;
+    @Transient
     private  Documento documento;
+    @Transient
     private Date fechaNacimiento;
 
 

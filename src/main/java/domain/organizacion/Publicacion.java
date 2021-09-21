@@ -1,14 +1,34 @@
 package domain.organizacion;
 
 import domain.autenticacion.Usuario;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
+@Table(name="publicacion")
 public abstract class Publicacion {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @OneToOne
+    @JoinColumn(name="autor_id",referencedColumnName = "id")
     private Usuario autor;
+
+    @Transient
     private List<String> fotos;
+
+    @Column
     private String descripcion;
+
+    @Transient
     private LocalDateTime fechaDePublicacion;
+
+    @Column(name="estado_publicacion")
+    @Enumerated
     private EstadoPublicacion estado;
 
 

@@ -16,14 +16,16 @@ public class Organizacion {
     @GeneratedValue
     private int id;
 
-    @Transient
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<Voluntario> voluntarios=new ArrayList<>();
-    @Transient
+
+    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<Administrador> administradores=new ArrayList<>();
-    @Transient
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Publicacion> listaPublicaciones = new ArrayList<>();
 
-    @Transient
+    @OneToOne
     private Ubicacion ubicacion;
 
     @Column

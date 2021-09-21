@@ -5,15 +5,30 @@ import domain.hogaresAPI.HogarDeTransito;
 import domain.hogaresAPI.HogaresResponseApi;
 import domain.notificacion.Contacto;
 
+import javax.persistence.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+
+@Entity
+@Table(name="rescatista")
+@PrimaryKeyJoinColumn(name="id")
 public class Rescatista extends Usuario {
+
+    @Column
     String descripcionMascota;
+
+    @Column
     String direccionRescatista;
+
+    @OneToOne
     Ubicacion direccionEncuentroMascota;
+
+    @Transient
     List<String> fotoMascota;
+
+    @Transient
     HogaresResponseApi hogaresResponseApi;
 
     public Rescatista(String usuario, String contrasenia) {
