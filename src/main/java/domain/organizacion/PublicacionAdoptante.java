@@ -2,13 +2,21 @@ package domain.organizacion;
 
 import domain.PreguntasAdopcion.RespuestaAdopcion;
 import domain.autenticacion.Usuario;
+import domain.entidadPersistente.EntidadPersistente;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PublicacionAdoptante{
+@Entity
+@Table(name="publicacion_adoptante")
+public class PublicacionAdoptante extends EntidadPersistente {
+
+    @OneToOne
     private Duenio interesado;
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<RespuestaAdopcion> respuestasPreferencias=new ArrayList<>();
 
     public PublicacionAdoptante(Duenio interesado, List<RespuestaAdopcion> respuestasPreferencias) {

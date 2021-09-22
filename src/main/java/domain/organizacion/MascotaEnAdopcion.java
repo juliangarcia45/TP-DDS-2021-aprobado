@@ -1,5 +1,10 @@
 package domain.organizacion;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("en_adopcion")
 public class MascotaEnAdopcion extends EstadoMascota {
     public MascotaEnAdopcion(){}
 

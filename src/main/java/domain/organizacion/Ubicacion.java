@@ -1,15 +1,14 @@
 package domain.organizacion;
 
+import domain.entidadPersistente.EntidadPersistente;
+
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 @Entity
 @Table(name="ubicacion")
-public class Ubicacion {
-    @Id
-    @GeneratedValue
-    private int id;
+public class Ubicacion extends EntidadPersistente {
 
     @Column
     private double latitud;

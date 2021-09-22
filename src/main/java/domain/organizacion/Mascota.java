@@ -7,18 +7,49 @@ import java.util.List;
 
 import java.io.File;
 import domain.generadorQR.*;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="mascota")
 public class Mascota {
-    private final String nombre;
+    @Id
+    @GeneratedValue
     private final Integer idMascota;
+
+    @Column
+    private final String nombre;
+
+    @Column
     private final boolean sexo;
+
+    @Column
     private final String apodo;
+
+    @ManyToOne
+    @JoinColumn(name="duenio_id", referencedColumnName = "id")
     private Duenio duenio;
+
+    @Transient
     private GeneradorQR qr;
+
+    @Column
     private final Integer edad;
+
+    @Column
     private final String descripcion;
+
+    @Column
     private final boolean especie;
+
+    @ElementCollection
     private final List<String> fotos;
+
+    @ElementCollection
     private final Map<String,String> caracteristicas;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name= "estado_mascota_id")
     private EstadoMascota estado;
    
     private Mascota(MascotaBuilder builder) {

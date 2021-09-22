@@ -1,14 +1,27 @@
 package domain.PreguntasAdopcion;
 
+import domain.entidadPersistente.EntidadPersistente;
 import domain.organizacion.Organizacion;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreguntaAdopcion {
+@Entity
+@Table(name="pregunta_de_adopcion")
+public class PreguntaAdopcion extends EntidadPersistente {
+
+    @Column
     private String pregunta;
+
+    @ElementCollection
     private List<String> opciones=new ArrayList<>();
+
+    @ManyToOne
     private Organizacion organizacion;
+
+    @Column(name="tipo_pregunta")
+    @Enumerated
     private TipoPregunta tipo;
 
     public PreguntaAdopcion(String pregunta,  TipoPregunta tipo){

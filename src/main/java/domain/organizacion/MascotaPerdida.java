@@ -1,5 +1,10 @@
 package domain.organizacion;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("perdida")
 public class MascotaPerdida extends EstadoMascota {
     public MascotaPerdida(){}
 
@@ -9,12 +14,3 @@ public class MascotaPerdida extends EstadoMascota {
     }
 
 }
-/*public class Perdida implements EstadoMascota{
-    private Mascota mascota;
-    private Usuario personaACargo;
-
-    public Perdida(Mascota mascota) {
-        this.mascota = mascota;
-    }
-
- */

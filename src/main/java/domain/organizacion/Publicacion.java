@@ -1,6 +1,7 @@
 package domain.organizacion;
 
 import domain.autenticacion.Usuario;
+import domain.entidadPersistente.EntidadPersistente;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,23 +9,20 @@ import java.util.List;
 
 @Entity
 @Table(name="publicacion")
-public abstract class Publicacion {
-
-    @Id
-    @GeneratedValue
-    private int id;
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class Publicacion extends EntidadPersistente {
 
     @OneToOne
     @JoinColumn(name="autor_id",referencedColumnName = "id")
     private Usuario autor;
 
-    @Transient
+    @ElementCollection
     private List<String> fotos;
 
     @Column
     private String descripcion;
 
-    @Transient
+    @Column(columnDefinition = "DATE")
     private LocalDateTime fechaDePublicacion;
 
     @Column(name="estado_publicacion")

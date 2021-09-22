@@ -5,12 +5,20 @@ package domain.organizacion;
 import domain.PreguntasAdopcion.RespuestaAdopcion;
 import domain.notificacion.Contacto;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="publicacion_mascota_en_adopcion")
+@PrimaryKeyJoinColumn(name="id")
 public class PublicacionMascotaEnAdopcion extends Publicacion{
+
+    @OneToOne
     private Mascota mascota;
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<RespuestaAdopcion> respuestas=new ArrayList<>();
 
     public PublicacionMascotaEnAdopcion(Duenio duenio,Mascota mascota) {

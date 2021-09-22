@@ -1,13 +1,12 @@
 package domain.organizacion;
 
+import domain.entidadPersistente.EntidadPersistente;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="documento")
-public class Documento {
-    @Id
-    @GeneratedValue
-    private int id;
+public class Documento extends EntidadPersistente {
 
     @Column
     private float numero;

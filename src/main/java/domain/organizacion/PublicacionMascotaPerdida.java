@@ -2,12 +2,22 @@ package domain.organizacion;
 
 import domain.autenticacion.Usuario;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
+@Table(name="publicacion_mascota_perdida")
+@PrimaryKeyJoinColumn(name="id")
 public class PublicacionMascotaPerdida extends Publicacion{
 
+    @Column
     private String longitud;
+
+    @Column
     private String latitud;
 
 

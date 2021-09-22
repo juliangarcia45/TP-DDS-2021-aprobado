@@ -1,10 +1,19 @@
 package domain.PreguntasAdopcion;
 
+import domain.entidadPersistente.EntidadPersistente;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RespuestaAdopcion {
+@Entity
+@Table(name="respuesta_de_pregunta_de_adopcion")
+public class RespuestaAdopcion extends EntidadPersistente {
+    @ManyToOne
+    @JoinColumn(name="pregunta_id", referencedColumnName = "id")
     PreguntaAdopcion pregunta;
+
+    @ElementCollection
     List<String> valor=new ArrayList<>();
 
     public RespuestaAdopcion(PreguntaAdopcion pregunta,List<String> valor) {

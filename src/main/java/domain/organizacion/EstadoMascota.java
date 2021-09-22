@@ -1,5 +1,13 @@
 package domain.organizacion;
 
-public abstract class EstadoMascota {
+import domain.entidadPersistente.EntidadPersistente;
+
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+public abstract class EstadoMascota extends EntidadPersistente {
     public abstract void mostrarEstado();
 }

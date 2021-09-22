@@ -10,9 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Recomendacion {
     private static final Recomendacion instance = new Recomendacion();
-
-
-
     public static Recomendacion getInstance() {
         return instance;
     }

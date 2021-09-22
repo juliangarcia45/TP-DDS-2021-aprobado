@@ -1,14 +1,13 @@
 package domain.notificacion;
+import domain.entidadPersistente.EntidadPersistente;
+
 import javax.persistence.*;
 import java.beans.ConstructorProperties;
 import java.util.List;
 
 @Entity
 @Table(name="contacto")
-public class Contacto {
-    @Id
-    @GeneratedValue
-    private int id;
+public class Contacto extends EntidadPersistente {
 
     @Column
     private String nombre;
@@ -22,7 +21,7 @@ public class Contacto {
     @Column
     private Integer telefono;
 
-    @Transient
+    @OneToMany(mappedBy = "contactoANotificar",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<MedioDeNotificacion> mediosDeNotificacion ;
 
     public Contacto(String nombre, String apellido, String email, Integer telefono, List<MedioDeNotificacion> mediosDeNotificacion) {

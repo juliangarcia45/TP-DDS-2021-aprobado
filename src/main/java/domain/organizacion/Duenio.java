@@ -16,7 +16,7 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name="id")
 public class Duenio extends Usuario {
 
-    @Transient
+    @OneToMany(mappedBy = "duenio",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<Mascota> mascotas = new ArrayList<Mascota>();
 
     public Duenio(String usuario, String contrasenia) {

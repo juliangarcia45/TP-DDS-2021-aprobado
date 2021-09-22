@@ -1,5 +1,6 @@
 package domain.organizacion;
 import domain.autenticacion.Administrador;
+import domain.entidadPersistente.EntidadPersistente;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.persistence.*;
@@ -11,10 +12,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name="organizacion")
-public class Organizacion {
-    @Id
-    @GeneratedValue
-    private int id;
+public class Organizacion extends EntidadPersistente {
 
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<Voluntario> voluntarios=new ArrayList<>();

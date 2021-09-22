@@ -1,5 +1,6 @@
 package domain.autenticacion;
 
+import domain.entidadPersistente.EntidadPersistente;
 import domain.notificacion.Contacto;
 import domain.organizacion.*;
 
@@ -11,11 +12,7 @@ import java.util.List;
 @Entity
 @Table(name="usuario")
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class Usuario {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public abstract class Usuario extends EntidadPersistente {
 
     @Column
     private String usuario;
@@ -29,11 +26,14 @@ public abstract class Usuario {
     @Column
     private String apellido;
 
-    @Transient
+    @OneToMany
     private List<Contacto>  mediosDeContacto;
-    @Transient
+
+    @OneToOne
+    @JoinColumn(name="documento_id",referencedColumnName = "id")
     private  Documento documento;
-    @Transient
+
+    @Column(columnDefinition = "DATE")
     private Date fechaNacimiento;
 
 
