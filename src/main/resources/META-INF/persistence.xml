@@ -16,7 +16,7 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/rescatePatitas" />
             <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="elementor12" /> <!-- julian como un pelotudo le cambio la contrasenia-->
+            <property name="hibernate.connection.password" value="123456" /> <!-- julian como un pelotudo le cambio la contrasenia-->
 
             <property name="hibernate.show_sql" value="true" />
             <!-- Enable the logging of all the generated SQL statements to the console -->
