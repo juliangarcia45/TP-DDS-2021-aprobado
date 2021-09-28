@@ -1,19 +1,15 @@
 package domain.organizacion;
 
-import domain.entidadPersistente.EntidadPersistente;
 
-import javax.persistence.*;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name="organizaciones")
-public class RepositorioOrganizaciones extends EntidadPersistente {
-    @Transient
+public class RepositorioOrganizaciones {
     private static final RepositorioOrganizaciones instance = new RepositorioOrganizaciones();
 
-    @OneToMany
-    private static List<Organizacion> organizaciones= new ArrayList<>();
+    private static List<Organizacion> organizaciones= new ArrayList<Organizacion>();
 
     public static RepositorioOrganizaciones getInstance() {
         return instance;
@@ -31,4 +27,5 @@ public class RepositorioOrganizaciones extends EntidadPersistente {
     public static List<Organizacion> getOrganizaciones() {
         return organizaciones;
     }
+
 }
