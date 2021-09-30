@@ -29,4 +29,12 @@ public class MedioDeNotificacion extends EntidadPersistente {
     public void setEstrategiaNotificacion(FormaDeNotificacion estrategiaNotificacion) {
         this.estrategiaNotificacion = estrategiaNotificacion;
     }
+
+    public Contacto getContactoANotificar() {
+        return contactoANotificar;
+    }
+
+    public void setContactoANotificar(Contacto contactoANotificar) {
+        this.contactoANotificar = contactoANotificar;
+    }
 }

@@ -13,4 +13,10 @@ public class Documento extends EntidadPersistente {
 
     @Column
     private String tipo;
+
+
+    public Documento(float numero, String tipo) {
+        this.numero=numero;
+        this.tipo=tipo;
+    }
 }

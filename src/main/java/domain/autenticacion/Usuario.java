@@ -26,10 +26,10 @@ public abstract class Usuario extends EntidadPersistente {
     @Column
     private String apellido;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Contacto>  mediosDeContacto;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="documento_id",referencedColumnName = "id")
     private  Documento documento;
 

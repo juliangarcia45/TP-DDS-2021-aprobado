@@ -12,7 +12,7 @@ import java.util.List;
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Publicacion extends EntidadPersistente {
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="autor_id",referencedColumnName = "id")
     private Usuario autor;
 
