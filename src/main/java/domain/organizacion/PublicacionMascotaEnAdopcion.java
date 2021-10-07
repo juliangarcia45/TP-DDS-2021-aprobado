@@ -19,6 +19,7 @@ public class PublicacionMascotaEnAdopcion extends Publicacion{
     private Mascota mascota;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(name="publicacionMascAdop_respuestas")
     private List<RespuestaAdopcion> respuestas=new ArrayList<>();
 
     public PublicacionMascotaEnAdopcion(Duenio duenio,Mascota mascota) {

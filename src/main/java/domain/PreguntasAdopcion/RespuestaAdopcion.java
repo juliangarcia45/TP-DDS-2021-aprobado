@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name="respuesta_de_pregunta_de_adopcion")
 public class RespuestaAdopcion extends EntidadPersistente {
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="pregunta_id", referencedColumnName = "id")
     PreguntaAdopcion pregunta;
 

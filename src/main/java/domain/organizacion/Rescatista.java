@@ -22,7 +22,8 @@ public class Rescatista extends Usuario {
     @Column
     String direccionRescatista;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="puntoEncuentro_id",referencedColumnName = "id")
     Ubicacion direccionEncuentroMascota;
 
     @Transient
@@ -61,6 +62,22 @@ public class Rescatista extends Usuario {
     }
     public void setDireccionEncuentroMascota(Ubicacion direccionEncuentroMascota) {
         this.direccionEncuentroMascota = direccionEncuentroMascota;
+    }
+
+    public String getDescripcionMascota() {
+        return descripcionMascota;
+    }
+
+    public void setDescripcionMascota(String descripcionMascota) {
+        this.descripcionMascota = descripcionMascota;
+    }
+
+    public String getDireccionRescatista() {
+        return direccionRescatista;
+    }
+
+    public void setDireccionRescatista(String direccionRescatista) {
+        this.direccionRescatista = direccionRescatista;
     }
 
 }

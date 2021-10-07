@@ -14,13 +14,6 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name="id")
 public class PublicacionMascotaPerdida extends Publicacion{
 
-    @Column
-    private String longitud;
-
-    @Column
-    private String latitud;
-
-
     public PublicacionMascotaPerdida(Usuario rescatista, List<String> fotosMascota, String estadoMascota) {
         super(rescatista, fotosMascota, estadoMascota);
     }

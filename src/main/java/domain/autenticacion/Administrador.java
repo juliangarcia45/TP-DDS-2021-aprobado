@@ -63,4 +63,11 @@ public class Administrador extends Usuario{
         }
         return mapAux;
     }
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
+    }
 }

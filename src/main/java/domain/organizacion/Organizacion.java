@@ -23,23 +23,25 @@ public class Organizacion extends EntidadPersistente {
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Publicacion> listaPublicaciones = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Ubicacion ubicacion;
 
-    @Column
+    @Transient
     private Integer anchoFoto;
 
-    @Column
+    @Transient
     private Integer largoFoto;
 
-    @Column
+    @Transient
     private String formatoEstandar;
 
     public void agregarVoluntario(Voluntario voluntario){
         this.voluntarios.add(voluntario);
+        voluntario.setOrganizacion(this);
     }
     public void agregarAdmin(Administrador administrador){
         this.administradores.add(administrador);
+        administrador.setOrganizacion(this);
     }
 
 

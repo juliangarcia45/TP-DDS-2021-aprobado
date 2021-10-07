@@ -4,6 +4,7 @@ import domain.autenticacion.Usuario;
 import domain.entidadPersistente.EntidadPersistente;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public abstract class Publicacion extends EntidadPersistente {
     @Column
     private String descripcion;
 
-    @Column(columnDefinition = "DATE")
-    private LocalDateTime fechaDePublicacion;
+    @Column(name = "fechaDePublicacion", columnDefinition = "DATE")
+    private LocalDate fechaDePublicacion;
 
     @Column(name="estado_publicacion")
     @Enumerated
@@ -39,7 +40,7 @@ public abstract class Publicacion extends EntidadPersistente {
         this.autor = autor;
         this.fotos = fotos;
         this.descripcion = descripcion;
-        this.fechaDePublicacion = LocalDateTime.now();
+        this.fechaDePublicacion = LocalDate.now();
         this.setEstado(EstadoPublicacion.EN_ESPERA);
     }
     public Usuario getAutor() {
@@ -66,11 +67,11 @@ public abstract class Publicacion extends EntidadPersistente {
         this.descripcion = descripcion;
     }
 
-    public LocalDateTime getFechaDePublicacion() {
+    public LocalDate getFechaDePublicacion() {
         return fechaDePublicacion;
     }
 
-    public void setFechaDePublicacion(LocalDateTime fechaDePublicacion) {
+    public void setFechaDePublicacion(LocalDate fechaDePublicacion) {
         this.fechaDePublicacion = fechaDePublicacion;
     }
 
