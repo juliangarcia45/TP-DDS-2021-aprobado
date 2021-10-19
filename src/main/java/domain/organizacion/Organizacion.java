@@ -23,7 +23,8 @@ public class Organizacion extends EntidadPersistente {
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<Administrador> administradores=new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY) //ARREGLAR como le vas a poner manytomany a una lista de publicaciones
+    @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+    @JoinColumn(name="organizacion_id", referencedColumnName="id")
     private List<Publicacion> listaPublicaciones = new ArrayList<>();
 
     @OneToOne(cascade=CascadeType.ALL)

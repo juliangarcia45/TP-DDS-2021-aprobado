@@ -53,10 +53,10 @@ public class Duenio extends Usuario {
     public void suscribirseARecomendacionesDeAdopcion(List<RespuestaAdopcion> preferencias){
         GestorAdoptantes.agregarInteresado(new PublicacionAdoptante(this,preferencias));
     }
-    //public void desuscribirseARecomendacionesDeAdopcion(){
-    //    GestorAdoptantes.removerInteresado()
-    //}
 
+    public void desuscribirseARecomendacionesDeAdopcion(){
+            GestorAdoptantes.removerPorId(this.getId());
+        }
 }
 
 

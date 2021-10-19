@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name="publicacion_adoptante")
 public class PublicacionAdoptante extends EntidadPersistente {
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Duenio interesado;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)

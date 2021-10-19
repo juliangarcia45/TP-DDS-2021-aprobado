@@ -1,5 +1,6 @@
 package domain.organizacion;
 
+
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
 import domain.Repositorios.RepositorioDeAdoptantes;
@@ -28,6 +29,10 @@ public class GestorAdoptantes {
         repo.eliminar(interesado);
     }
 
+    public static void removerPorId(int idInteresado){
+        repo.eliminar(repo.buscarInteresado(idInteresado));
+    }
+
     public static List<Publicacion> obtenerRecomendacion(PublicacionAdoptante publicacionInteresado){
         List<Publicacion> publicaciones=GestorPublicaciones.obtenerPublicacionesMascEnAdopcion();
         List<Publicacion> recomendaciones=new ArrayList<>();
@@ -49,6 +54,8 @@ public class GestorAdoptantes {
     public void recomendacionSemanal(){
         scheduler.scheduleAtFixedRate(recomendarPublicacion(), 7, 7, TimeUnit.DAYS);
     }
+
+
 
 
 }

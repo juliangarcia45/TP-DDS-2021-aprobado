@@ -1,5 +1,6 @@
 package domain.Repositorios;
 
+import domain.organizacion.Duenio;
 import domain.organizacion.Organizacion;
 import domain.organizacion.PublicacionAdoptante;
 import domain.Repositorios.Daos.DAO;
@@ -30,7 +31,22 @@ public class RepositorioDeAdoptantes extends Repositorio<PublicacionAdoptante> {
         return this.dao.buscarTodos();
     }
 
-    //Falta un buscarAdoptante para desuscribirse en Duenio
+    public PublicacionAdoptante buscarInteresado(int idInteresado){
+        return this.dao.buscar(condicionIdInteresado(idInteresado));
+    }
 
+    private BusquedaCondicional condicionIdInteresado(int idInteresado){
+        CriteriaBuilder criteriaBuilder = criteriaBuilder();
+        CriteriaQuery<PublicacionAdoptante> interesadoQuery = criteriaBuilder.createQuery(PublicacionAdoptante.class);
 
+        Root<PublicacionAdoptante> condicionRaiz = interesadoQuery.from(PublicacionAdoptante.class);
+
+        Predicate condicionIdInteresado = criteriaBuilder.equal(condicionRaiz.get("interesado_id"), idInteresado);
+
+        Predicate condicionExisteInteresado = criteriaBuilder.and(condicionIdInteresado);
+
+        interesadoQuery.where(condicionExisteInteresado);
+
+        return new BusquedaCondicional(null, interesadoQuery);
+    }
 }
