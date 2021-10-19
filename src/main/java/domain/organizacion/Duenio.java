@@ -1,13 +1,9 @@
 package domain.organizacion;
 
 import domain.PreguntasAdopcion.RespuestaAdopcion;
-import domain.RepositorioAdoptantes.GestorInteresados;
-import domain.RepositorioAdoptantes.RepositorioAdoptantes;
 import domain.autenticacion.Usuario;
-import domain.notificacion.Contacto;
 
 import javax.persistence.*;
-import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,11 +51,11 @@ public class Duenio extends Usuario {
 
     //Duenio interesado en adoptar
     public void suscribirseARecomendacionesDeAdopcion(List<RespuestaAdopcion> preferencias){
-        GestorInteresados.crearPublicacionAdoptante(this,preferencias);
+        GestorAdoptantes.agregarInteresado(new PublicacionAdoptante(this,preferencias));
     }
-    public void desuscribirseARecomendacionesDeAdopcion(){
-        GestorInteresados.eliminarPublicacionAdoptante(this);
-    }
+    //public void desuscribirseARecomendacionesDeAdopcion(){
+    //    GestorAdoptantes.removerInteresado()
+    //}
 
 }
 

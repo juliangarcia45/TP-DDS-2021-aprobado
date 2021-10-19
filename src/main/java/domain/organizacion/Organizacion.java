@@ -14,13 +14,16 @@ import java.util.stream.Collectors;
 @Table(name="organizacion")
 public class Organizacion extends EntidadPersistente {
 
+    @Column
+    private String nombre;
+
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<Voluntario> voluntarios=new ArrayList<>();
 
     @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<Administrador> administradores=new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY) //ARREGLAR como le vas a poner manytomany a una lista de publicaciones
     private List<Publicacion> listaPublicaciones = new ArrayList<>();
 
     @OneToOne(cascade=CascadeType.ALL)
@@ -42,6 +45,14 @@ public class Organizacion extends EntidadPersistente {
     public void agregarAdmin(Administrador administrador){
         this.administradores.add(administrador);
         administrador.setOrganizacion(this);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 
@@ -111,14 +122,4 @@ public class Organizacion extends EntidadPersistente {
         this.ubicacion = ubicacion;
     }
 
-  /*  public void agregarPublicacion(Publicacion publicacion){
-        // deberia mandarle la publicacion a los voluntarios pero aca le mando solamente todas al primero de la lista...
-        if (this.getVoluntarios().get(0).aprobarPublicacion(publicacion)) {
-            listaPublicaciones.add(publicacion);
-        }
-    }
-    public List<Voluntario> getVoluntarios(){
-        return usuarios.stream().filter(usuario -> usuario instanceof Voluntario ).collect(Collectors.toList());
-    }
-*/
 }

@@ -39,9 +39,7 @@ public class obtenerPublicacionesMascotasPerdidasTest {
         patitas.addPublicacion(yuumi);
         patitasDos.addPublicacion(donPepe);
         
-      
-        RepositorioOrganizaciones.agregarOrganizacion(patitas);
-        RepositorioOrganizaciones.agregarOrganizacion(patitasDos);
+
     }
 
     @Test

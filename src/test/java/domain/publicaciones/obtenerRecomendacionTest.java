@@ -3,14 +3,12 @@ package domain.publicaciones;
 import domain.PreguntasAdopcion.PreguntaAdopcion;
 import domain.PreguntasAdopcion.RespuestaAdopcion;
 import domain.PreguntasAdopcion.TipoPregunta;
-import domain.RepositorioAdoptantes.RepositorioAdoptantes;
 import domain.organizacion.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -41,12 +39,9 @@ public class obtenerRecomendacionTest {
         patitas.addPublicacion(koro);
 
         publicacionesEsp.add(oka);
-
-        RepositorioAdoptantes.agregarInteresado(as);
-        RepositorioOrganizaciones.agregarOrganizacion(patitas);
     }
     @Test
     public void obtenerRecomen() throws IOException {
-        assertEquals(publicacionesEsp,Recomendacion.obtenerRecomendacion(as));
+        assertEquals(publicacionesEsp, GestorAdoptantes.obtenerRecomendacion(as));
     }
 }
