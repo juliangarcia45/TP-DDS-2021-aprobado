@@ -1,7 +1,5 @@
 package domain.Repositorios;
 
-import domain.organizacion.Duenio;
-import domain.organizacion.Organizacion;
 import domain.organizacion.PublicacionAdoptante;
 import domain.Repositorios.Daos.DAO;
 
@@ -41,7 +39,7 @@ public class RepositorioDeAdoptantes extends Repositorio<PublicacionAdoptante> {
 
         Root<PublicacionAdoptante> condicionRaiz = interesadoQuery.from(PublicacionAdoptante.class);
 
-        Predicate condicionIdInteresado = criteriaBuilder.equal(condicionRaiz.get("interesado_id"), idInteresado);
+        Predicate condicionIdInteresado = criteriaBuilder.equal(condicionRaiz.get("interesado"), idInteresado);
 
         Predicate condicionExisteInteresado = criteriaBuilder.and(condicionIdInteresado);
 

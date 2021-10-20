@@ -82,4 +82,7 @@ public abstract class Publicacion extends EntidadPersistente {
     public void setEstado(EstadoPublicacion estado) {
         this.estado = estado;
     }
+
+    public Publicacion() {
+    }
 }

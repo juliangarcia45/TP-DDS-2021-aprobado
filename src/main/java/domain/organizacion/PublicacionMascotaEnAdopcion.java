@@ -49,4 +49,7 @@ public class PublicacionMascotaEnAdopcion extends Publicacion{
         return respuestas;
     }
 
+    public PublicacionMascotaEnAdopcion() {
+    }
+
 }

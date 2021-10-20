@@ -1,11 +1,8 @@
 package domain.organizacion;
 
 import domain.PreguntasAdopcion.RespuestaAdopcion;
-import domain.autenticacion.Usuario;
 import domain.entidadPersistente.EntidadPersistente;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +40,6 @@ public class PublicacionAdoptante extends EntidadPersistente {
         this.interesado = interesado;
     }
 
-
-
-
-
+    public PublicacionAdoptante() {
+    }
 }

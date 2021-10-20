@@ -37,4 +37,7 @@ public class Voluntario extends Usuario {
     public void setOrganizacion(Organizacion organizacion) {
         this.organizacion = organizacion;
     }
+
+    public Voluntario() {
+    }
 }

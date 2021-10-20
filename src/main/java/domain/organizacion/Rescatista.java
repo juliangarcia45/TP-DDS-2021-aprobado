@@ -80,4 +80,7 @@ public class Rescatista extends Usuario {
         this.direccionRescatista = direccionRescatista;
     }
 
+    public Rescatista() {
+    }
+
 }

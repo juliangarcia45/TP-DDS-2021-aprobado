@@ -70,4 +70,7 @@ public class Administrador extends Usuario{
     public void setOrganizacion(Organizacion organizacion) {
         this.organizacion = organizacion;
     }
+
+    public Administrador() {
+    }
 }

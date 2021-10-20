@@ -102,4 +102,7 @@ public abstract class Usuario extends EntidadPersistente {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    public Usuario() {
+    }
 }

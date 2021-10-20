@@ -28,6 +28,8 @@ public class Ubicacion extends EntidadPersistente {
 
         return distancia;
     }
+    public Ubicacion() {
+    }
 
     public int distanciaMasCortaA(List<Ubicacion> ubicaciones){
         List<Double> distancias= ubicaciones.stream().map(Ubicacion -> Ubicacion.distanciaCoord(this)).collect(Collectors.toList());

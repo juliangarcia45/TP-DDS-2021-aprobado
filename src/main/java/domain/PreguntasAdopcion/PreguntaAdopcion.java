@@ -29,6 +29,9 @@ public class PreguntaAdopcion extends EntidadPersistente {
         this.tipo = tipo;
     }
 
+    public PreguntaAdopcion() {
+    }
+
     public void agregarOpcion(String opcion){
         opciones.add(opcion);
     }

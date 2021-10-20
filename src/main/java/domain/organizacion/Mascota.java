@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="mascota")
 public class Mascota {
+
     @Id
     @GeneratedValue
     private final Integer idMascota;
@@ -191,7 +192,10 @@ public class Mascota {
         public Mascota build(){
             return new Mascota(this);
         }
-    }
 
+        public MascotaBuilder() {
+        }
+
+    }
 }
 

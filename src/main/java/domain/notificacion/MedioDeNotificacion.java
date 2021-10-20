@@ -37,4 +37,7 @@ public class MedioDeNotificacion extends EntidadPersistente {
     public void setContactoANotificar(Contacto contactoANotificar) {
         this.contactoANotificar = contactoANotificar;
     }
+
+    public MedioDeNotificacion() {
+    }
 }

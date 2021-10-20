@@ -10,14 +10,11 @@ import domain.organizacion.Duenio;
 import domain.organizacion.PublicacionAdoptante;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-
-public class suscribirAdoptante {
+public class suscripcionAdoptante {
     private static DAO<PublicacionAdoptante> dao= new DAOHibernate<>(PublicacionAdoptante.class);
     private static RepositorioDeAdoptantes repo=new RepositorioDeAdoptantes(dao);
 
@@ -31,16 +28,15 @@ public class suscribirAdoptante {
         RespuestaAdopcion respuesta=new RespuestaAdopcion(pregunta,new ArrayList<>());
         respuesta.agregarValor("a");
         preferencias.add(respuesta);
+    }
 
-
+    @Test
+    public void suscribirAdoptante() throws IOException {
         raul.suscribirseARecomendacionesDeAdopcion(preferencias);
     }
 
     @Test
-    public void chequearAdoptante() throws IOException {
-        assertEquals(repo.buscarInteresado(raul.getId()), new PublicacionAdoptante(raul,preferencias));
+    public void desuscribirAdoptante() throws IOException {
+        raul.desuscribirseARecomendacionesDeAdopcion();
     }
-
-
-
 }

@@ -40,5 +40,7 @@ public class Contacto extends EntidadPersistente {
     public String getContacto(){
         return nombre+ " " + apellido +" "+ email + " " + telefono.toString();
     }
+    public Contacto() {
+    }
 
 }

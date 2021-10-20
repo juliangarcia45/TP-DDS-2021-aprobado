@@ -17,4 +17,7 @@ public class EntidadPersistente {
     public int getId() {
         return id;
     }
+
+    public EntidadPersistente() {
+    }
 }

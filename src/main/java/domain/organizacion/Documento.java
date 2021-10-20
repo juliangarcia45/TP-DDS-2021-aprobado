@@ -19,4 +19,6 @@ public class Documento extends EntidadPersistente {
         this.numero=numero;
         this.tipo=tipo;
     }
+    public Documento() {
+    }
 }

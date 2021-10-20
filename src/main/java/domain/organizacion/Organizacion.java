@@ -123,4 +123,7 @@ public class Organizacion extends EntidadPersistente {
         this.ubicacion = ubicacion;
     }
 
+    public Organizacion() {
+    }
+
 }

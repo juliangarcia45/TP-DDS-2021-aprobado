@@ -34,4 +34,7 @@ public class RespuestaAdopcion extends EntidadPersistente {
     public List<String> getValor() {
         return valor;
     }
+
+    public RespuestaAdopcion() {
+    }
 }

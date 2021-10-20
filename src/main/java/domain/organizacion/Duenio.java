@@ -55,8 +55,11 @@ public class Duenio extends Usuario {
     }
 
     public void desuscribirseARecomendacionesDeAdopcion(){
-            GestorAdoptantes.removerPorId(this.getId());
+            GestorAdoptantes.removerPorId(this.getId()+1);
         }
+
+    public Duenio() {
+    }
 }
 
 
