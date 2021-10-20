@@ -21,7 +21,7 @@ public class PreguntaAdopcion extends EntidadPersistente {
     private Organizacion organizacion;
 
     @Column(name="tipo_pregunta")
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private TipoPregunta tipo;
 
     public PreguntaAdopcion(String pregunta,  TipoPregunta tipo){

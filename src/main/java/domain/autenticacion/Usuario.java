@@ -36,6 +36,10 @@ public abstract class Usuario extends EntidadPersistente {
     @Column(columnDefinition = "DATE")
     private Date fechaNacimiento;
 
+    @Column(name="tipo_usuario")
+    @Enumerated(value = EnumType.STRING)
+    private TipoUsuario tipo;
+
 
 
     public Usuario(String usuario, String contrasenia) {
@@ -101,6 +105,14 @@ public abstract class Usuario extends EntidadPersistente {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipo;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipo) {
+        this.tipo = tipo;
     }
 
     public Usuario() {

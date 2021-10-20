@@ -27,8 +27,12 @@ public abstract class Publicacion extends EntidadPersistente {
     private LocalDate fechaDePublicacion;
 
     @Column(name="estado_publicacion")
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private EstadoPublicacion estado;
+
+    @Column(name="tipo_publicacion")
+    @Enumerated(value = EnumType.STRING)
+    private TipoPublicacion tipo;
 
 
     public void aprobarPublicacion(){
@@ -81,6 +85,14 @@ public abstract class Publicacion extends EntidadPersistente {
 
     public void setEstado(EstadoPublicacion estado) {
         this.estado = estado;
+    }
+
+    public TipoPublicacion getTipoPublicacion() {
+        return tipo;
+    }
+
+    public void setTipoPublicacion(TipoPublicacion tipo) {
+        this.tipo = tipo;
     }
 
     public Publicacion() {

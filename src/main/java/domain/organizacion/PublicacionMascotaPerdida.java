@@ -16,6 +16,7 @@ public class PublicacionMascotaPerdida extends Publicacion{
 
     public PublicacionMascotaPerdida(Usuario rescatista, List<String> fotosMascota, String estadoMascota) {
         super(rescatista, fotosMascota, estadoMascota);
+        setTipoPublicacion(TipoPublicacion.PERDIDA);
     }
 
     public void esMiMascota(String contactoDuenio){

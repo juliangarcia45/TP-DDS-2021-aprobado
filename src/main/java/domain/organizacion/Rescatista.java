@@ -26,7 +26,7 @@ public class Rescatista extends Usuario {
     @JoinColumn(name="puntoEncuentro_id",referencedColumnName = "id")
     Ubicacion direccionEncuentroMascota;
 
-    @Transient
+    @ElementCollection
     List<String> fotoMascota;
 
     @Transient
@@ -34,6 +34,7 @@ public class Rescatista extends Usuario {
 
     public Rescatista(String usuario, String contrasenia) {
         super(usuario, contrasenia);
+        setTipoUsuario(TipoUsuario.RESCATISTA);
     }
 
    public void notificarDuenio(Mascota unaMascota){

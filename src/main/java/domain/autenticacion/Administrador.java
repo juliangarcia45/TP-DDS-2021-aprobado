@@ -6,6 +6,7 @@ import com.twilio.rest.api.v2010.account.Message;
 import domain.notificacion.Contacto;
 import domain.organizacion.Documento;
 import domain.organizacion.Organizacion;
+import domain.organizacion.TipoUsuario;
 
 import javax.persistence.*;
 import java.io.*;
@@ -28,6 +29,7 @@ public class Administrador extends Usuario{
 
     public Administrador(String usuario, String contrasenia) {
         super(usuario, contrasenia);
+        setTipoUsuario(TipoUsuario.ADMIN);
     }
 
     public void agregarCaracteristica (String caracteristica , String valor){
