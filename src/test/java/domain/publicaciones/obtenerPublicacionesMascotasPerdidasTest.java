@@ -1,6 +1,7 @@
 package domain.publicaciones;
 
 
+import domain.BDUtils.EntityManagerHelper;
 import domain.organizacion.*;
 
 import org.junit.Before;
@@ -18,6 +19,7 @@ public class obtenerPublicacionesMascotasPerdidasTest {
     List<Publicacion> publicaciones;
     Rescatista clark = new Rescatista("clark", "xD");
     Duenio aaa = new Duenio(null,null);
+
 
     @Before
     public void initPublicaciones() throws IOException{
@@ -38,6 +40,11 @@ public class obtenerPublicacionesMascotasPerdidasTest {
         patitas.addPublicacion(donJonny);
         patitas.addPublicacion(yuumi);
         patitasDos.addPublicacion(donPepe);
+
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().persist(patitas);
+        EntityManagerHelper.getEntityManager().persist(patitasDos);
+        EntityManagerHelper.commit();
         
 
     }
@@ -45,7 +52,7 @@ public class obtenerPublicacionesMascotasPerdidasTest {
     @Test
     public void filtrarMascotasPerdidas() throws IOException {
 
-        assertEquals(publicaciones,aaa.buscarMascotaPerdida());
+        assertEquals(publicaciones,GestorPublicaciones.obtenerPublicacionesMascPerdidas());
     }
 
 }

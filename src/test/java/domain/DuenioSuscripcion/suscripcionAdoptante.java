@@ -6,7 +6,9 @@ import domain.PreguntasAdopcion.TipoPregunta;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
 import domain.Repositorios.RepositorioDeAdoptantes;
+import domain.autenticacion.Usuario;
 import domain.organizacion.Duenio;
+import domain.organizacion.Mascota;
 import domain.organizacion.PublicacionAdoptante;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +21,7 @@ public class suscripcionAdoptante {
     private static RepositorioDeAdoptantes repo=new RepositorioDeAdoptantes(dao);
 
     Duenio raul=new Duenio(null,null);
+    Duenio carlos=new Duenio(null,null);
     List<RespuestaAdopcion> preferencias=new ArrayList<>();
 
     @Before
@@ -37,6 +40,8 @@ public class suscripcionAdoptante {
 
     @Test
     public void desuscribirAdoptante() throws IOException {
+        //System.out.println(raul.getId());
+        //System.out.println(carlos.getId());
         raul.desuscribirseARecomendacionesDeAdopcion();
     }
 }
