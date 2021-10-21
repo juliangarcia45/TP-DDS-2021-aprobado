@@ -56,6 +56,7 @@ public class persistiendoOrganizacionYUsuario {
         respuesta.agregarValor("a");
         publi.agregarRespuesta(respuesta);
         organizacion.addPublicacion(publi);
+        publi.aprobarPublicacion();
 
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(raul);

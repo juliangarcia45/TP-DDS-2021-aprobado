@@ -1,11 +1,8 @@
 package domain.publicaciones;
 
 
-import domain.organizacion.Organizacion;
-import domain.organizacion.Publicacion;
-import domain.organizacion.PublicacionMascotaEnAdopcion;
-import domain.organizacion.PublicacionMascotaPerdida;
-import domain.organizacion.Rescatista;
+import domain.BDUtils.EntityManagerHelper;
+import domain.organizacion.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,13 +16,14 @@ public class obtenerPublicacionesMascotasEnAdopcionTest {
     Organizacion patitas = new Organizacion();
     List<Publicacion> publicaciones;
     Rescatista clark = new Rescatista("clark", "xD");
+    Mascota calli=new Mascota.MascotaBuilder(null,"a").apodo("calli").edad(14).build();
     @Before
     public void initPublicaciones() throws IOException{
         Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null);
         
         Publicacion donJonny = new PublicacionMascotaPerdida(clark, null, null);
 
-        Publicacion yuumi = new PublicacionMascotaEnAdopcion(null, null);
+        Publicacion yuumi = new PublicacionMascotaEnAdopcion(null, calli);
 
         donPepe.aprobarPublicacion();
         yuumi.aprobarPublicacion();
@@ -36,11 +34,19 @@ public class obtenerPublicacionesMascotasEnAdopcionTest {
         patitas.addPublicacion(donJonny);
         patitas.addPublicacion(yuumi);
         patitas.addPublicacion(donPepe);
+
+        EntityManagerHelper.beginTransaction();
+
+        EntityManagerHelper.getEntityManager().persist(calli);
+        EntityManagerHelper.getEntityManager().persist(patitas);
+        EntityManagerHelper.commit();
+
+
+
     }
 
     @Test
     public void filtrarEnAdopcion() throws IOException {
-
-        assertEquals(publicaciones,patitas.publicacionesDeMascotasEnAdopcion());
+        assertEquals(publicaciones, GestorPublicaciones.obtenerPublicacionesMascEnAdopcion());
     }
 }
