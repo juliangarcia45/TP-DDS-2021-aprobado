@@ -20,7 +20,7 @@ public class suscripcionAdoptante {
     private static DAO<PublicacionAdoptante> dao= new DAOHibernate<>(PublicacionAdoptante.class);
     private static RepositorioDeAdoptantes repo=new RepositorioDeAdoptantes(dao);
 
-    Duenio raul=new Duenio(null,null);
+    Duenio raul=new Duenio("sdsadasasd",null);
     Duenio carlos=new Duenio(null,null);
     List<RespuestaAdopcion> preferencias=new ArrayList<>();
 
@@ -40,8 +40,6 @@ public class suscripcionAdoptante {
 
     @Test
     public void desuscribirAdoptante() throws IOException {
-        //System.out.println(raul.getId());
-        //System.out.println(carlos.getId());
         raul.desuscribirseARecomendacionesDeAdopcion();
     }
 }
