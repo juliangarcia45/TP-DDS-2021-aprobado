@@ -2,7 +2,7 @@
     <title>Rescate de Patitas</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 <div class="wrapper fadeInDown">
     <div id="formContent">
@@ -17,9 +17,10 @@
   
       <!-- Login Form -->
       <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
+        <input type="text" id="login" class="fadeIn second" name="usuario" placeholder="Login">
+        <input type="text" id="password" class="fadeIn third" name="contrasenia" placeholder="Password">
+        <button type="button" name="Log in" class="fadeIn fourth" onclick="guardarUsuario()" >Log in</button>
+
       </form>
   
       <!-- Remind Passowrd -->

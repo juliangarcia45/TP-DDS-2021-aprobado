@@ -24,8 +24,9 @@ public class Router {
     }
 
     private static void configure(){
-        LoginController controller=new LoginController();
-        Spark.get("/saludar", controller::saludar);
+        LoginController loginController=new LoginController();
+        Spark.get("/log-in", loginController::inicio, Router.engine);
+        Spark.post("/log-in", loginController::guardarUsuario);
 
 
     }

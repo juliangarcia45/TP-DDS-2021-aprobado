@@ -14,6 +14,18 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
         super(dao);
     }
 
+    public void agregar(Usuario unUsuario){
+        this.dao.agregar(unUsuario);
+    }
+
+    public void modificar(Usuario unUsuario){
+        this.dao.modificar(unUsuario);
+    }
+
+    public void eliminar(Usuario unUsuario){
+        this.dao.eliminar(unUsuario);
+    }
+
     public List<Usuario> buscarTodosLosUsuarios(){
         return this.dao.buscarTodos();
     }
