@@ -1,17 +1,15 @@
 package domain.persistencia;
 
-import domain.BDUtils.EntityManagerHelper;
-import domain.PreguntasAdopcion.PreguntaAdopcion;
-import domain.PreguntasAdopcion.RespuestaAdopcion;
-import domain.PreguntasAdopcion.TipoPregunta;
-import domain.autenticacion.Administrador;
-import domain.notificacion.Contacto;
-import domain.notificacion.MedioDeNotificacion;
-import domain.organizacion.*;
+import bd.BDUtils.EntityManagerHelper;
+import domain.entities.PreguntasAdopcion.PreguntaAdopcion;
+import domain.entities.PreguntasAdopcion.RespuestaAdopcion;
+import domain.entities.PreguntasAdopcion.TipoPregunta;
+import domain.entities.autenticacion.Administrador;
+import domain.entities.notificacion.Contacto;
+import domain.entities.notificacion.MedioDeNotificacion;
+import domain.entities.organizacion.*;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 

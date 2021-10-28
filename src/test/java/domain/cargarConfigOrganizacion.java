@@ -1,6 +1,6 @@
 package domain;
 
-import domain.organizacion.Organizacion;
+import domain.entities.organizacion.Organizacion;
 import org.junit.Before;
 import org.junit.Test;
 import java.io.IOException;

@@ -1,15 +1,13 @@
 package domain.DuenioSuscripcion;
 
-import domain.PreguntasAdopcion.PreguntaAdopcion;
-import domain.PreguntasAdopcion.RespuestaAdopcion;
-import domain.PreguntasAdopcion.TipoPregunta;
+import domain.entities.PreguntasAdopcion.PreguntaAdopcion;
+import domain.entities.PreguntasAdopcion.RespuestaAdopcion;
+import domain.entities.PreguntasAdopcion.TipoPregunta;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
 import domain.Repositorios.RepositorioDeAdoptantes;
-import domain.autenticacion.Usuario;
-import domain.organizacion.Duenio;
-import domain.organizacion.Mascota;
-import domain.organizacion.PublicacionAdoptante;
+import domain.entities.organizacion.Duenio;
+import domain.entities.organizacion.PublicacionAdoptante;
 import org.junit.Before;
 import org.junit.Test;
 import java.io.IOException;

@@ -1,14 +1,10 @@
 package domain;
 
 
-import domain.autenticacion.Administrador;
-import domain.autenticacion.Usuario;
-import domain.organizacion.Duenio;
-import domain.organizacion.Mascota;
+import domain.entities.autenticacion.Administrador;
 import org.junit.Test;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;

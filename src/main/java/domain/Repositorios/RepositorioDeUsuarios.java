@@ -1,11 +1,7 @@
 package domain.Repositorios;
 
 import domain.Repositorios.Daos.DAO;
-import domain.autenticacion.Usuario;
-import domain.organizacion.EstadoPublicacion;
-import domain.organizacion.Publicacion;
-import domain.organizacion.TipoPublicacion;
-import domain.organizacion.TipoUsuario;
+import domain.entities.autenticacion.Usuario;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

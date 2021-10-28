@@ -3,10 +3,10 @@ package domain;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.organizacion.Duenio;
-import domain.organizacion.Mascota;
+import domain.entities.organizacion.Duenio;
+import domain.entities.organizacion.Mascota;
 
-import domain.notificacion.*;
+import domain.entities.notificacion.*;
 
 
 import java.io.File;

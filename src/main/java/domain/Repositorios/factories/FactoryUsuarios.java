@@ -3,8 +3,8 @@ package domain.Repositorios.factories;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
 import domain.Repositorios.RepositorioDeUsuarios;
-import domain.autenticacion.Usuario;
-import domain.config.Config;
+import domain.entities.autenticacion.Usuario;
+import config.Config;
 
 public class FactoryUsuarios {
     private static RepositorioDeUsuarios repo;

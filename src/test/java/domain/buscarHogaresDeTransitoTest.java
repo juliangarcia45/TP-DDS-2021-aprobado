@@ -1,8 +1,8 @@
 package domain;
 
-import domain.hogaresAPI.HogarDeTransito;
-import domain.hogaresAPI.HogaresResponseApi;
-import domain.organizacion.Rescatista;
+import domain.entities.hogaresAPI.HogarDeTransito;
+import domain.entities.hogaresAPI.HogaresResponseApi;
+import domain.entities.organizacion.Rescatista;
 import org.junit.Before;
 import org.junit.Test;
 

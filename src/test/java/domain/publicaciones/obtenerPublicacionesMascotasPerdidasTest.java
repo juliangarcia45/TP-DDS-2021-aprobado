@@ -1,8 +1,8 @@
 package domain.publicaciones;
 
 
-import domain.BDUtils.EntityManagerHelper;
-import domain.organizacion.*;
+import bd.BDUtils.EntityManagerHelper;
+import domain.entities.organizacion.*;
 
 import org.junit.Before;
 import org.junit.Test;

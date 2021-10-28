@@ -1,6 +1,6 @@
 package domain.Repositorios;
 
-import domain.BDUtils.EntityManagerHelper;
+import bd.BDUtils.EntityManagerHelper;
 import domain.Repositorios.Daos.DAO;
 
 import javax.persistence.criteria.CriteriaBuilder;

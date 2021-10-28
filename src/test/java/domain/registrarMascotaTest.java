@@ -1,6 +1,6 @@
 package domain;
-import domain.organizacion.Duenio;
-import domain.organizacion.Mascota;
+import domain.entities.organizacion.Duenio;
+import domain.entities.organizacion.Mascota;
 import org.junit.Test;
 
 

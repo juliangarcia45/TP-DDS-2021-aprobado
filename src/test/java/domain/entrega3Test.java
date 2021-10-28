@@ -1,13 +1,13 @@
 package domain;
 
-import domain.autenticacion.Usuario;
-import domain.notificacion.Contacto;
-import domain.notificacion.MedioDeNotificacion;
-import domain.notificacion.Sms;
-import domain.notificacion.WhatsApp;
-import domain.organizacion.Duenio;
-import domain.organizacion.Mascota;
-import domain.organizacion.Organizacion;
+import domain.entities.autenticacion.Usuario;
+import domain.entities.notificacion.Contacto;
+import domain.entities.notificacion.MedioDeNotificacion;
+import domain.entities.notificacion.Sms;
+import domain.entities.notificacion.WhatsApp;
+import domain.entities.organizacion.Duenio;
+import domain.entities.organizacion.Mascota;
+import domain.entities.organizacion.Organizacion;
 import org.junit.Before;
 import org.junit.Test;
 

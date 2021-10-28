@@ -1,10 +1,10 @@
 package domain.Repositorios.factories;
 
-import domain.config.Config;
+import config.Config;
 import domain.Repositorios.RepositorioDeAdoptantes;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
-import domain.organizacion.PublicacionAdoptante;
+import domain.entities.organizacion.PublicacionAdoptante;
 
 
 public class FactoryRepositorioAdoptantes {

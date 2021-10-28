@@ -1,11 +1,9 @@
 package domain.Repositorios.Daos;
 
-import domain.BDUtils.EntityManagerHelper;
-import domain.entidadPersistente.EntidadPersistente;
+import domain.entities.entidadPersistente.EntidadPersistente;
 import domain.Repositorios.BusquedaCondicional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DAOMemoria<T> implements DAO<T> {
     private List<EntidadPersistente> entidades;

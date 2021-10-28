@@ -1,6 +1,6 @@
 package domain.Repositorios.factories;
 
-import domain.config.Config;
+import config.Config;
 import domain.Repositorios.Repositorio;
 import domain.Repositorios.Daos.*;
 

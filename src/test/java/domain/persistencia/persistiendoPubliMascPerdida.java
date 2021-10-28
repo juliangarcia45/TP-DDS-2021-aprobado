@@ -1,9 +1,9 @@
 package domain.persistencia;
 
-import domain.BDUtils.EntityManagerHelper;
-import domain.organizacion.PublicacionMascotaPerdida;
-import domain.organizacion.Rescatista;
-import domain.organizacion.Ubicacion;
+import bd.BDUtils.EntityManagerHelper;
+import domain.entities.organizacion.PublicacionMascotaPerdida;
+import domain.entities.organizacion.Rescatista;
+import domain.entities.organizacion.Ubicacion;
 import org.junit.Test;
 
 public class persistiendoPubliMascPerdida {

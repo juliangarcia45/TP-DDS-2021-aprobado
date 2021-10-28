@@ -1,6 +1,6 @@
 package domain.Repositorios;
 
-import domain.organizacion.PublicacionAdoptante;
+import domain.entities.organizacion.PublicacionAdoptante;
 import domain.Repositorios.Daos.DAO;
 
 import javax.persistence.criteria.CriteriaBuilder;

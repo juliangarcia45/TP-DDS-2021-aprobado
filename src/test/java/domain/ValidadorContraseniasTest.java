@@ -1,9 +1,9 @@
 package domain;
-import domain.organizacion.Duenio;
-import domain.organizacion.Mascota;
+import domain.entities.organizacion.Duenio;
+import domain.entities.organizacion.Mascota;
 import org.junit.Test;
 
-import domain.autenticacion.validadorDeContrasenias.ValidadorContrasenias;
+import domain.entities.autenticacion.validadorDeContrasenias.ValidadorContrasenias;
 
 import static org.junit.Assert.*;
 

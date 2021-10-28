@@ -1,9 +1,9 @@
 package domain.publicaciones;
 
-import domain.PreguntasAdopcion.PreguntaAdopcion;
-import domain.PreguntasAdopcion.RespuestaAdopcion;
-import domain.PreguntasAdopcion.TipoPregunta;
-import domain.organizacion.*;
+import domain.entities.PreguntasAdopcion.PreguntaAdopcion;
+import domain.entities.PreguntasAdopcion.RespuestaAdopcion;
+import domain.entities.PreguntasAdopcion.TipoPregunta;
+import domain.entities.organizacion.*;
 import org.junit.Before;
 import org.junit.Test;
 
