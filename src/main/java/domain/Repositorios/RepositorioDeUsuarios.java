@@ -13,7 +13,12 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
     public RepositorioDeUsuarios(DAO<Usuario> dao) {
         super(dao);
     }
-
+    public Boolean existe(String nombreDeUsuario, String contrasenia){
+        return buscarUsuarioExistente(nombreDeUsuario, contrasenia) != null;
+    }
+    public Boolean estaRegistradoBoolean(String nombreUsuario){
+        return buscarUsuario(nombreUsuario)!=null;
+    }
     public void agregar(Usuario unUsuario){
         this.dao.agregar(unUsuario);
     }
@@ -33,6 +38,25 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
     public Usuario buscarUsuario(String usuario){
         return this.dao.buscar(condicionUsername(usuario));
     }
+    public Usuario buscarUsuarioExistente(String nombreDeUsuario, String contrasenia){
+        return this.dao.buscar(condicionUsuarioYContrasenia(nombreDeUsuario,contrasenia));
+    }
+
+    private BusquedaCondicional condicionUsuarioYContrasenia(String nombreDeUsuario, String contrasenia){
+        CriteriaBuilder criteriaBuilder = criteriaBuilder();
+        CriteriaQuery<Usuario> usuarioQuery = criteriaBuilder.createQuery(Usuario.class);
+
+        Root<Usuario> condicionRaiz = usuarioQuery.from(Usuario.class);
+
+        Predicate condicionNombreDeUsuario = criteriaBuilder.equal(condicionRaiz.get("usuario"), nombreDeUsuario);
+        Predicate condicionContrasenia = criteriaBuilder.equal(condicionRaiz.get("contrasenia"), contrasenia);
+
+        Predicate condicionExisteUsuario = criteriaBuilder.and(condicionNombreDeUsuario, condicionContrasenia);
+
+        usuarioQuery.where(condicionExisteUsuario);
+
+        return new BusquedaCondicional(null, usuarioQuery);
+    }
 
     private BusquedaCondicional condicionUsername(String usuario){
         CriteriaBuilder criteriaBuilder = criteriaBuilder();
@@ -42,7 +66,6 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
 
         Predicate condicionUsername = criteriaBuilder.equal(condicionRaiz.get("usuario"), usuario);
 
-        Predicate condicionExisteUsuario = criteriaBuilder.and(condicionUsername);
 
         usuarioQuery.where(condicionUsername);
 

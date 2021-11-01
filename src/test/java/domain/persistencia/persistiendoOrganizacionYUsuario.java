@@ -23,7 +23,6 @@ public class persistiendoOrganizacionYUsuario {
         List<MedioDeNotificacion> listaMedios=new ArrayList<>();
         listaMedios.add(medioRaul);
         Contacto contactoRaul=new Contacto("Raul","Gonzalez","raul@gmail.com",49751235,listaMedios);
-        medioRaul.setContactoANotificar(contactoRaul);
         contactosRaul.add(contactoRaul);
         Documento documentoRaul= new Documento(123456,"DNI");
         Mascota calli=new Mascota.MascotaBuilder(null,"a").apodo("calli").edad(14).build();

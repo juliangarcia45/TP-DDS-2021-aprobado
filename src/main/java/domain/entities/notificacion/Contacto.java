@@ -20,7 +20,8 @@ public class Contacto extends EntidadPersistente {
     @Column
     private Integer telefono;
 
-    @OneToMany(mappedBy = "contactoANotificar",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+    @JoinColumn(name="contacto_id",referencedColumnName = "id")
     private List<MedioDeNotificacion> mediosDeNotificacion ;
 
     public Contacto(String nombre, String apellido, String email, Integer telefono, List<MedioDeNotificacion> mediosDeNotificacion) {

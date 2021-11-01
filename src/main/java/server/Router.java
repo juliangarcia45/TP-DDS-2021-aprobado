@@ -1,6 +1,7 @@
 package server;
 
-import domain.controllers.LoginController;
+import domain.controllers.*;
+import domain.middleware.*;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import Spark.utils.BooleanHelper;
@@ -24,10 +25,25 @@ public class Router {
     }
 
     private static void configure(){
-        LoginController loginController=new LoginController();
-        Spark.get("/log-in", loginController::inicio, Router.engine);
-        Spark.post("/log-in", loginController::guardarUsuario);
+        UserRestController usuarioRestControllerEjemplo = new UserRestController();
+        UsuarioController usuarioController = new UsuarioController();
+        LoginController loginController     = new LoginController();
+        AuthMiddleware authMiddleware       = new AuthMiddleware();
+        HomeController homeController       = new HomeController();
 
+        Spark.get("/", loginController::inicio, Router.engine);
+
+        Spark.before("/", authMiddleware::verificarSesion);
+
+        Spark.post("/login", loginController::login);
+
+        Spark.get("/logout", loginController::logout);
+
+        Spark.get("/home", homeController::inicio, Router.engine);
+
+        Spark.post("/signUp",loginController::resgistrar);
+
+        Spark.get("/usuarios/:id",(req,res)->req.queryParams("nombre"));
 
     }
 }

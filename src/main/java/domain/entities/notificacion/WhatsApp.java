@@ -1,10 +1,15 @@
 package domain.entities.notificacion;
 
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 
-public class WhatsApp implements FormaDeNotificacion {
+@Entity
+@DiscriminatorValue("WPP")
+public class WhatsApp extends FormaDeNotificacion {
     @Override
     public void notificar(Integer telefono,String mensaje) {
         System.out.println("Notificar al usuario por whatsapp");

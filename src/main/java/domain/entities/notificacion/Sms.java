@@ -1,9 +1,14 @@
 package domain.entities.notificacion;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 
-public class Sms implements FormaDeNotificacion {
+@Entity
+@DiscriminatorValue("SMS")
+public class Sms extends FormaDeNotificacion {
     @Override
     public void notificar(Integer telefono, String mensaje) {
         String ACCOUNT_SID = "ACe762ffd4d3ff9ed0ab2390e757002aba";
