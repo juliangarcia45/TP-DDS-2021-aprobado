@@ -8,6 +8,7 @@ import domain.entities.notificacion.Sms;
 import domain.entities.notificacion.WhatsApp;
 import domain.entities.organizacion.Documento;
 import domain.entities.organizacion.Duenio;
+import domain.entities.organizacion.TipoUsuario;
 import domain.Repositorios.RepositorioDeUsuarios;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
@@ -37,7 +38,7 @@ public class LoginController {
 
     public ModelAndView signUp(Request request, Response response){
         Map<String,Object> parametros = new HashMap<>();
-        return new ModelAndView(parametros,"register/newUser");
+        return new ModelAndView(parametros,"register/newUser.hbs");
     }
     public Response login(Request request, Response response){
         try{
@@ -112,6 +113,8 @@ public class LoginController {
                     case "MAIL":
                         medio.setEstrategiaNotificacion(new Email());
                         break;
+                    default:
+                        break;
                 }
                 List<MedioDeNotificacion> medios = new ArrayList<>();
                 medios.add(medio);
@@ -119,7 +122,7 @@ public class LoginController {
                 List<Contacto> contactos = new ArrayList<>();
                 contactos.add(contacto);
                 nuevoDuenio.setMediosDeContacto(contactos);
-                
+                nuevoDuenio.setTipoUsuario(TipoUsuario.DUENIO);
                 repoUser.agregar(nuevoDuenio);
 
                 response.status(200);
@@ -132,7 +135,7 @@ public class LoginController {
          }
          catch (Exception e){
              //Funcionalidad disponible solo con persistencia en Base de Datos
-             response.status(404);
+             response.status(406);
              response.redirect("/");
          }
          finally {

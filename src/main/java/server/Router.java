@@ -32,7 +32,7 @@ public class Router {
         HomeController homeController       = new HomeController();
 
         Spark.get("/", loginController::inicio, Router.engine);
-
+        Spark.get("/signIn", loginController::inicio,Router.engine);
         Spark.before("/", authMiddleware::verificarSesion);
 
         Spark.post("/login", loginController::login);
@@ -40,8 +40,8 @@ public class Router {
         Spark.get("/logout", loginController::logout);
 
         Spark.get("/home", homeController::inicio, Router.engine);
-
-        Spark.post("/signUp",loginController::resgistrar);
+        Spark.get("/signUp",loginController::signUp, Router.engine);
+        Spark.post("/registrar",loginController::resgistrar);
 
         Spark.get("/usuarios/:id",(req,res)->req.queryParams("nombre"));
 
