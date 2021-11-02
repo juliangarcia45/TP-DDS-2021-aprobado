@@ -1,0 +1,67 @@
+<head>
+    <title>Rescate de Patitas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      const radioGroups = document.querySelectorAll('.radio-group') || []
+radioGroups.forEach(radioGroup => {
+  let bullet = document.createElement("div");
+  bullet.classList.add("bullet");
+  radioGroup.prepend(bullet);
+  let checked = radioGroup.querySelector('input:checked + label');
+  bullet.style.top = checked.offsetTop + 'px';
+  let options = radioGroup.querySelectorAll('label');
+  options.forEach(option =>{
+    option.addEventListener('click', (e)=>{
+      bullet.style.top = e.target.offsetTop + 'px';
+    })
+  })
+})
+
+  </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<div class="wrapper fadeInDown">
+    <div id="formContent" class="registrar-mascota">
+        <h1>Registro de Mascota</h1>
+
+  
+      <!--  Form -->
+      <form>
+        <input type="text" id="login" class="fadeIn second" name="nombre" placeholder="Nombre">
+        <input type="text" id="password" class="fadeIn third" name="apodo" placeholder="Apodo">
+        <input type="text" id="age" class="fadeIn" name="edad" placeholder="Edad">
+        <div class="radio">
+          <div class="radio-group color1">
+            <input type="radio" name="especie" id="radio1.1" value="radio1.1" checked>
+            <label for="radio1.1">Perro</label>
+            <input type="radio" name="radio-group1" id="radio1.2" value="radio1.2" >
+            <label for="radio1.2">Gato</label>
+          </div>
+        </div>
+        <select id="sexo" name= "sexo" placeholder="Sexo">
+            <option value="">Seleccione el sexo de su mascota</option>
+            <option value="macho">Macho</option>
+            <option value="hembra">Hembra</option>
+        </select>
+        <input type="text" id="description" class="fadeIn" name="descripcion" placeholder="Describa aqui fisicamente a su mascota">
+
+    
+      </form>
+      <h1>Adjunte Aqui las fotos</h1>
+      <div class="avatar-upload">
+        <div class="avatar-edit">
+            <input type='file' name="fotos" id="imageUpload" accept=".png, .jpg, .jpeg" />
+            <label class="image-upload" for="imageUpload"></label>
+        </div>
+        <div class="avatar-preview">
+            <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="fadeIn fourth" value="Registrar Mascota">
+    </div>
+   
+  </div>

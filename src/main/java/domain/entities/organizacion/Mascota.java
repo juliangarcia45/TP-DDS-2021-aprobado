@@ -155,16 +155,30 @@ public class Mascota {
             return this;
         }
 
-        public MascotaBuilder sexo(Boolean sexo){
-            this.sexo = sexo;
+        public MascotaBuilder sexo(String sexo){
+            switch (sexo){
+                case "Hembra":
+                    this.especie= false;
+                    break;
+                case "Macho":
+                    this.especie=true;
+                    break;
+            }
             return this;
         }
         public MascotaBuilder apodo(String apodo){
             this.nombre = apodo;
             return this;
         }
-        public MascotaBuilder especie(Boolean especie){
-            this.sexo = especie;
+        public MascotaBuilder especie(String especie){
+            switch (especie){
+                case "Perro":
+                    this.especie= false;
+                    break;
+                case "Gato":
+                    this.especie=true;
+                    break;
+            }
             return this;
         }
         public MascotaBuilder caracteristicas(Map<String,String> caracteristicas){
