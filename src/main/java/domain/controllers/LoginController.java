@@ -76,7 +76,7 @@ public class LoginController {
         return response;
     }
 
-    public Response resgistrar(Request request, Response response){
+    public Response registrar(Request request, Response response){
         try{
             // Repositorio repoUsuarios = FactoryRepositorio.get();
              

@@ -17,7 +17,18 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
         return buscarUsuarioExistente(nombreDeUsuario, contrasenia) != null;
     }
     public Boolean estaRegistradoBoolean(String nombreUsuario){
-        return buscarUsuario(nombreUsuario)!=null;
+        Usuario usuario = null;
+        try {
+          usuario = buscarUsuario(nombreUsuario);
+        } catch (Exception e) {
+            System.out.printf("que pasaaaaaaaaaaa??");
+            return false;
+        }
+        if (usuario == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
     public void agregar(Usuario unUsuario){
         this.dao.agregar(unUsuario);
@@ -34,10 +45,10 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
     public List<Usuario> buscarTodosLosUsuarios(){
         return this.dao.buscarTodos();
     }
-
     public Usuario buscarUsuario(String usuario){
         return this.dao.buscar(condicionUsername(usuario));
     }
+    
     public Usuario buscarUsuarioExistente(String nombreDeUsuario, String contrasenia){
         return this.dao.buscar(condicionUsuarioYContrasenia(nombreDeUsuario,contrasenia));
     }

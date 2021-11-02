@@ -33,7 +33,7 @@ public class Router {
 
         Spark.get("/", loginController::inicio, Router.engine);
         Spark.get("/signIn", loginController::inicio,Router.engine);
-        Spark.before("/", authMiddleware::verificarSesion);
+        //sSpark.before("/", authMiddleware::verificarSesion);
 
         Spark.post("/login", loginController::login);
 
@@ -41,7 +41,7 @@ public class Router {
 
         Spark.get("/home", homeController::inicio, Router.engine);
         Spark.get("/signUp",loginController::signUp, Router.engine);
-        Spark.post("/registrar",loginController::resgistrar);
+        Spark.post("/registrar",loginController::registrar);
 
         Spark.get("/usuarios/:id",(req,res)->req.queryParams("nombre"));
 
