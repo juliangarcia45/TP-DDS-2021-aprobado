@@ -70,4 +70,9 @@ public class  AgregarUsuario {
         assertEquals(false,repoUser.estaRegistradoBoolean("usuarioo"));
         //repoUser.eliminar(usuarioDuenio);
     }
+
+    @Test
+    public void chequearRegistroUsuario(){
+       assertEquals(false, this.repoUser.estaRegistradoBoolean("usuarionashe"));
+    }
 }

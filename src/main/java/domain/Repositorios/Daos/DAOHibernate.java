@@ -37,8 +37,7 @@ public class DAOHibernate<T> implements DAO<T> {
 
     @Override
     public List<T> buscarVarios(BusquedaCondicional condicional) {
-        List<T> entities = EntityManagerHelper.getEntityManager()
-                .createQuery(condicional.getCondicionCritero()).getResultList();
+        List<T> entities = EntityManagerHelper.getEntityManager().createQuery(condicional.getCondicionCritero()).getResultList();
         return entities;
     }
 
