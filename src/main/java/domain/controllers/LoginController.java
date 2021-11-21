@@ -94,8 +94,8 @@ public class LoginController {
              String emailContacto = request.queryParams("emailContacto");
              String telefonoContacto = request.queryParams("telefonoContacto");
              String preferencia = request.queryParams("preferenciaNotificacion");
-
-            if(!repoUser.estaRegistradoBoolean(nombreDeUsuario)){
+     
+           if(!repoUser.estaRegistradoBoolean(nombreDeUsuario)){
                 MedioDeNotificacion medio = new MedioDeNotificacion();
                 Duenio nuevoDuenio = new Duenio(nombreDeUsuario,contrasenia);
                 nuevoDuenio.setApellido(apellido);
@@ -126,20 +126,22 @@ public class LoginController {
                 repoUser.agregar(nuevoDuenio);
 
                 response.status(200);
+                response.redirect("/home");
             }
             else{
                 response.status(404);
                 response.redirect("/");
             }
           
-         }
+            
+        }
          catch (Exception e){
              //Funcionalidad disponible solo con persistencia en Base de Datos
              response.status(406);
              response.redirect("/");
          }
-         finally {
-             return response;
-         }
+    finally 
+    {return response;}
+     
     }
 }
