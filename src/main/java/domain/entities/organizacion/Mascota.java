@@ -92,6 +92,10 @@ public class Mascota {
         return idMascota;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     public void notificarDuenio(String mensaje){
         this.getDuenio().getMediosDeContacto().stream().forEach(contacto -> contacto.notificar(mensaje));
     }

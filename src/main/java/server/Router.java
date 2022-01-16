@@ -26,7 +26,7 @@ public class Router {
 
     private static void configure(){
         UserRestController usuarioRestControllerEjemplo = new UserRestController();
-        UsuarioController usuarioController = new UsuarioController();
+        DuenioController duenioController = new DuenioController();
         LoginController loginController     = new LoginController();
         AuthMiddleware authMiddleware       = new AuthMiddleware();
         HomeController homeController       = new HomeController();
@@ -42,6 +42,9 @@ public class Router {
         Spark.get("/home", homeController::inicio, Router.engine);
         Spark.get("/signUp",loginController::signUp, Router.engine);
         Spark.post("/registrar",loginController::registrar);
+        Spark.get("/registroMascota", duenioController::registroMascota, Router.engine);
+        //Spark.post("/registrarMascota",usuarioController::registrarMascota); hay que probar
+
 
         Spark.get("/usuarios/:id",(req,res)->req.queryParams("nombre"));
 
