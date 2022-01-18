@@ -1,6 +1,7 @@
 package domain.Repositorios;
 
 import domain.Repositorios.Daos.DAO;
+import domain.entities.autenticacion.Usuario;
 import domain.entities.organizacion.EstadoPublicacion;
 import domain.entities.organizacion.Publicacion;
 import domain.entities.organizacion.TipoPublicacion;
@@ -38,5 +39,24 @@ public class RepositorioDePublicaciones extends Repositorio<Publicacion> {
         publicacionQuery.where(condicionExistenPublicaciones);
 
         return new BusquedaCondicional(null, publicacionQuery);
+    }
+
+    private BusquedaCondicional condicionFotoPublicacion(String foto){
+        CriteriaBuilder criteriaBuilder = criteriaBuilder();
+        CriteriaQuery<Publicacion> publicacionQuery = criteriaBuilder.createQuery(Publicacion.class);
+
+        Root<Publicacion> condicionRaiz = publicacionQuery.from(Publicacion.class);
+
+        Predicate condicionFotoPublicacion = criteriaBuilder.equal(condicionRaiz.get("fotos"), foto);
+
+        publicacionQuery.where(condicionFotoPublicacion);
+
+        return new BusquedaCondicional(null, publicacionQuery);
+    }
+    public Publicacion buscarPublicacionPorFoto(String foto){
+        return this.dao.buscar(condicionFotoPublicacion(foto));
+    }
+    public Boolean existePublicacionPorFoto(String foto){
+        return buscarPublicacionPorFoto(foto) != null;
     }
 }

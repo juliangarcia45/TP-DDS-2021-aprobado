@@ -15,7 +15,7 @@ import java.util.List;
 public class obtenerPublicacionesMascotasEnAdopcionTest {
     Organizacion patitas = new Organizacion();
     List<Publicacion> publicaciones;
-    Rescatista clark = new Rescatista("clark", "xD");
+    Rescatista clark = new Rescatista("clark", "xD","calleFalsa 123");
     Mascota calli=new Mascota.MascotaBuilder(null,"a").apodo("calli").edad(14).build();
     @Before
     public void initPublicaciones() throws IOException{

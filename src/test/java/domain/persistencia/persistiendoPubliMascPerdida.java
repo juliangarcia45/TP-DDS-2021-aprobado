@@ -9,7 +9,7 @@ import org.junit.Test;
 public class persistiendoPubliMascPerdida {
     @Test
     public void persistir(){
-        Rescatista raul= new Rescatista("raul","123456");
+        Rescatista raul= new Rescatista("raul","123456","calleFalsa 123");
         Ubicacion puntoEncuentro= new Ubicacion();
         puntoEncuentro.setLatitud(500);
         puntoEncuentro.setLongitud(500);

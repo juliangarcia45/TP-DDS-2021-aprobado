@@ -31,8 +31,9 @@ public class Rescatista extends Usuario {
     @Transient
     HogaresResponseApi hogaresResponseApi;
 
-    public Rescatista(String usuario, String contrasenia) {
+    public Rescatista(String usuario, String contrasenia,String direccionRescatista) {
         super(usuario, contrasenia);
+        setDireccionRescatista(direccionRescatista);
         setTipoUsuario(TipoUsuario.RESCATISTA);
     }
 
