@@ -95,8 +95,8 @@ public class DuenioController {
 
     public Response suscribirseARecomendaciones(Request request, Response response){
         try{
-            String idUsuarioEnSesion= request.session().attribute("id");
-            Duenio autor=(Duenio) repoUser.buscar(Integer.parseInt(idUsuarioEnSesion));
+            int idUsuarioEnSesion= request.session().attribute("id");
+            Duenio autor=(Duenio) repoUser.buscar(idUsuarioEnSesion);
             String respuestaPreferenciaUno= request.queryParams("preferencia1");
             String respuestaPreferenciaDos= request.queryParams("preferencia2");
             String respuestaPreferenciaTres= request.queryParams("preferencia3");
@@ -127,6 +127,8 @@ public class DuenioController {
             return response;
         }
     }
+
+
 
     
     

@@ -52,7 +52,11 @@ public class LoginController {
                 request.session(true);
                 request.session().attribute("id", usuario.getId());
                 response.status(200);
-                response.redirect("/home");
+                if(usuario.getTipoUsuario()==TipoUsuario.DUENIO){response.redirect("/adopcion");}
+                else if(usuario.getTipoUsuario()==TipoUsuario.RESCATISTA) {response.redirect("/home");}
+                else if(usuario.getTipoUsuario()==TipoUsuario.ADMINISTRADOR){response.redirect("/home");}
+                else{response.redirect("/home");}
+
              }
              else{
                  request.session(false);
