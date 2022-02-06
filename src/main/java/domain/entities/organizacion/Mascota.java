@@ -5,26 +5,24 @@ import java.util.List;
 
 
 import java.io.File;
+
+import domain.entities.entidadPersistente.EntidadPersistente;
 import domain.entities.generadorQR.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="mascota")
-public class Mascota {
-
-    @Id
-    @GeneratedValue
-    private final Integer idMascota;
+public class Mascota extends EntidadPersistente {
 
     @Column
-    private final String nombre;
+    private String nombre;
 
     @Column
-    private final boolean sexo;
+    private boolean sexo;
 
     @Column
-    private final String apodo;
+    private String apodo;
 
     @ManyToOne
     @JoinColumn(name="duenio_id", referencedColumnName = "id")
@@ -34,25 +32,169 @@ public class Mascota {
     private GeneradorQR qr;
 
     @Column
-    private final Integer edad;
+    private int edad;
 
     @Column
-    private final String descripcion;
+    private String descripcion;
 
     @Column
-    private final boolean especie;
+    private boolean especie;
 
     @ElementCollection
-    private final List<String> fotos;
+    private List<String> fotos;
 
     @ElementCollection
-    private final Map<String,String> caracteristicas;
+    private Map<String,String> caracteristicas;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "estado_mascota_id")
     private EstadoMascota estado;
-   
-    private Mascota(MascotaBuilder builder) {
+
+    public Mascota(String nombre, String sexo, String apodo, String descripcion, int edad, String especie, List<String> fotos, Map<String,String> caracteristicas, Duenio duenio, EstadoMascota estado){
+        this.nombre = nombre;
+        this.setSexo(sexo);
+        this.apodo = apodo;
+        this.descripcion = descripcion;
+        this.edad = edad;
+        this.setEspecie(especie);
+        this.fotos = fotos;
+        this.caracteristicas= caracteristicas;
+        this.duenio = duenio;
+        this.estado = estado;
+        this.qr = new GeneradorQR();
+    }
+
+    public Mascota(){}
+
+    public void notificarDuenio(String mensaje){
+        this.getDuenio().getMediosDeContacto().stream().forEach(contacto -> contacto.notificar(mensaje));
+    }
+
+
+    public File generateQR() {
+        File f = new File("qrCode.png");
+        String text = this.duenio.getMediosDeContacto().get(0).getContacto();
+
+
+        try {
+
+            qr.generateQR(f, text, 300, 300);
+            System.out.println("QRCode Generated: " + f.getAbsolutePath());
+
+            String qrString = qr.decoder(f);
+            System.out.println("Text QRCode: " + qrString);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+    public void leerQr(File f){
+        try{
+            String qrString = qr.decoder(f);
+            System.out.println("Text QRCode: " + qrString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setSexo(String sexo) {
+        switch (sexo) {
+            case "Hembra":
+                this.sexo = false;
+                break;
+            case "Macho":
+                this.sexo = true;
+                break;
+        }
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDuenio(Duenio duenio) {
+        this.duenio = duenio;
+    }
+
+    public boolean isSexo() {
+        return sexo;
+    }
+
+    public String getApodo() {
+        return apodo;
+    }
+
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Duenio getDuenio() {
+        return duenio;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public boolean isEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        switch (especie){
+            case "Perro":
+                this.especie= false;
+                break;
+            case "Gato":
+                this.especie=true;
+                break;
+        }
+    }
+
+    public List<String> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(List<String> fotos) {
+        this.fotos = fotos;
+    }
+
+    public Map<String, String> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(Map<String, String> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    public EstadoMascota getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoMascota estado) {
+        this.estado = estado;
+    }
+
+    /*private Mascota(MascotaBuilder builder) {
         this.nombre = builder.nombre;
         this.sexo = builder.sexo;
         this.apodo = builder.apodo;
@@ -96,39 +238,7 @@ public class Mascota {
         return nombre;
     }
 
-    public void notificarDuenio(String mensaje){
-        this.getDuenio().getMediosDeContacto().stream().forEach(contacto -> contacto.notificar(mensaje));
-    }
 
-
-    public File generateQR() {
-        File f = new File("qrCode.png");
-        String text = this.duenio.getMediosDeContacto().get(0).getContacto();
-    
-
-        try {
-
-            qr.generateQR(f, text, 300, 300);
-            System.out.println("QRCode Generated: " + f.getAbsolutePath());
-
-            String qrString = qr.decoder(f);
-            System.out.println("Text QRCode: " + qrString);
-
-     
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return f;
-    }
-    public void leerQr(File f){
-        try{
-            String qrString = qr.decoder(f);
-            System.out.println("Text QRCode: " + qrString);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     public static class MascotaBuilder{
@@ -213,6 +323,6 @@ public class Mascota {
         public MascotaBuilder() {
         }
 
-    }
+    }*/
 }
 

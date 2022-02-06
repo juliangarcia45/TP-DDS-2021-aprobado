@@ -18,7 +18,7 @@ public class obtenerRecomendacionTest {
     RespuestaAdopcion respuesta= new RespuestaAdopcion(pregunta,null);
     Organizacion patitas = new Organizacion();
     Duenio raul=new Duenio(null,null);
-    Mascota mascotahh = new Mascota.MascotaBuilder(null,null).nombre("gato").apodo("jhol").build();
+    Mascota mascotahh = new Mascota("nombre",null,"jhol",null,10,null,null,null,null,null);
     PublicacionMascotaEnAdopcion oka = new PublicacionMascotaEnAdopcion(null, mascotahh);
     PublicacionMascotaEnAdopcion koro = new PublicacionMascotaEnAdopcion(null, mascotahh);
     PublicacionAdoptante as=new PublicacionAdoptante(raul,new ArrayList<>());

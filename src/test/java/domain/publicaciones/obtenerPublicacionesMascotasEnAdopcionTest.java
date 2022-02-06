@@ -16,9 +16,14 @@ public class obtenerPublicacionesMascotasEnAdopcionTest {
     Organizacion patitas = new Organizacion();
     List<Publicacion> publicaciones;
     Rescatista clark = new Rescatista("clark", "xD","calleFalsa 123");
-    Mascota calli=new Mascota.MascotaBuilder(null,"a").apodo("calli").edad(14).build();
+    Mascota calli=new Mascota();
+
+
     @Before
     public void initPublicaciones() throws IOException{
+        calli.setApodo("calli");
+        calli.setEdad(14);
+        calli.setDescripcion("a");
         Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null);
         
         Publicacion donJonny = new PublicacionMascotaPerdida(clark, null, null);

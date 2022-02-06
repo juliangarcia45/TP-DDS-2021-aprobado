@@ -2,6 +2,7 @@ package domain.persistencia;
 
 import static org.junit.Assert.*;
 
+import domain.entities.organizacion.Rescatista;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
@@ -43,7 +44,7 @@ public class  AgregarUsuario {
 
     @Test
     public void agregarUsuarioDuenio() {
-        this.nombre = "natha";
+        this.nombre = "nathaas";
         this.apellido ="apellidoDeUsuario";
         this.nombreDeUsuario = "nombreDeUsuario";
         this.contrasenia = "contrasenia";
@@ -65,10 +66,36 @@ public class  AgregarUsuario {
         usuarioDuenio.setMediosDeContacto(contactos);
         usuarioDuenio.setTipoUsuario(tipo);
 
-       // repoUser.agregar(usuarioDuenio);
+       repoUser.agregar(usuarioDuenio);
 
-        assertEquals(false,repoUser.estaRegistradoBoolean("usuarioo"));
+        //assertEquals(false,repoUser.estaRegistradoBoolean("usuarioo"));
         //repoUser.eliminar(usuarioDuenio);
+    }
+    @Test
+    public void agregarUsuarioRescatista() {
+        this.nombre = "natha";
+        this.apellido = "apellidoDeUsuario";
+        this.nombreDeUsuario = "as";
+        this.contrasenia = "senia";
+        this.documento = new Documento(12312312, "DNI");
+        this.fechaNacimiento = new Date();
+
+        List<MedioDeNotificacion> medios = new ArrayList<>();
+        MedioDeNotificacion medio = new MedioDeNotificacion();
+        medio.setEstrategiaNotificacion(new Sms());
+        medios.add(medio);
+        this.contactos.add(new Contacto(nombreContacto, apellidoContacto, emailContacto, telefonoContacto, medios));
+
+        Rescatista usuarioRescatista = new Rescatista(nombre, contrasenia,"calle");
+
+        usuarioRescatista.setNombre(nombreDeUsuario);
+        usuarioRescatista.setApellido(apellido);
+        usuarioRescatista.setFechaNacimiento(fechaNacimiento);
+        usuarioRescatista.setDocumento(documento);
+        usuarioRescatista.setMediosDeContacto(contactos);
+
+
+        repoUser.agregar(usuarioRescatista);
     }
 
     @Test

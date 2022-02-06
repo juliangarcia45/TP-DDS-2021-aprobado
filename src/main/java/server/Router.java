@@ -48,7 +48,7 @@ public class Router {
         Spark.get("/registroMascota", duenioController::registroMascota, Router.engine);
         //Spark.post("/registrarMascota",usuarioController::registrarMascota); hay que probar
         Spark.get("/adopcion",publicacionesAdopcionController::adoptar, Router.engine);
-        Spark.before("/adopcion",publicacionesAdopcionController::verificarDuenio);
+        //Spark.before("/adopcion",publicacionesAdopcionController::verificarDuenio);
 
 
         Spark.get("/usuarios/:id",(req,res)->req.queryParams("nombre"));

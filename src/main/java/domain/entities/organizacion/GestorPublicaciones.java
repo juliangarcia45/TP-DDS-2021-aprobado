@@ -3,6 +3,7 @@ package domain.entities.organizacion;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
 import domain.Repositorios.RepositorioDePublicaciones;
+import domain.entities.autenticacion.Usuario;
 
 
 import java.util.List;
@@ -30,4 +31,6 @@ public abstract class GestorPublicaciones {
     public static void generarPublicacionMascotaEnAdopcion(Duenio duenio, Mascota mascota, Organizacion organizacion) {
         organizacion.getListaPublicaciones().add(new PublicacionMascotaEnAdopcion(duenio,mascota));
     }
+
+
 }

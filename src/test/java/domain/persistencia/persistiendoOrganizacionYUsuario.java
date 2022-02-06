@@ -25,7 +25,10 @@ public class persistiendoOrganizacionYUsuario {
         Contacto contactoRaul=new Contacto("Raul","Gonzalez","raul@gmail.com",49751235,listaMedios);
         contactosRaul.add(contactoRaul);
         Documento documentoRaul= new Documento(123456,"DNI");
-        Mascota calli=new Mascota.MascotaBuilder(null,"a").apodo("calli").edad(14).build();
+        Mascota calli=new Mascota();
+        calli.setDescripcion("a");
+        calli.setApodo("calli");
+        calli.setEdad(14);
         raul.setNombre("Raul");
         raul.setApellido("Gonzalez");
         raul.setDocumento(documentoRaul);

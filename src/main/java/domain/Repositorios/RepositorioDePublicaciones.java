@@ -1,7 +1,6 @@
 package domain.Repositorios;
 
 import domain.Repositorios.Daos.DAO;
-import domain.entities.autenticacion.Usuario;
 import domain.entities.organizacion.EstadoPublicacion;
 import domain.entities.organizacion.Publicacion;
 import domain.entities.organizacion.TipoPublicacion;
@@ -58,5 +57,9 @@ public class RepositorioDePublicaciones extends Repositorio<Publicacion> {
     }
     public Boolean existePublicacionPorFoto(String foto){
         return buscarPublicacionPorFoto(foto) != null;
+    }
+
+    public void agregarPublicacion(Publicacion unaPublicacion){
+        this.dao.agregar(unaPublicacion);
     }
 }

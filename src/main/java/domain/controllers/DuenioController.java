@@ -49,7 +49,7 @@ public class DuenioController {
                 //ACA ESTOY ASUMIENDO QUE EL QUERYPARAMS VA A AGARRAR TODOS LOS PATHS DE LAS FOTOS QUE LE CARGUES Y LOS VA A TENER SEPARADOS POR UNA ,
                 //EJ: gato1.jpg , gato2.jpg, etc
                 //Igual creo que en la vista solo acepta una imagen xd
-                Mascota korone= new Mascota.MascotaBuilder(listaFotos,descripcion).nombre(nombreMascota).apodo(apodo).edad(Integer.parseInt(edad)).sexo(sexo).especie(especie).build();
+                Mascota korone= new Mascota(nombreMascota,sexo,apodo,descripcion,Integer.parseInt(edad),especie,listaFotos,null,null,null);
                 duenioEnSesion.registrarMascota(korone);
                 repoUser.modificar(duenioEnSesion);
                 //ACA EL Duenio SERIA EL QUE ESTA EN SU SESION REGISTRANDO A LA MASCOTA, NO SE COMO HABRIA QUE HACER PARA OBTENERLO

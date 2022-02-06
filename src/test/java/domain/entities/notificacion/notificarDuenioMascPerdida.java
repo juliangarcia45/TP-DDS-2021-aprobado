@@ -32,7 +32,8 @@ public class notificarDuenioMascPerdida {
                 "contacto@gmail.com",1156956024,mediosDeNotificacion);
 
         cliente.setMediosDeContacto(Arrays.asList(contactoCliente));
-        korone= new Mascota.MascotaBuilder(null,null).nombre("doggo").build();
+        korone= new Mascota();
+        korone.setNombre("doggo");
         cliente.registrarMascota(korone);
 
     }

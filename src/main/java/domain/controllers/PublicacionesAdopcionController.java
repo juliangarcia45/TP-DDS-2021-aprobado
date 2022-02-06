@@ -3,26 +3,28 @@ package domain.controllers;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
 import domain.Repositorios.RepositorioDePublicaciones;
+import domain.Repositorios.RepositorioDePublicacionesEnAdopcion;
 import domain.Repositorios.RepositorioDeUsuarios;
 import domain.entities.autenticacion.Usuario;
-import domain.entities.organizacion.Duenio;
-import domain.entities.organizacion.Publicacion;
-import domain.entities.organizacion.TipoUsuario;
+import domain.entities.organizacion.*;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PublicacionesAdopcionController {
     private DAO<Usuario> dao = new DAOHibernate<>(Usuario.class);
     private RepositorioDeUsuarios repoUser = new RepositorioDeUsuarios(dao);
-    private DAO<Publicacion> daoP = new DAOHibernate<>(Publicacion.class);
-    private RepositorioDePublicaciones repoPublicaciones = new RepositorioDePublicaciones(daoP);
+    private DAO<PublicacionMascotaEnAdopcion> daoP = new DAOHibernate<>(PublicacionMascotaEnAdopcion.class);
+    private RepositorioDePublicacionesEnAdopcion repoPublicaciones = new RepositorioDePublicacionesEnAdopcion(daoP);
 
     public ModelAndView adoptar(Request request, Response response){
         Map<String, Object> parametros = new HashMap<>();
+        List<PublicacionMascotaEnAdopcion> publicaciones = this.repoPublicaciones.buscarPorEstado(EstadoPublicacion.APROBADO);
+        parametros.put("publicaciones", publicaciones);
         return new ModelAndView(parametros,"adopcionMasotas.hbs");
     }
 

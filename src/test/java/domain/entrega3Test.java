@@ -26,7 +26,8 @@ public class entrega3Test {
         public void init(){
             // Creo un cliente
             cliente = new Duenio("cliente","cliente123");
-            mascotaDuenio = new Mascota.MascotaBuilder(null,null).nombre("Mascota").build();
+            mascotaDuenio = new Mascota();
+            mascotaDuenio.setNombre("Mascota");
             organizacion= new Organizacion();
 
             // Creo medios de notificacion y les asigno su estrategia de notificacion
