@@ -1,12 +1,16 @@
 package domain.controllers;
+import config.Config;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
 import domain.Repositorios.RepositorioDeMascotas;
 import domain.Repositorios.RepositorioDeUsuarios;
+import domain.Repositorios.RepositorioImagenes;
 import domain.entities.PreguntasAdopcion.RespuestaAdopcion;
 import domain.entities.autenticacion.Usuario;
 import domain.Repositorios.Repositorio;
 import domain.Repositorios.factories.FactoryRepositorio;
+import domain.entities.fotos.Foto;
+import domain.entities.fotos.Helper;
 import domain.entities.notificacion.*;
 import domain.entities.organizacion.*;
 import spark.ModelAndView;
@@ -20,6 +24,9 @@ import java.util.*;
 public class DuenioController {
     private DAO<Usuario> dao = new DAOHibernate<>(Usuario.class);
     private RepositorioDeUsuarios repoUser = new RepositorioDeUsuarios(dao);
+
+    private DAO<Foto> daoI = new DAOHibernate<>(Foto.class);
+    private RepositorioImagenes repositorioImagenes= new RepositorioImagenes(daoI);
 
     private DAO<Mascota> daoM = new DAOHibernate<>(Mascota.class);
     private RepositorioDeMascotas repoMascota = new RepositorioDeMascotas(daoM);
@@ -36,7 +43,7 @@ public class DuenioController {
             String nombreMascota = request.queryParams("nombre");
             String apodo     = request.queryParams("apodo");
             String descripcion = request.queryParams("descripcion");
-            String fotos = request.queryParams("fotos");
+            List<String> listaFotos = Helper.processImage(request,"fotos_mascota", Config.RUTA_IMAGENES_FRONT);
             String sexo = request.queryParams("sexo");
             String especie =request.queryParams("especie");
             String edad = request.queryParams("edad");
@@ -44,15 +51,16 @@ public class DuenioController {
 
 
             if(!repoMascota.existe(nombreMascota)){
-                List<String> listaFotos = new ArrayList<>();
-                listaFotos = Arrays.asList(fotos.split(","));
-                //ACA ESTOY ASUMIENDO QUE EL QUERYPARAMS VA A AGARRAR TODOS LOS PATHS DE LAS FOTOS QUE LE CARGUES Y LOS VA A TENER SEPARADOS POR UNA ,
-                //EJ: gato1.jpg , gato2.jpg, etc
-                //Igual creo que en la vista solo acepta una imagen xd
-                Mascota korone= new Mascota(nombreMascota,sexo,apodo,descripcion,Integer.parseInt(edad),especie,listaFotos,null,null,null);
+                Mascota korone= new Mascota(nombreMascota,sexo,apodo,descripcion,Integer.parseInt(edad),especie,null,null,null,null);
+                //fotos
+                for (String image: listaFotos) {
+                    Foto foto = new Foto(image);
+                    this.repositorioImagenes.agregar(foto);
+                    foto.normalizar();
+                    korone.setFoto(foto);
+                }
                 duenioEnSesion.registrarMascota(korone);
                 repoUser.modificar(duenioEnSesion);
-                //ACA EL Duenio SERIA EL QUE ESTA EN SU SESION REGISTRANDO A LA MASCOTA, NO SE COMO HABRIA QUE HACER PARA OBTENERLO
                 response.status(200);
             }
             else{

@@ -7,6 +7,7 @@ import java.util.List;
 import java.io.File;
 
 import domain.entities.entidadPersistente.EntidadPersistente;
+import domain.entities.fotos.Foto;
 import domain.entities.generadorQR.*;
 
 import javax.persistence.*;
@@ -32,7 +33,7 @@ public class Mascota extends EntidadPersistente {
     private GeneradorQR qr;
 
     @Column
-    private int edad;
+    private Integer edad;
 
     @Column
     private String descripcion;
@@ -40,8 +41,9 @@ public class Mascota extends EntidadPersistente {
     @Column
     private boolean especie;
 
-    @ElementCollection
-    private List<String> fotos;
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_mascota", referencedColumnName = "id")
+    private List<Foto> fotos;
 
     @ElementCollection
     private Map<String,String> caracteristicas;
@@ -50,7 +52,7 @@ public class Mascota extends EntidadPersistente {
     @JoinColumn(name= "estado_mascota_id")
     private EstadoMascota estado;
 
-    public Mascota(String nombre, String sexo, String apodo, String descripcion, int edad, String especie, List<String> fotos, Map<String,String> caracteristicas, Duenio duenio, EstadoMascota estado){
+    public Mascota(String nombre, String sexo, String apodo, String descripcion, int edad, String especie, List<Foto> fotos, Map<String,String> caracteristicas, Duenio duenio, EstadoMascota estado){
         this.nombre = nombre;
         this.setSexo(sexo);
         this.apodo = apodo;
@@ -170,12 +172,12 @@ public class Mascota extends EntidadPersistente {
         }
     }
 
-    public List<String> getFotos() {
+    public List<Foto> getFotos() {
         return fotos;
     }
 
-    public void setFotos(List<String> fotos) {
-        this.fotos = fotos;
+    public void setFoto(Foto foto) {
+        fotos.add(foto);
     }
 
     public Map<String, String> getCaracteristicas() {

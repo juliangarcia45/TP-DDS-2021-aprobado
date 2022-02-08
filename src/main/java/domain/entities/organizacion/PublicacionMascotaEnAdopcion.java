@@ -23,7 +23,6 @@ public class PublicacionMascotaEnAdopcion extends Publicacion{
     public PublicacionMascotaEnAdopcion(Duenio duenio,Mascota mascota) {
         super(duenio, mascota.getFotos(), mascota.getDescripcion());
         this.mascota=mascota;
-        setFotos(mascota.getFotos());
         setTipoPublicacion(TipoPublicacion.EN_ADOPCION);
     }
 

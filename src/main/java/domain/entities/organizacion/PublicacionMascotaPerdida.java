@@ -1,6 +1,7 @@
 package domain.entities.organizacion;
 
 import domain.entities.autenticacion.Usuario;
+import domain.entities.fotos.Foto;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -12,7 +13,7 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name="id")
 public class PublicacionMascotaPerdida extends Publicacion{
 
-    public PublicacionMascotaPerdida(Usuario rescatista, List<String> fotosMascota, String estadoMascota) {
+    public PublicacionMascotaPerdida(Usuario rescatista, List<Foto> fotosMascota, String estadoMascota) {
         super(rescatista, fotosMascota, estadoMascota);
         setTipoPublicacion(TipoPublicacion.PERDIDA);
     }

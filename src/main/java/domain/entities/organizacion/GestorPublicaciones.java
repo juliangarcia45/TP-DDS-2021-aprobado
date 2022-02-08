@@ -4,6 +4,7 @@ import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
 import domain.Repositorios.RepositorioDePublicaciones;
 import domain.entities.autenticacion.Usuario;
+import domain.entities.fotos.Foto;
 
 
 import java.util.List;
@@ -23,9 +24,9 @@ public abstract class GestorPublicaciones {
         return repo.buscarPorTipo(TipoPublicacion.EN_ADOPCION,EstadoPublicacion.APROBADO);
     }
 
-    public static void generarPublicacionMascotaPerdida(Rescatista rescatista, String estadoMascota, List<String> fotosMascota) {
+    public static void generarPublicacionMascotaPerdida(Rescatista rescatista, String estadoMascota, List<Foto> fotosMascota) {
         Organizacion org= gestorOrganizaciones.obtenerOrgMasCercana(rescatista.getDireccionEncuentroMascota());
-        org.getListaPublicaciones().add(new PublicacionMascotaPerdida(rescatista,fotosMascota,estadoMascota));
+        org.getListaPublicaciones().add(new PublicacionMascotaPerdida(rescatista,fotosMascota, rescatista.getDescripcionMascota()));
     }
 
     public static void generarPublicacionMascotaEnAdopcion(Duenio duenio, Mascota mascota, Organizacion organizacion) {

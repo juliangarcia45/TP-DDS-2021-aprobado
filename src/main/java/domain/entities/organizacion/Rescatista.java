@@ -1,6 +1,7 @@
 package domain.entities.organizacion;
 
 import domain.entities.autenticacion.Usuario;
+import domain.entities.fotos.Foto;
 import domain.entities.hogaresAPI.HogarDeTransito;
 import domain.entities.hogaresAPI.HogaresResponseApi;
 
@@ -26,7 +27,7 @@ public class Rescatista extends Usuario {
     Ubicacion direccionEncuentroMascota;
 
     @ElementCollection
-    List<String> fotoMascota;
+    List<Foto> fotoMascota;
 
     @Transient
     HogaresResponseApi hogaresResponseApi;
@@ -45,8 +46,8 @@ public class Rescatista extends Usuario {
       return mascotaPerdida.generateQR();
    }
 
-   public void informarMascotaPerdida(Mascota unaMascota){
-       GestorPublicaciones.generarPublicacionMascotaPerdida(this,unaMascota.getDescripcion(),unaMascota.getFotos());
+   public void informarMascotaPerdida(){
+       GestorPublicaciones.generarPublicacionMascotaPerdida(this,this.getDescripcionMascota(),this.getFotoMascota());
    }
    
     public void setHogaresResponseApi(HogaresResponseApi hogaresResponseApi) {
@@ -79,6 +80,14 @@ public class Rescatista extends Usuario {
 
     public void setDireccionRescatista(String direccionRescatista) {
         this.direccionRescatista = direccionRescatista;
+    }
+
+    public List<Foto> getFotoMascota() {
+        return fotoMascota;
+    }
+
+    public void setFotoMascota(Foto foto) {
+        fotoMascota.add(foto);
     }
 
     public Rescatista() {

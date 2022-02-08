@@ -2,6 +2,7 @@ package domain.entities.organizacion;
 
 import domain.entities.autenticacion.Usuario;
 import domain.entities.entidadPersistente.EntidadPersistente;
+import domain.entities.fotos.Foto;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,8 +17,9 @@ public abstract class Publicacion extends EntidadPersistente {
     @JoinColumn(name="autor_id",referencedColumnName = "id")
     private Usuario autor;
 
-    @ElementCollection
-    private List<String> fotos;
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_publicacion", referencedColumnName = "id")
+    private List<Foto> fotos;
 
     @Column
     private String descripcion;
@@ -39,7 +41,7 @@ public abstract class Publicacion extends EntidadPersistente {
     }
 
 
-    public Publicacion(Usuario autor, List<String> fotos, String descripcion) {
+    public Publicacion(Usuario autor, List<Foto> fotos, String descripcion) {
         this.autor = autor;
         this.fotos = fotos;
         this.descripcion = descripcion;
@@ -54,11 +56,11 @@ public abstract class Publicacion extends EntidadPersistente {
         this.autor = usuario;
     }
 
-    public List<String> getFotos() {
+    public List<Foto> getFotos() {
         return fotos;
     }
 
-    public void setFotos(List<String> fotos) {
+    public void setFotos(List<Foto> fotos) {
         this.fotos = fotos;
     }
 
