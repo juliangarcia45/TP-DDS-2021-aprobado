@@ -9,13 +9,13 @@ import org.junit.Test;
 public class persistiendoPubliMascPerdida {
     @Test
     public void persistir(){
-        Rescatista raul= new Rescatista("raul","123456","calleFalsa 123");
+        Rescatista raul= new Rescatista("raul","123456");
         Ubicacion puntoEncuentro= new Ubicacion();
         puntoEncuentro.setLatitud(500);
         puntoEncuentro.setLongitud(500);
         raul.setDireccionEncuentroMascota(puntoEncuentro);
         raul.setDescripcionMascota("azul");
-        raul.setDireccionRescatista("calle falsa 123");
+        raul.setDireccion("calle falsa 123");
         PublicacionMascotaPerdida publicacion=new PublicacionMascotaPerdida(raul,null,"asa");
 
         EntityManagerHelper.beginTransaction();

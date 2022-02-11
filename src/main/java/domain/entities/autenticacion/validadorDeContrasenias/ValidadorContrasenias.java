@@ -36,7 +36,7 @@ public class ValidadorContrasenias {
             requisitos.add(longVal);
         }
 
-        public boolean validar(String contrasenia) {
+        public static boolean validar(String contrasenia) {
 
             return requisitos.stream().allMatch(requisito -> requisito.validar(contrasenia));
 

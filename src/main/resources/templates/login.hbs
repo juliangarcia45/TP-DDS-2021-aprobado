@@ -19,6 +19,9 @@
       <form action="/login" method="post">
         <input type="text" id="login" class="fadeIn second" name="nombreDeUsuario" placeholder="Login">
         <input type="password" id="password" class="fadeIn third" name="contrasenia" placeholder="Password" >
+        {{#if loginIncorrecto}}
+        <label>Los datos ingresados son incorrectos</label>
+        {{/if}}
         <button type="submit"  class="fadeIn fourth">Log in</button>
 
       </form>

@@ -16,7 +16,7 @@ public class notificarDuenioMascPerdida {
     Duenio cliente;
     Mascota korone;
     List<Publicacion> publicaciones;
-    Rescatista clark = new Rescatista("clark", "xD","calleFalsa 123");
+    Rescatista clark = new Rescatista("clark", "xD");
     @Before
     public void init() {
         // Creo un cliente

@@ -36,6 +36,7 @@ public class  AgregarUsuario {
     public Documento documento;
     public Date fechaNacimiento;
     public TipoUsuario tipo;
+    public String direccion;
 
     public String nombreContacto;
     public String apellidoContacto;
@@ -51,6 +52,7 @@ public class  AgregarUsuario {
         this.documento = new Documento(12312312,"DNI");
         this.fechaNacimiento = new Date();
         this.tipo= TipoUsuario.DUENIO;
+        this.direccion="xs";
         List<MedioDeNotificacion> medios = new ArrayList<>(); 
         MedioDeNotificacion medio= new MedioDeNotificacion();
         medio.setEstrategiaNotificacion(new Sms());
@@ -65,6 +67,7 @@ public class  AgregarUsuario {
         usuarioDuenio.setDocumento(documento);
         usuarioDuenio.setMediosDeContacto(contactos);
         usuarioDuenio.setTipoUsuario(tipo);
+        usuarioDuenio.setDireccion(direccion);
 
        repoUser.agregar(usuarioDuenio);
 
@@ -79,6 +82,7 @@ public class  AgregarUsuario {
         this.contrasenia = "senia";
         this.documento = new Documento(12312312, "DNI");
         this.fechaNacimiento = new Date();
+        this.direccion="lol";
 
         List<MedioDeNotificacion> medios = new ArrayList<>();
         MedioDeNotificacion medio = new MedioDeNotificacion();
@@ -86,13 +90,14 @@ public class  AgregarUsuario {
         medios.add(medio);
         this.contactos.add(new Contacto(nombreContacto, apellidoContacto, emailContacto, telefonoContacto, medios));
 
-        Rescatista usuarioRescatista = new Rescatista(nombre, contrasenia,"calle");
+        Rescatista usuarioRescatista = new Rescatista(nombre, contrasenia);
 
         usuarioRescatista.setNombre(nombreDeUsuario);
         usuarioRescatista.setApellido(apellido);
         usuarioRescatista.setFechaNacimiento(fechaNacimiento);
         usuarioRescatista.setDocumento(documento);
         usuarioRescatista.setMediosDeContacto(contactos);
+        usuarioRescatista.setDireccion(direccion);
 
 
         repoUser.agregar(usuarioRescatista);

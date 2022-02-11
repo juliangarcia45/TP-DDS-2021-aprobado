@@ -15,7 +15,7 @@ import java.util.List;
 public class obtenerPublicacionesMascotasEnAdopcionTest {
     Organizacion patitas = new Organizacion();
     List<Publicacion> publicaciones;
-    Rescatista clark = new Rescatista("clark", "xD","calleFalsa 123");
+    Rescatista clark = new Rescatista("clark", "xD");
     Mascota calli=new Mascota();
 
 

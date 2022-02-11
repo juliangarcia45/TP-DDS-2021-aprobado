@@ -17,7 +17,7 @@ public class obtenerPublicacionesMascotasPerdidasTest {
     Organizacion patitas = new Organizacion();
     Organizacion patitasDos = new Organizacion();
     List<Publicacion> publicaciones;
-    Rescatista clark = new Rescatista("clark", "xD","calleFalsa 123");
+    Rescatista clark = new Rescatista("clark", "xD");
     Duenio aaa = new Duenio(null,null);
 
 

@@ -14,7 +14,7 @@ public class buscarHogaresDeTransitoTest {
     HogaresResponseApi hogaresResponseApi;
     @Before
     public void init()  {
-        rescatista = new Rescatista("rescatista","contraseniaRescatista","calleFalsa 123");
+        rescatista = new Rescatista("rescatista","contraseniaRescatista");
         hogaresResponseApi = new HogaresResponseApi();
         rescatista.setHogaresResponseApi(hogaresResponseApi);
     }

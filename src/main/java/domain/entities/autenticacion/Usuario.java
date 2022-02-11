@@ -40,6 +40,9 @@ public abstract class Usuario extends EntidadPersistente {
     @Enumerated(value = EnumType.STRING)
     private TipoUsuario tipo;
 
+    @Column
+    String direccion;
+
 
 
     public Usuario(String usuario, String contrasenia) {
@@ -113,6 +116,14 @@ public abstract class Usuario extends EntidadPersistente {
 
     public void setTipoUsuario(TipoUsuario tipo) {
         this.tipo = tipo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public Usuario() {

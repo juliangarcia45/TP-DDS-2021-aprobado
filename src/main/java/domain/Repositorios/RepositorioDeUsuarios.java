@@ -21,6 +21,12 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
         List<Usuario> lista= this.dao.buscarVarios(condicionUsername(nombreUsuario));
         return !lista.isEmpty();
     }
+
+    public Boolean estaRegistradoBooleanContrasenia(String nombreUsuario,String contrasenia){
+        List<Usuario> lista= this.dao.buscarVarios(condicionUsuarioYContrasenia(nombreUsuario,contrasenia));
+        return !lista.isEmpty();
+    }
+
     public void agregar(Usuario unUsuario){
         this.dao.agregar(unUsuario);
     }
