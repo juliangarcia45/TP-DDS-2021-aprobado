@@ -101,7 +101,7 @@ public class LoginController {
             } else if (usuario.getTipoUsuario() == TipoUsuario.RESCATISTA) {
                 response.redirect("/home");
             } else if (usuario.getTipoUsuario() == TipoUsuario.ADMINISTRADOR) {
-                response.redirect("/home");
+                response.redirect("/adminHome");
             } else {
                 response.redirect("/home");
             }

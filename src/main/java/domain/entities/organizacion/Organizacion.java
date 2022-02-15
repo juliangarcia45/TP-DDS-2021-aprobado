@@ -30,6 +30,9 @@ public class Organizacion extends EntidadPersistente {
     @OneToOne(cascade=CascadeType.ALL)
     private Ubicacion ubicacion;
 
+    @Column
+    private String direccion;
+
     @Transient
     private Integer anchoFoto;
 
@@ -121,6 +124,14 @@ public class Organizacion extends EntidadPersistente {
     }
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public Organizacion() {

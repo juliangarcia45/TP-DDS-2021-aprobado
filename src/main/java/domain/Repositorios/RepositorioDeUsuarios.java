@@ -2,6 +2,9 @@ package domain.Repositorios;
 
 import domain.Repositorios.Daos.DAO;
 import domain.entities.autenticacion.Usuario;
+import domain.entities.organizacion.EstadoPublicacion;
+import domain.entities.organizacion.PublicacionMascotaEnAdopcion;
+import domain.entities.organizacion.TipoUsuario;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -25,6 +28,10 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
     public Boolean estaRegistradoBooleanContrasenia(String nombreUsuario,String contrasenia){
         List<Usuario> lista= this.dao.buscarVarios(condicionUsuarioYContrasenia(nombreUsuario,contrasenia));
         return !lista.isEmpty();
+    }
+
+    public List<Usuario> buscarPorTipo(TipoUsuario tipo){
+        return this.dao.buscarVarios(condicionTipoUsuario(tipo));
     }
 
     public void agregar(Usuario unUsuario){
@@ -78,5 +85,18 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
         usuarioQuery.where(condicionUsername);
 
         return new BusquedaCondicional(null, usuarioQuery);
+    }
+
+    private BusquedaCondicional condicionTipoUsuario(TipoUsuario tipo){
+        CriteriaBuilder criteriaBuilder = criteriaBuilder();
+        CriteriaQuery<Usuario> tipoUsuarioQuery = criteriaBuilder.createQuery(Usuario.class);
+
+        Root<Usuario> condicionRaiz = tipoUsuarioQuery.from(Usuario.class);
+
+        Predicate condicionTipoUsuario = criteriaBuilder.equal(condicionRaiz.get("tipo"), tipo);
+
+        tipoUsuarioQuery.where(condicionTipoUsuario);
+
+        return new BusquedaCondicional(null, tipoUsuarioQuery);
     }
 }

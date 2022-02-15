@@ -2,6 +2,7 @@ package domain.persistencia;
 
 import static org.junit.Assert.*;
 
+import domain.entities.autenticacion.Administrador;
 import domain.entities.organizacion.Rescatista;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -101,6 +102,32 @@ public class  AgregarUsuario {
 
 
         repoUser.agregar(usuarioRescatista);
+    }
+    @Test
+    public void agregarUsuarioAdmin(){
+        this.nombre = "admin";
+        this.apellido = "apellidoDeadmin";
+        this.nombreDeUsuario = "tumama";
+        this.contrasenia = "seniasada";
+        this.documento = new Documento(12312312, "DNI");
+        this.fechaNacimiento = new Date();
+        this.direccion="lol";
+
+        List<MedioDeNotificacion> medios = new ArrayList<>();
+        MedioDeNotificacion medio = new MedioDeNotificacion();
+        medio.setEstrategiaNotificacion(new Sms());
+        medios.add(medio);
+        this.contactos.add(new Contacto(nombreContacto, apellidoContacto, emailContacto, telefonoContacto, medios));
+
+        Administrador admin=new Administrador(nombreDeUsuario,contrasenia);
+        admin.setNombre(nombre);
+        admin.setApellido(apellido);
+        admin.setFechaNacimiento(fechaNacimiento);
+        admin.setDocumento(documento);
+        admin.setMediosDeContacto(contactos);
+        admin.setDireccion(direccion);
+
+        repoUser.modificar(admin);
     }
 
     @Test

@@ -45,6 +45,8 @@ public class persistiendoOrganizacionYUsuario {
         lugarOrg.setLatitud(500);
         lugarOrg.setLongitud(500);
         organizacion.setUbicacion(lugarOrg);
+        organizacion.setDireccion("Calle falsa 123");
+        organizacion.setNombre("asdas");
         //Publicacion
         PublicacionMascotaEnAdopcion publi=new PublicacionMascotaEnAdopcion(raul,calli);
 

@@ -32,6 +32,7 @@ public class Router {
         LoginController loginController     = new LoginController();
         AuthMiddleware authMiddleware       = new AuthMiddleware();
         HomeController homeController       = new HomeController();
+        AdminController adminController = new AdminController();
         PublicacionesAdopcionController publicacionesAdopcionController = new PublicacionesAdopcionController();
 
         Spark.get("/", loginController::inicio, Router.engine);
@@ -49,6 +50,10 @@ public class Router {
         //Spark.post("/registrarMascota",usuarioController::registrarMascota); hay que probar
         Spark.get("/adopcion",publicacionesAdopcionController::adoptar, Router.engine);
         //Spark.before("/adopcion",publicacionesAdopcionController::verificarDuenio);
+
+        Spark.get("/adminHome",adminController::adminHome,Router.engine);
+        //Spark.before("/adminHome",publicacionesAdopcionController::verificarAdmin);
+        Spark.get("/listadoOrganizaciones",adminController::listadoOrganizaciones,Router.engine);
 
 
         Spark.get("/usuarios/:id",(req,res)->req.queryParams("nombre"));
