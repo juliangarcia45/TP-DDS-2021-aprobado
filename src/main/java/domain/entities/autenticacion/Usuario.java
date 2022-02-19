@@ -38,7 +38,7 @@ public abstract class Usuario extends EntidadPersistente {
 
     @Column(name="tipo_usuario")
     @Enumerated(value = EnumType.STRING)
-    private TipoUsuario tipo;
+    private TipoUsuario tipoDeUsuario;
 
     @Column
     String direccion;
@@ -111,11 +111,11 @@ public abstract class Usuario extends EntidadPersistente {
     }
 
     public TipoUsuario getTipoUsuario() {
-        return tipo;
+        return tipoDeUsuario;
     }
 
     public void setTipoUsuario(TipoUsuario tipo) {
-        this.tipo = tipo;
+        this.tipoDeUsuario = tipo;
     }
 
     public String getDireccion() {

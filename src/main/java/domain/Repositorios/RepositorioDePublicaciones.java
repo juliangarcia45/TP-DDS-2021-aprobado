@@ -30,7 +30,7 @@ public class RepositorioDePublicaciones extends Repositorio<Publicacion> {
 
         Root<Publicacion> condicionRaiz = publicacionQuery.from(Publicacion.class);
 
-        Predicate condicionTipoDePublicacion = criteriaBuilder.equal(condicionRaiz.get("tipo"), tipo);
+        Predicate condicionTipoDePublicacion = criteriaBuilder.equal(condicionRaiz.get("tipoDePublicacion"), tipo);
         Predicate condicionEstadoPublicacion = criteriaBuilder.equal(condicionRaiz.get("estado"), estado);
 
         Predicate condicionExistenPublicaciones = criteriaBuilder.and(condicionTipoDePublicacion,condicionEstadoPublicacion);

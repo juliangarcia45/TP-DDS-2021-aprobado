@@ -93,7 +93,7 @@ public class RepositorioDeUsuarios extends Repositorio<Usuario>{
 
         Root<Usuario> condicionRaiz = tipoUsuarioQuery.from(Usuario.class);
 
-        Predicate condicionTipoUsuario = criteriaBuilder.equal(condicionRaiz.get("tipo"), tipo);
+        Predicate condicionTipoUsuario = criteriaBuilder.equal(condicionRaiz.get("tipoDeUsuario"), tipo);
 
         tipoUsuarioQuery.where(condicionTipoUsuario);
 

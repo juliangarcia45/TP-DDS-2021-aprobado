@@ -218,12 +218,12 @@ public class LoginController {
 
 
         if (validarDatosRegistro(nombreDeUsuario,contrasenia,nombre,apellido,fecString,docTipoString,docString,direccion,nombreContacto,apellidoContacto,emailContacto,telefonoContacto,preferencia,tipoUsuario) && !repoUser.estaRegistradoBoolean(nombreDeUsuario)) {
-            if (tipoUsuario == "DUENIO") {
-                MedioDeNotificacion medio = new MedioDeNotificacion();
+            MedioDeNotificacion medio = new MedioDeNotificacion();
+            if (tipoUsuario == "Duenio") {
                 Duenio nuevoDuenio = new Duenio(nombreDeUsuario, contrasenia);
                 nuevoDuenio.setApellido(apellido);
                 nuevoDuenio.setNombre(nombre);
-                nuevoDuenio.setFechaNacimiento(new SimpleDateFormat("yyyy/MM/dd").parse(fecString));
+                nuevoDuenio.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
                 nuevoDuenio.setDocumento(new Documento(Float.parseFloat(docString), docTipoString));
                 nuevoDuenio.setDireccion(direccion);
 
@@ -248,14 +248,11 @@ public class LoginController {
                 nuevoDuenio.setMediosDeContacto(contactos);
                 repoUser.agregar(nuevoDuenio);
 
-                response.status(200);
-                response.redirect("/home");
             } else {
-                MedioDeNotificacion medio = new MedioDeNotificacion();
                 Rescatista nuevoRescatista = new Rescatista(nombreDeUsuario, contrasenia);
                 nuevoRescatista.setApellido(apellido);
                 nuevoRescatista.setNombre(nombre);
-                nuevoRescatista.setFechaNacimiento(new SimpleDateFormat("yyyy/MM/dd").parse(fecString));
+                nuevoRescatista.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
                 nuevoRescatista.setDocumento(new Documento(Float.parseFloat(docString), docTipoString));
                 nuevoRescatista.setDireccion(direccion);
 
@@ -280,9 +277,9 @@ public class LoginController {
                 nuevoRescatista.setMediosDeContacto(contactos);
                 repoUser.agregar(nuevoRescatista);
 
-                response.status(200);
-                response.redirect("/home");
             }
+            response.status(200);
+            response.redirect("/home");
         } else {
             response.status(404);
             response.redirect("/signUp");

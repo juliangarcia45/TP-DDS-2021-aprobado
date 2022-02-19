@@ -1,0 +1,43 @@
+<head>
+    <title>Rescate de Patitas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent" class="registrar-organizacion">
+      <!--  Form -->
+      {{#if registrar}}
+      <h1>Agregar organizacion</h1>
+      <form action="/registrarOrganizacion" method="post">
+      {{/if}}
+      {{#if editar}}
+      <h1>Actualizar organizacion</h1>
+      <form action="/actualizarOrganizacion" method="post">
+      {{/if}}
+      {{#if ver}}
+      <h1>Ver organizacion</h1>
+      <form>
+      {{/if}}
+        <input type="hidden" name="id" {{#if organizacion}} value="{{organizacion.id}}" {{/if}}>
+        <input type="text" id="nombre" class="fadeIn second" name="nombre" placeholder="Nombre de la organizacion" {{#if organizacion}} value="{{organizacion.nombre}}" {{/if}} {{#if ver}} disabled {{/if}}>
+        <input type="number" id="latitud" class="fadeIn third" name="latitud" min="-90" max="90" placeholder="Latitud" {{#if organizacion}} value="{{organizacion.ubicacion.latitud}}" {{/if}} {{#if ver}} disabled {{/if}}>
+        <input type="number" id="longitud" class="fadeIn" name="longitud" min="-180" max="180" placeholder="Longitud" {{#if organizacion}} value="{{organizacion.ubicacion.longitud}}" {{/if}} {{#if ver}} disabled {{/if}}>
+        <input type="text" id="direccion" class="fadeIn" name="direccion" placeholder="Direccion" {{#if organizacion}} value="{{organizacion.direccion}}" {{/if}} {{#if ver}} disabled {{/if}}>
+        {{#if faltanDatos}}
+        <label>Complete todos los campos por favor.</label>
+        {{/if}}
+        {{#if registrar}}
+        <button type="submit"  class="fadeIn fourth">Registrar organizacion</button>
+        {{/if}}
+        {{#if editar}}
+        <button type="submit"  class="fadeIn fourth">Actualizar organizacion</button>
+        {{/if}}
+      </form>
+
+    </div>
+   
+  </div>

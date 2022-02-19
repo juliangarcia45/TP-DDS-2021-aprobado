@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Organizaciones | Rescate de Patitas</title>
+  <title>Usuarios | Rescate de Patitas</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="css/fontawesome-all.min.css">
@@ -47,7 +47,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/listaUsuarios" class="nav-link">
+            <a href="/listaUsuarios" class="nav-link active">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Usuarios
@@ -63,7 +63,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/listadoOrganizaciones" class="nav-link active">
+            <a href="/listadoOrganizaciones" class="nav-link">
               <i class="nav-icon fas fa-sitemap"></i>
               <p>
                 Organizaciones
@@ -106,17 +106,17 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Organizaciones</h1>
-            <a class="btn btn-info btn-sm" href="/agregarOrganizacion">
+            <h1>Usuarios</h1>
+            <a class="btn btn-info btn-sm" href="/agregarUsuario">
               <i class="fas fa-pencil-alt">
               </i>
-              Agregar nuevo
+              Agregar usuario
             </a>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/adminHome">Home</a></li>
-              <li class="breadcrumb-item active">Organizaciones </li>
+              <li class="breadcrumb-item active">Usuarios </li>
             </ol>
           </div>
         </div>
@@ -136,10 +136,10 @@
                 #
               </th>
               <th style="width: 20%">
-                Nombre
+                Usuario
               </th>
               <th style="width: 20%">
-                Direccion
+                Tipo Usuario
               </th>
               <th style="width: 20%">
               </th>
@@ -147,29 +147,29 @@
             </thead>
             <tbody>
             <tr>
-            {{#each organizaciones}}
+            {{#each usuarios}}
               <td>
                 {{id}}
               </td>
               <td>
-                  {{nombre}}
+                  {{usuario}}
               </td>
               <td>
-                  {{direccion}}
+                  {{tipoDeUsuario}}
               </td>
 
               <td class="project-actions text-right">
-                <a class="btn btn-primary btn-sm" href="/verOrganizacion/{{id}}">
+                <a class="btn btn-primary btn-sm" href="listadoUsuariosView.html">
                   <i class="fas fa-folder">
                   </i>
                   View
                 </a>
-                <a class="btn btn-info btn-sm" href="/editarOrganizacion/{{id}}">
+                <a class="btn btn-info btn-sm" href="listadoUsuariosEdit.html">
                   <i class="fas fa-pencil-alt">
                   </i>
                   Edit
                 </a>
-                <a class="btn btn-danger btn-sm" data-toggle="modal" data-action="delete-modal" data-modal="#modal-default" data-id="{{id}}" data-name="{{name}}" data-url="/borrarOrganizacion">
+                <a class="btn btn-danger btn-sm" href="#">
                   <i class="fas fa-trash">
                   </i>
                   Delete
@@ -195,31 +195,6 @@
   </aside>
   <!-- /.control-sidebar -->
 
-<div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title eliminacion_modal--title"></h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Esta seguro que quiere eliminar esta organizacion?</p>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <form id="deleteModalForm" method="">
-                            <input type="hidden" class="eliminacion_modal--id" value="">
-                            <input type="hidden" class="eliminacion_modal--url" value="">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Continuar</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-</div>
   <!-- Main Footer -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2021 <a href="#">Rescate de Patitas</a>.</strong> All rights reserved.
@@ -235,40 +210,5 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="js/adminlte.min.js"></script>
-
-<script>
-        jQuery(document).ready(function($) {
-            $('[data-action="delete-modal"]').click(function() {
-                var modal = $($(this).data("modal"));
-                var id = $(this).data("id");
-                var name = $(this).data("name");
-                var url = $(this).data("url");
-
-                modal.find('.eliminacion_modal--title').text("Eliminacion de organizacion " + name);
-                modal.find('.eliminacion_modal--id').val(id);
-                modal.find('.eliminacion_modal--url').val(url);
-                modal.modal();
-                return false;
-            });
-
-
-            $("#deleteModalForm").submit(function(e) {
-                e.preventDefault(); // avoid to execute the actual submit of the form.
-                var form = $(this);
-                var url = form.find('.eliminacion_modal--url').val();
-                var id = form.find('.eliminacion_modal--id').val();
-
-                $.ajax({
-                    type:"delete",
-                    url: url + "/" + id,
-                    success: function (respuesta) {
-                        location.reload(true);
-                    }
-                });
-            });
-
-            $('[name=duallistbox_demo1]').bootstrapDualListbox();
-        });
-</script>
 </body>
 </html>

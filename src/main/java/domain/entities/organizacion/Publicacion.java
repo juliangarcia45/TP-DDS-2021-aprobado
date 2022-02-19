@@ -33,7 +33,7 @@ public abstract class Publicacion extends EntidadPersistente {
 
     @Column(name="tipo_publicacion")
     @Enumerated(value = EnumType.STRING)
-    private TipoPublicacion tipo;
+    private TipoPublicacion tipoDePublicacion;
 
 
     public void aprobarPublicacion(){
@@ -89,11 +89,11 @@ public abstract class Publicacion extends EntidadPersistente {
     }
 
     public TipoPublicacion getTipoPublicacion() {
-        return tipo;
+        return tipoDePublicacion;
     }
 
     public void setTipoPublicacion(TipoPublicacion tipo) {
-        this.tipo = tipo;
+        this.tipoDePublicacion = tipo;
     }
 
     public Publicacion() {
