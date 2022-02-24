@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("MAIL")
 public class Email extends FormaDeNotificacion{
 
-    public void notificar(Contactable contactable) throws EmailException {
+    public void notificar(String emailNotificar,String mensaje) throws EmailException {
         org.apache.commons.mail.Email email = new SimpleEmail();
         email.setHostName("smtp.googlemail.com");
         email.setSmtpPort(465);
@@ -20,8 +20,8 @@ public class Email extends FormaDeNotificacion{
         email.setSSLOnConnect(true);
         email.setFrom(Config.MAIL_GMAIL_CREDENTIAL);
         email.setSubject("Patitas");
-        email.setMsg(contactable.getMensaje());
-        email.addTo(contactable.getEmail());
+        email.setMsg(mensaje);
+        email.addTo(emailNotificar);
         email.send();
 
     }

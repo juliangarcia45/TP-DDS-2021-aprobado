@@ -2,7 +2,6 @@ package domain.controllers;
 
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
-import domain.Repositorios.RepositorioDePublicaciones;
 import domain.Repositorios.RepositorioDePublicacionesEnAdopcion;
 import domain.Repositorios.RepositorioDeUsuarios;
 import domain.entities.autenticacion.Usuario;
@@ -31,7 +30,7 @@ public class PublicacionesAdopcionController {
     public Response verificarDuenio(Request request, Response response){
         int idUsuarioEnSesion= request.session().attribute("id");
         Usuario duenioEnSesion= repoUser.buscar(idUsuarioEnSesion);
-        if (duenioEnSesion.getTipoUsuario()== TipoUsuario.DUENIO){response.status(200);}
+        if (duenioEnSesion.getTipoDeUsuario()== TipoUsuario.DUENIO){response.status(200);}
         else {response.status(406);
             response.redirect("/home");}
         return response;

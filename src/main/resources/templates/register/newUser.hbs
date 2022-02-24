@@ -37,21 +37,33 @@
         <input type="text" id="login" class="fadeIn second" name="nombreContacto" placeholder="nombre contacto">
         <input type="text" id="login" class="fadeIn second" name="apellidoContacto" placeholder="apellido contacto">
         
-        <input type="text" id="login" class="fadeIn second" name="emailContacto" placeholder="email de contacto">
+        <input type="email" id="login" class="fadeIn second" name="emailContacto" placeholder="email de contacto">
         <input type="text" id="login" class="fadeIn second" name="telefonoContacto" placeholder="telefono">
-        <select name="preferenciaNotificacion" id="login" class="fadeIn second">
-          <option value="">Seleccione su preferencia de notificacion</option>
-          <option value="SMS">SMS</option>
-          <option value="WPP">WPP</option>
-          <option value="MAIL">MAIL</option>
+        <select name="prefSMS" id="prefSMS" class="fadeIn second">
+           <option value="">Desea recibir notificaciones por SMS?</option>
+           <option value="SMS">SI</option>
+           <option value="noSMS">NO</option>
+        </select>
+        <select name="prefWPP" id="prefWPP" class="fadeIn second">
+           <option value="">Desea recibir notificaciones por WhatsApp?</option>
+           <option value="WPP">SI</option>
+           <option value="noWPP">NO</option>
+        </select>
+        <select name="prefMAIL" id="prefMAIL" class="fadeIn second">
+           <option value="">Desea recibir notificaciones por email?</option>
+           <option value="MAIL">SI</option>
+           <option value="noMAIL">NO</option>
         </select>
          <select name="tipoUsuario" id="login" class="fadeIn second">
-                  <option value="">Seleccione su tipo de usuario</option>
-                  <option value="DUENIO">Duenio</option>
-                  <option value="RESCATISTA">Rescatista</option>
-                </select>
+           <option value="">Seleccione su tipo de usuario</option>
+           <option value="DUENIO">Duenio</option>
+           <option value="RESCATISTA">Rescatista</option>
+         </select>
         {{#if faltanDatos}}
          <label> Ingrese todos los datos pedidos por favor</label>
+        {{/if}}
+        {{#if usuarioEnUso}}
+        <label>El usuario ya esta en uso.</label>
         {{/if}}
         {{#if contraseniaIncorrecta}}
          <label> Ingrese una contrasenia valida por favor</label>

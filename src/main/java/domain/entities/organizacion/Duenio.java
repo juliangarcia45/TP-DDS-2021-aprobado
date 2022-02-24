@@ -17,7 +17,7 @@ public class Duenio extends Usuario {
 
     public Duenio(String usuario, String contrasenia) {
         super(usuario, contrasenia);
-        setTipoUsuario(TipoUsuario.DUENIO);
+        setTipoDeUsuario(TipoUsuario.DUENIO);
     }
     
     public List<Mascota> getMascotas() {

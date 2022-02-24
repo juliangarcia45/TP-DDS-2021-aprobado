@@ -11,7 +11,7 @@ import com.twilio.rest.api.v2010.account.Message;
 @DiscriminatorValue("WPP")
 public class WhatsApp extends FormaDeNotificacion {
     @Override
-    public void notificar(Integer telefono,String mensaje) {
+    public void notificar(String telefono,String mensaje) {
         System.out.println("Notificar al usuario por whatsapp");
         String ACCOUNT_SID = "ACe762ffd4d3ff9ed0ab2390e757002aba";
          String AUTH_TOKEN = "c388f5cc7432cbe70c26cd069565ef12";

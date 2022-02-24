@@ -23,7 +23,7 @@ public class Administrador extends Usuario{
 
     public Administrador(String usuario, String contrasenia) {
         super(usuario, contrasenia);
-        setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+        setTipoDeUsuario(TipoUsuario.ADMINISTRADOR);
     }
 
     public void agregarCaracteristica (String caracteristica , String valor){

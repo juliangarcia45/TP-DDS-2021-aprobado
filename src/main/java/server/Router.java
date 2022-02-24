@@ -53,6 +53,7 @@ public class Router {
 
         Spark.get("/adminHome",adminController::adminHome,Router.engine);
         //Spark.before("/adminHome",publicacionesAdopcionController::verificarAdmin);
+
         Spark.get("/listadoOrganizaciones",adminController::listadoOrganizaciones,Router.engine);
         Spark.get("/agregarOrganizacion",adminController::addOrganizacion,Router.engine);
         Spark.post("/registrarOrganizacion",adminController::registrarOrganizacion);
@@ -62,6 +63,13 @@ public class Router {
         Spark.get("/verOrganizacion/:id", adminController::verOrganizacion,Router.engine);
 
         Spark.get("/listaUsuarios",adminController::listadoUsuarios,Router.engine);
+        Spark.get("/agregarUsuario",adminController::agregarUsuario,Router.engine);
+        Spark.post("/admin/registrarUsuario",adminController::registrarUsuario);
+        Spark.get("/editarUsuario/:id",adminController::editarUsuario,Router.engine);
+        Spark.post("/admin/actualizarUsuario",adminController::actualizarUsuario);
+        Spark.get("/verUsuario/:id",adminController::verUsuario,Router.engine);
+        Spark.delete("/borrarUsuario/:id",adminController::borrarUsuario,Router.engine);
+
         Spark.get("/listaVoluntarios",adminController::listadoVoluntarios,Router.engine);
         Spark.get("/listaPublicaciones",adminController::listadoPublicaciones,Router.engine);
 

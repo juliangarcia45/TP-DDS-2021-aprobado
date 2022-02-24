@@ -2,6 +2,7 @@ package domain.entities.organizacion;
 
 import domain.entities.autenticacion.Usuario;
 import domain.entities.fotos.Foto;
+import org.apache.commons.mail.EmailException;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -19,7 +20,13 @@ public class PublicacionMascotaPerdida extends Publicacion{
     }
 
     public void esMiMascota(String contactoDuenio){
-        this.getAutor().getMediosDeContacto().stream().forEach(contacto -> contacto.notificar("El duenio encontro la publicacion de su mascota"+ contactoDuenio));
+        this.getAutor().getMediosDeContacto().stream().forEach(contacto -> {
+            try {
+                contacto.notificar("El duenio encontro la publicacion de su mascota"+ contactoDuenio);
+            } catch (EmailException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public PublicacionMascotaPerdida() {

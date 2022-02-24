@@ -10,7 +10,7 @@ import com.twilio.rest.api.v2010.account.Message;
 @DiscriminatorValue("SMS")
 public class Sms extends FormaDeNotificacion {
     @Override
-    public void notificar(Integer telefono, String mensaje) {
+    public void notificar(String telefono, String mensaje) {
         String ACCOUNT_SID = "ACe762ffd4d3ff9ed0ab2390e757002aba";
         String AUTH_TOKEN = "c388f5cc7432cbe70c26cd069565ef12";
         System.out.println("Notificar al usuario por sms");

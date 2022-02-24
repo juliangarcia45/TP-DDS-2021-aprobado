@@ -9,6 +9,7 @@ import java.io.File;
 import domain.entities.entidadPersistente.EntidadPersistente;
 import domain.entities.fotos.Foto;
 import domain.entities.generadorQR.*;
+import org.apache.commons.mail.EmailException;
 
 import javax.persistence.*;
 
@@ -69,7 +70,13 @@ public class Mascota extends EntidadPersistente {
     public Mascota(){}
 
     public void notificarDuenio(String mensaje){
-        this.getDuenio().getMediosDeContacto().stream().forEach(contacto -> contacto.notificar(mensaje));
+        this.getDuenio().getMediosDeContacto().stream().forEach(contacto -> {
+            try {
+                contacto.notificar(mensaje);
+            } catch (EmailException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 

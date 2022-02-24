@@ -26,7 +26,7 @@ public class TestQRCode{
      
         List<MedioDeNotificacion> mediosDeNotificacion =Arrays.asList(whatsapp,sms);
         Contacto contactoDuenio = new Contacto("Jorgito","jJorgitoApellido",
-                "jorgito@gmail.com",1156956024,mediosDeNotificacion);
+                "jorgito@gmail.com","1156956024",mediosDeNotificacion);
 
        this.duenio = new Duenio("jorge", "jorge123");
        List<Contacto> listaContactosDuenio = Arrays.asList(contactoDuenio);

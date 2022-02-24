@@ -38,7 +38,7 @@ public class entrega3Test {
             // Creo una lista para poder meter los mediosDeNotificacion en el Contacto del duenio y asi cargarselos.
             List<MedioDeNotificacion> mediosDeNotificacion = Arrays.asList(whatsapp,sms);
             Contacto contactoCliente = new Contacto("ContactoNombre","ContactoApellido",
-                    "contacto@gmail.com",1156956024,mediosDeNotificacion);
+                    "contacto@gmail.com","1156956024",mediosDeNotificacion);
 
             cliente.setMediosDeContacto(Arrays.asList(contactoCliente));
             organizaciones.add(organizacion);

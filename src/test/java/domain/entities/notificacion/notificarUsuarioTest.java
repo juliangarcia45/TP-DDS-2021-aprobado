@@ -1,5 +1,6 @@
 package domain.entities.notificacion;
 import domain.entities.organizacion.Duenio;
+import org.apache.commons.mail.EmailException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,12 +23,12 @@ public class notificarUsuarioTest {
         // Creo una lista para poder meter los mediosDeNotificacion en el Contacto del duenio y asi cargarselos.
         List<MedioDeNotificacion> mediosDeNotificacion =Arrays.asList(whatsapp,sms);
         Contacto contactoCliente = new Contacto("ContactoNombre","ContactoApellido",
-                "contacto@gmail.com",1156956024,mediosDeNotificacion);
+                "contacto@gmail.com","1156956024",mediosDeNotificacion);
 
         cliente.setMediosDeContacto(Arrays.asList(contactoCliente));
     }
     @Test
-    public void notificarUsuario()  {
+    public void notificarUsuario() throws EmailException {
         // pada cada tipo de contacto que tenga el cliente le notifico
     List<Contacto> mediosDeContacto = cliente.getMediosDeContacto();
     for(Contacto contacto : mediosDeContacto){

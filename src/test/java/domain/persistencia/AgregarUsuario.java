@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import domain.entities.autenticacion.Administrador;
 import domain.entities.organizacion.Rescatista;
 import org.junit.Test;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import domain.entities.organizacion.TipoUsuario;
 import domain.entities.organizacion.Documento;
@@ -42,7 +40,7 @@ public class  AgregarUsuario {
     public String nombreContacto;
     public String apellidoContacto;
     public String emailContacto;
-    public int telefonoContacto;
+    public String telefonoContacto;
 
     @Test
     public void agregarUsuarioDuenio() {
@@ -67,7 +65,7 @@ public class  AgregarUsuario {
         usuarioDuenio.setFechaNacimiento(fechaNacimiento);
         usuarioDuenio.setDocumento(documento);
         usuarioDuenio.setMediosDeContacto(contactos);
-        usuarioDuenio.setTipoUsuario(tipo);
+        usuarioDuenio.setTipoDeUsuario(tipo);
         usuarioDuenio.setDireccion(direccion);
 
        repoUser.agregar(usuarioDuenio);

@@ -28,9 +28,10 @@ public class LoginController {
     private RepositorioDeUsuarios repoUser = new RepositorioDeUsuarios(dao);
 
     //Errores de registro
-    boolean[] faltanDatos=new boolean[14];
+    boolean[] faltanDatos=new boolean[16];
     boolean contraseniaIncorrecta;
     boolean loginIncorrecto;
+    boolean usuarioEnUso;
 
     public void inicializarFaltanDatos(){
         faltanDatos[0]=false;
@@ -47,6 +48,8 @@ public class LoginController {
         faltanDatos[11]=false;
         faltanDatos[12]=false;
         faltanDatos[13]=false;
+        faltanDatos[14]=false;
+        faltanDatos[15]=false;
     }
 
     public boolean faltanDatosXd(){
@@ -75,6 +78,10 @@ public class LoginController {
         if(faltanDatosXd()){
             errorParameters.put("faltanDatos", true);
             return new ModelAndView(errorParameters, "register/newUser.hbs");
+        }else if(usuarioEnUso){
+            errorParameters.put("usuarioEnUso",true);
+            usuarioEnUso=false;
+            return new ModelAndView(errorParameters, "register/newUser.hbs");
         }
         else if(contraseniaIncorrecta){
             errorParameters.put("contraseniaIncorrecta",true);
@@ -96,11 +103,11 @@ public class LoginController {
             request.session(true);
             request.session().attribute("id", usuario.getId());
             response.status(200);
-            if (usuario.getTipoUsuario() == TipoUsuario.DUENIO) {
+            if (usuario.getTipoDeUsuario() == TipoUsuario.DUENIO) {
                 response.redirect("/adopcion");
-            } else if (usuario.getTipoUsuario() == TipoUsuario.RESCATISTA) {
+            } else if (usuario.getTipoDeUsuario() == TipoUsuario.RESCATISTA) {
                 response.redirect("/home");
-            } else if (usuario.getTipoUsuario() == TipoUsuario.ADMINISTRADOR) {
+            } else if (usuario.getTipoDeUsuario() == TipoUsuario.ADMINISTRADOR) {
                 response.redirect("/adminHome");
             } else {
                 response.redirect("/home");
@@ -122,7 +129,7 @@ public class LoginController {
         return response;
     }
 
-    public boolean validarDatosRegistro(String usuario, String contrasenia, String nombre, String apellido, String fecNac, String tipoDoc, String numDoc, String direccion, String nombreContacto, String apellidoContacto, String email, String telefono, String prefNotif, String tipoUsuario ) {
+    public boolean validarDatosRegistro(String usuario, String contrasenia, String nombre, String apellido, String fecNac, String tipoDoc, String numDoc, String direccion, String nombreContacto, String apellidoContacto, String email, String telefono, String sms, String wpp, String mail, String tipoUsuario ) {
         inicializarFaltanDatos();
         contraseniaIncorrecta=false;
         int validacion=0;
@@ -175,12 +182,20 @@ public class LoginController {
             faltanDatos[11] = true;
         }
 
-        if (prefNotif.isEmpty()) {
+        if (sms.isEmpty()) {
             faltanDatos[12] = true;
         }
 
-        if (tipoUsuario.isEmpty()) {
+        if (wpp.isEmpty()) {
             faltanDatos[13] = true;
+        }
+
+        if (mail.isEmpty()) {
+            faltanDatos[14] = true;
+        }
+
+        if (tipoUsuario.isEmpty()) {
+            faltanDatos[15] = true;
         }
 
         if(!ValidadorContrasenias.validar(contrasenia)){
@@ -213,36 +228,37 @@ public class LoginController {
         String apellidoContacto = request.queryParams("apellidoContacto");
         String emailContacto = request.queryParams("emailContacto");
         String telefonoContacto = request.queryParams("telefonoContacto");
-        String preferencia = request.queryParams("preferenciaNotificacion");
+        String sms = request.queryParams("prefSMS");
+        String wpp = request.queryParams("prefWPP");
+        String mail = request.queryParams("prefMAIL");
         String tipoUsuario = request.queryParams("tipoUsuario");
 
 
-        if (validarDatosRegistro(nombreDeUsuario,contrasenia,nombre,apellido,fecString,docTipoString,docString,direccion,nombreContacto,apellidoContacto,emailContacto,telefonoContacto,preferencia,tipoUsuario) && !repoUser.estaRegistradoBoolean(nombreDeUsuario)) {
-            MedioDeNotificacion medio = new MedioDeNotificacion();
-            if (tipoUsuario == "Duenio") {
+        if (validarDatosRegistro(nombreDeUsuario,contrasenia,nombre,apellido,fecString,docTipoString,docString,direccion,nombreContacto,apellidoContacto,emailContacto,telefonoContacto,sms, wpp, mail, tipoUsuario) && !repoUser.estaRegistradoBoolean(nombreDeUsuario)) {
+            MedioDeNotificacion mensTexto = new MedioDeNotificacion();
+            MedioDeNotificacion whatsapp= new MedioDeNotificacion();
+            MedioDeNotificacion email= new MedioDeNotificacion();
+            List<MedioDeNotificacion> medios = new ArrayList<>();
+            if (tipoUsuario.equals("DUENIO")) {
                 Duenio nuevoDuenio = new Duenio(nombreDeUsuario, contrasenia);
                 nuevoDuenio.setApellido(apellido);
                 nuevoDuenio.setNombre(nombre);
                 nuevoDuenio.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
                 nuevoDuenio.setDocumento(new Documento(Float.parseFloat(docString), docTipoString));
                 nuevoDuenio.setDireccion(direccion);
-
-                switch (preferencia) {
-                    case "SMS":
-                        medio.setEstrategiaNotificacion(new Sms());
-                        break;
-                    case "WPP":
-                        medio.setEstrategiaNotificacion(new WhatsApp());
-                        break;
-                    case "MAIL":
-                        medio.setEstrategiaNotificacion(new Email());
-                        break;
-                    default:
-                        break;
+                if (sms.equals("SMS")){
+                    mensTexto.setEstrategiaNotificacion(new Sms());
+                    medios.add(mensTexto);
                 }
-                List<MedioDeNotificacion> medios = new ArrayList<>();
-                medios.add(medio);
-                Contacto contacto = new Contacto(nombreContacto, apellidoContacto, emailContacto, Integer.parseInt(telefonoContacto), medios);
+                if (wpp.equals("WPP")){
+                    whatsapp.setEstrategiaNotificacion(new WhatsApp());
+                    medios.add(whatsapp);
+                }
+                if (mail.equals("MAIL")){
+                    email.setEstrategiaNotificacion(new Email());
+                    medios.add(email);
+                }
+                Contacto contacto = new Contacto(nombreContacto, apellidoContacto, emailContacto, telefonoContacto, medios);
                 List<Contacto> contactos = new ArrayList<>();
                 contactos.add(contacto);
                 nuevoDuenio.setMediosDeContacto(contactos);
@@ -255,23 +271,19 @@ public class LoginController {
                 nuevoRescatista.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
                 nuevoRescatista.setDocumento(new Documento(Float.parseFloat(docString), docTipoString));
                 nuevoRescatista.setDireccion(direccion);
-
-                switch (preferencia) {
-                    case "SMS":
-                        medio.setEstrategiaNotificacion(new Sms());
-                        break;
-                    case "WPP":
-                        medio.setEstrategiaNotificacion(new WhatsApp());
-                        break;
-                    case "MAIL":
-                        medio.setEstrategiaNotificacion(new Email());
-                        break;
-                    default:
-                        break;
+                if (sms.equals("SMS")){
+                    mensTexto.setEstrategiaNotificacion(new Sms());
+                    medios.add(mensTexto);
                 }
-                List<MedioDeNotificacion> medios = new ArrayList<>();
-                medios.add(medio);
-                Contacto contacto = new Contacto(nombreContacto, apellidoContacto, emailContacto, Integer.parseInt(telefonoContacto), medios);
+                if (wpp.equals("WPP")){
+                    whatsapp.setEstrategiaNotificacion(new WhatsApp());
+                    medios.add(whatsapp);
+                }
+                if (mail.equals("MAIL")){
+                    email.setEstrategiaNotificacion(new Email());
+                    medios.add(email);
+                }
+                Contacto contacto = new Contacto(nombreContacto, apellidoContacto, emailContacto, telefonoContacto, medios);
                 List<Contacto> contactos = new ArrayList<>();
                 contactos.add(contacto);
                 nuevoRescatista.setMediosDeContacto(contactos);
@@ -281,6 +293,7 @@ public class LoginController {
             response.status(200);
             response.redirect("/home");
         } else {
+            usuarioEnUso=true;
             response.status(404);
             response.redirect("/signUp");
         }

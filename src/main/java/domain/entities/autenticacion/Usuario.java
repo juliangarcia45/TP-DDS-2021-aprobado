@@ -110,11 +110,11 @@ public abstract class Usuario extends EntidadPersistente {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public TipoUsuario getTipoUsuario() {
+    public TipoUsuario getTipoDeUsuario() {
         return tipoDeUsuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipo) {
+    public void setTipoDeUsuario(TipoUsuario tipo) {
         this.tipoDeUsuario = tipo;
     }
 

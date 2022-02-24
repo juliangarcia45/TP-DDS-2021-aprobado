@@ -31,7 +31,7 @@ public class Rescatista extends Usuario {
 
     public Rescatista(String usuario, String contrasenia) {
         super(usuario, contrasenia);
-        setTipoUsuario(TipoUsuario.RESCATISTA);
+        setTipoDeUsuario(TipoUsuario.RESCATISTA);
     }
 
    public void notificarDuenio(Mascota unaMascota){

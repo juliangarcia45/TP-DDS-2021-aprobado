@@ -1,6 +1,7 @@
 package domain.entities.notificacion;
 
 import domain.entities.entidadPersistente.EntidadPersistente;
+import org.apache.commons.mail.EmailException;
 
 import javax.persistence.*;
 
@@ -17,7 +18,7 @@ public class MedioDeNotificacion extends EntidadPersistente {
     public void cambiarFormaDeNotificacion(FormaDeNotificacion formaDeNotificacion){
 
     }
-    public void notificar(Integer telefono,String mensaje){
+    public void notificar(String telefono,String mensaje) throws EmailException {
     this.estrategiaNotificacion.notificar(telefono,mensaje);
     }
 

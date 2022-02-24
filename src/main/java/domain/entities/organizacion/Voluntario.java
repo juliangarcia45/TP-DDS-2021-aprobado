@@ -16,7 +16,7 @@ public class Voluntario extends Usuario {
 
     public Voluntario(String usuario, String contrasenia) {
         super(usuario, contrasenia);
-        setTipoUsuario(TipoUsuario.VOLUNTARIO);
+        setTipoDeUsuario(TipoUsuario.VOLUNTARIO);
     }
 
     public Publicacion obtenerPublicacion(){
