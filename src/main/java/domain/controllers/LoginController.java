@@ -104,13 +104,13 @@ public class LoginController {
             request.session().attribute("id", usuario.getId());
             response.status(200);
             if (usuario.getTipoDeUsuario() == TipoUsuario.DUENIO) {
-                response.redirect("/adopcion");
+                response.redirect("/duenio/home");
             } else if (usuario.getTipoDeUsuario() == TipoUsuario.RESCATISTA) {
                 response.redirect("/home");
             } else if (usuario.getTipoDeUsuario() == TipoUsuario.ADMINISTRADOR) {
                 response.redirect("/adminHome");
             } else {
-                response.redirect("/home");
+                response.redirect("/voluntarioHome");
             }
 
         } else {

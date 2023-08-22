@@ -12,18 +12,28 @@
       <!--  Form -->
       {{#if registrar}}
       <h1>Agregar usuario</h1>
+      {{#if admin}}
       <form action="/admin/registrarUsuario" method="post">
+      {{/if}}
+      {{#if voluntario}}
+      <form action="/voluntario/registrarVoluntario" method="post">
+      {{/if}}
       {{/if}}
       {{#if editar}}
       <h1>Actualizar usuario</h1>
+      {{#if admin}}
       <form action="/admin/actualizarUsuario" method="post">
+      {{/if}}
+      {{#if voluntario}}
+      <form action="/voluntario/actualizarVoluntario" method="post">
+      {{/if}}
       {{/if}}
       {{#if ver}}
       <h1>Ver usuario</h1>
       <form>
       {{/if}}
         <input type="hidden" name="id" {{#if usuario}} value="{{usuario.id}}" {{/if}}>
-        <input type="text" id="usuario" class="fadeIn second" name="usuario" placeholder="Usuario" {{#if usuario}} value="{{usuario.usuario}}" {{/if}} {{#if ver}} disabled {{/if}}>
+        <input type="text" id="usuario" class="fadeIn second" name="usuario" placeholder="Usuario" {{#if usuario}} value="{{usuario.usuario}}" {{/if}} {{#if ver}} disabled {{/if}} {{#if editar}} disabled {{/if}}>
         <input type="password" id="contrasenia" class="fadeIn third" name="contrasenia" placeholder="Contrasenia" {{#if usuario}} value="{{usuario.contrasenia}}" {{/if}} {{#if ver}} disabled {{/if}}>
         <input type="text" id="nombre" class="fadeIn second" name="nombre" placeholder="Nombre" {{#if usuario}} value="{{usuario.nombre}}" {{/if}} {{#if ver}} disabled {{/if}}>
         <input type="text" id="apellido" class="fadeIn second" name="apellido" placeholder="Apellido" {{#if usuario}} value="{{usuario.apellido}}" {{/if}} {{#if ver}} disabled {{/if}}>
@@ -60,6 +70,7 @@
              <option value="MAIL">SI</option>
              <option value="noMAIL">NO</option>
           </select>
+        {{#if admin}}
         <select name="tipoUsuario" id="login" class="fadeIn second">
            <option value="">Seleccione su tipo de usuario</option>
            <option value="DUENIO">Duenio</option>
@@ -67,6 +78,7 @@
            <option value="VOLUNTARIO">Voluntario</option>
            <option value="ADMIN">Admin</option>
         </select>
+        {{/if}}
         {{/if}}
 
         {{#if editar}}
@@ -94,6 +106,7 @@
         </select>
         </div>
         {{/each}}
+        {{#if admin}}
         <select name="tipoUsuario" id="login" class="fadeIn second">
            <option value="">Seleccione su tipo de usuario</option>
            <option value="DUENIO">Duenio</option>
@@ -101,6 +114,7 @@
            <option value="VOLUNTARIO">Voluntario</option>
            <option value="ADMIN">Admin</option>
         </select>
+        {{/if}}
         {{/if}}
 
         {{#if ver}}
@@ -131,6 +145,9 @@
         <select name="tipoUsuario" id="login" class="fadeIn second" disabled>
         <option value="">{{usuario.tipoDeUsuario}}</option>
         </select>
+        {{#if voluntario}}
+        <input type="text" id="login" class="fadeIn second" name="organizacion" placeholder="Organizacion" value="{{organizacion.nombre}}" disabled>
+        {{/if}}
         {{/if}}
 
         {{#if faltanDatos}}

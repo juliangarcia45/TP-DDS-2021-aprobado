@@ -23,6 +23,9 @@ public class RepositorioDePublicaciones extends Repositorio<Publicacion> {
     public List<Publicacion> buscarPorTipo(TipoPublicacion tipo,EstadoPublicacion estado){
         return this.dao.buscarVarios(condicionTipoPublicacion(tipo, estado));
     }
+    public List<Publicacion> buscarPorEstado(EstadoPublicacion estado){
+        return this.dao.buscarVarios(condicionEstadoPublicacion(estado));
+    }
 
     private BusquedaCondicional condicionTipoPublicacion(TipoPublicacion tipo, EstadoPublicacion estado){
         CriteriaBuilder criteriaBuilder = criteriaBuilder();
@@ -36,6 +39,18 @@ public class RepositorioDePublicaciones extends Repositorio<Publicacion> {
         Predicate condicionExistenPublicaciones = criteriaBuilder.and(condicionTipoDePublicacion,condicionEstadoPublicacion);
 
         publicacionQuery.where(condicionExistenPublicaciones);
+
+        return new BusquedaCondicional(null, publicacionQuery);
+    }
+    private BusquedaCondicional condicionEstadoPublicacion(EstadoPublicacion estado){
+        CriteriaBuilder criteriaBuilder = criteriaBuilder();
+        CriteriaQuery<Publicacion> publicacionQuery = criteriaBuilder.createQuery(Publicacion.class);
+
+        Root<Publicacion> condicionRaiz = publicacionQuery.from(Publicacion.class);
+
+        Predicate condicionEstadoPublicacion = criteriaBuilder.equal(condicionRaiz.get("estado"), estado);
+
+        publicacionQuery.where(condicionEstadoPublicacion);
 
         return new BusquedaCondicional(null, publicacionQuery);
     }

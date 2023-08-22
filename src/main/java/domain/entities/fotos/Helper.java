@@ -10,11 +10,10 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Helper {
+
     public static List<String> processImage(Request req, String imagesName, String path) throws IOException, ServletException {
         File uploadDir = new File(path);
         uploadDir.mkdir();

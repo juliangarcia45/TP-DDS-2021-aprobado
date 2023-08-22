@@ -1,0 +1,25 @@
+<head>
+    <title>Rescate de Patitas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent" class="registrar-organizacion">
+      <!--  Form -->
+      <h1>Ver pregunta</h1>
+      <form>
+        <input type="hidden" name="id" {{#if pregunta}} value="{{pregunta.id}}" {{/if}}>
+        <input type="text" name="pregunta" {{#if pregunta}} value="{{pregunta.pregunta}}" {{/if}} disabled>
+        <input type="text" name="tipo" {{#if pregunta}} value="{{pregunta.tipo}}" {{/if}} disabled>
+        {{#each respuesta}}
+        <input type="text" name="respuesta" value="{{valor}}" disabled>
+        {{/each}}
+      </form>
+
+    </div>
+   
+  </div>

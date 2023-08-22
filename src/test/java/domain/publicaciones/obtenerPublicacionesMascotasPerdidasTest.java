@@ -23,11 +23,11 @@ public class obtenerPublicacionesMascotasPerdidasTest {
 
     @Before
     public void initPublicaciones() throws IOException{
-        Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null);
+        Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null,null);
         
-        Publicacion donJonny = new PublicacionMascotaPerdida(clark, null, null);
+        Publicacion donJonny = new PublicacionMascotaPerdida(clark, null, null,null);
 
-        Publicacion yuumi = new PublicacionMascotaPerdida(clark, null, null);
+        Publicacion yuumi = new PublicacionMascotaPerdida(clark, null, null,null);
 
         donPepe.aprobarPublicacion();
         yuumi.aprobarPublicacion();

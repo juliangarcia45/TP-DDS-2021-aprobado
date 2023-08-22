@@ -1,5 +1,6 @@
 package domain.DuenioSuscripcion;
 
+import domain.entities.PreguntasAdopcion.Opcion;
 import domain.entities.PreguntasAdopcion.PreguntaAdopcion;
 import domain.entities.PreguntasAdopcion.RespuestaAdopcion;
 import domain.entities.PreguntasAdopcion.TipoPregunta;
@@ -25,9 +26,9 @@ public class suscripcionAdoptante {
     @Before
     public void initAdoptante() throws IOException {
         PreguntaAdopcion pregunta=new PreguntaAdopcion("??", TipoPregunta.SINGLE);
-        pregunta.agregarOpcion("as");
+        pregunta.getOpciones().add(new Opcion("as",pregunta));
         RespuestaAdopcion respuesta=new RespuestaAdopcion(pregunta,new ArrayList<>());
-        respuesta.agregarValor("a");
+        respuesta.getOpciones().add(new Opcion("a",pregunta));
         preferencias.add(respuesta);
     }
 

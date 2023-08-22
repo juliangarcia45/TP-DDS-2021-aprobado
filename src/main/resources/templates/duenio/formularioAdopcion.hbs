@@ -1,0 +1,86 @@
+<head>
+    <title>Rescate de Patitas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+          const radioGroups = document.querySelectorAll('.radio-group') || []
+    radioGroups.forEach(radioGroup => {
+      let bullet = document.createElement("div");
+      bullet.classList.add("bullet");
+      radioGroup.prepend(bullet);
+      let checked = radioGroup.querySelector('input:checked + label');
+      bullet.style.top = checked.offsetTop + 'px';
+      let options = radioGroup.querySelectorAll('label');
+      options.forEach(option =>{
+        option.addEventListener('click', (e)=>{
+          bullet.style.top = e.target.offsetTop + 'px';
+        })
+      })
+    })
+
+      </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<div class="wrapper fadeInDown">
+    <div id="formContent" class="formulario-adopcion">
+        <h1>Formulario adopcion</h1>
+
+  
+      <!--  Form -->
+      <form action="/duenio/darMascotaEnAdopcion" method="post">
+        <select id="Mascota" name= "mascota" placeholder="Que mascota quiere dar en adopcion?">
+            {{#each mascota}}
+            <option value="{{id}}">{{nombre}}</option>
+            {{/each}}
+        </select>
+        {{#each PreguntaSimple}}
+        <select id="preguntaSimple" name= "preguntaSimple" placeholder="{{pregunta}}">
+            {{#each opciones}}
+            <option value="{{opciones.id}}">{{opciones.valor}}</option>
+            {{/each}}
+        </select>
+        {{/each}}
+        {{#each preguntaMultiple}}
+        <div class="radio">
+           <div class="radio-group color1">
+              <label>{{pregunta}}</label>
+              {{#each opciones}}
+              <input type="radio" name="preguntaMultiple" id="radio1.1" value="{{opciones.id}}" >
+              <label for="radio1.1">{{opciones.valor}}</label>
+              {{/each}}
+           </div>
+        </div>
+        {{/each}}
+
+
+      <button type="submit" class="fadeIn fourth">Generar publicacion de mascota en adopcion</button>
+    </form>
+    {{#if faltanDatos}}
+    <label>Por favor complete todos los campos.</label>
+    {{/if}}
+    </div>
+  </div>
+
+  <script>
+          $(function () {
+              $(document).on('click', '.fotos-btn-add', function (e) {
+                  e.preventDefault();
+
+                  var controlForm = $('.controls:first'),
+                          currentEntry = $(this).parents('.entry:first'),
+                          newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+                  newEntry.find('input').val('');
+                  controlForm.find('.entry:not(:last) .fotos-btn-add')
+                          .removeClass('fotos-btn-add').addClass('btn-remove')
+                          .removeClass('btn-success').addClass('btn-danger')
+                          .html('<span class="fa fa-trash"></span>');
+              }).on('click', '.btn-remove', function (e) {
+                  $(this).parents('.entry:first').remove();
+                  e.preventDefault();
+                  return false;
+              });
+          });
+  </script>

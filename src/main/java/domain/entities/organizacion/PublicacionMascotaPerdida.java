@@ -4,9 +4,7 @@ import domain.entities.autenticacion.Usuario;
 import domain.entities.fotos.Foto;
 import org.apache.commons.mail.EmailException;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,8 +12,13 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name="id")
 public class PublicacionMascotaPerdida extends Publicacion{
 
-    public PublicacionMascotaPerdida(Usuario rescatista, List<Foto> fotosMascota, String estadoMascota) {
+    @OneToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="puntoEncuentro_id",referencedColumnName = "id")
+    Ubicacion direccionEncuentroMascota;
+
+    public PublicacionMascotaPerdida(Rescatista rescatista, List<Foto> fotosMascota, String estadoMascota, Ubicacion puntoEncuentro) {
         super(rescatista, fotosMascota, estadoMascota);
+        setDireccionEncuentroMascota(puntoEncuentro);
         setTipoPublicacion(TipoPublicacion.PERDIDA);
     }
 
@@ -27,6 +30,13 @@ public class PublicacionMascotaPerdida extends Publicacion{
                 e.printStackTrace();
             }
         });
+    }
+    public Ubicacion getDireccionEncuentroMascota() {
+        return direccionEncuentroMascota;
+    }
+
+    public void setDireccionEncuentroMascota(Ubicacion direccionEncuentroMascota) {
+        this.direccionEncuentroMascota = direccionEncuentroMascota;
     }
 
     public PublicacionMascotaPerdida() {

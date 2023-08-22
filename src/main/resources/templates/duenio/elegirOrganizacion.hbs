@@ -1,0 +1,31 @@
+<head>
+    <title>Rescate de Patitas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<div class="wrapper fadeInDown">
+    <div id="formContent" class="darEnAdopcion">
+        <h1>Dar mascota en adopcion</h1>
+
+  
+      <!--  Form -->
+      <form action="/duenio/eleccionOrg" method="post">
+        <label class="control-label">
+            Elija en que organizacion va a dar en adopcion a su mascota.
+        </label>
+        <select id="Organizacion" name= "Organizacion" placeholder="organizacion">
+            <option value="">Seleccione una organizacion.</option>
+            {{#each organizacion}}
+            <option value="{{id}}">{{nombre}} - {{direccion}}</option>
+            {{/each}}
+        </select>
+      <button type="submit" class="fadeIn fourth">Ir a formulario de adopcion.</button>
+    </form>
+    {{#if faltanDatos}}
+    <label>Por favor seleccione una organizacion.</label>
+    {{/if}}
+    </div>
+  </div>

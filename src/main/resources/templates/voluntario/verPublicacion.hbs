@@ -1,0 +1,45 @@
+<head>
+    <title>Rescate de Patitas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent" class="registrar-organizacion">
+      <!--  Form -->
+      <h1>Ver Publicacion</h1>
+      {{#if adopcion}}
+      <form action="/aprobarPublicacionAdopcion" method="post">
+      {{/if}}
+      {{#if perdida}}
+      <form action="/aprobarPublicacionPerdida" method="post">
+      {{/if}}
+        <input type="hidden" name="id" {{#if publicacion}} value="{{publicacion.id}}" {{/if}}>
+        <input type="text" id="autor" class="fadeIn second" name="autor" {{#if publicacion}} value="{{publicacion.autor.usuario}}" {{/if}}  disabled>
+        {{#if adopcion}}
+        <input type="text" id="mascota" class="fadeIn second" name="mascota" {{#if publicacion}} value="{{publicacion.mascota.nombre}}" {{/if}}  disabled>
+        {{/if}}
+        <input type="text" id="descripcion" class="fadeIn third" name="descripcion" {{#if publicacion}} value="{{publicacion.descripcion}}" {{/if}} disabled>
+        <input type="date" id="fechaDePublicacion" class="fadeIn" name="fechaDePublicacion"  {{#if publicacion}} value="{{publicacion.fechaDePublicacion}}" {{/if}} disabled>
+        <input type="text" id="tipo" class="fadeIn" name="tipo" {{#if publicacion}} value="{{publicacion.tipo}}" {{/if}} disabled>
+        {{#if adopcion}}
+        {{#each pregunta}}
+        <input type="text" id="pregunta" class="fadeIn" name="pregunta" value="{{pregunta.pregunta}}" disabled>
+        {{#each pregunta.valor}}
+        <input type="text" id="respuesta" class="fadeIn" name="respuesta" value="{{pregunta.valor}}" disabled>
+        {{/each}}
+        {{/each}}
+        {{/if}}
+        {{#if perdida}}
+        <input type="text" id="puntoEncuentro" class="fadeIn third" name="latitudEnc" {{#if publicacion}} value="{{publicacion.direccionEncuentroMascota.latitud}}" {{/if}} disabled>
+        <input type="text" id="puntoEncuentro" class="fadeIn third" name="longitudEnc" {{#if publicacion}} value="{{publicacion.direccionEncuentroMascota.longitud}}" {{/if}} disabled>
+        {{/if}}
+        <button type="submit"  class="fadeIn fourth">Aprobar publicacion</button>
+      </form>
+
+    </div>
+   
+  </div>

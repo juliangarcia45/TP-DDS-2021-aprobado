@@ -13,10 +13,9 @@ public class persistiendoPubliMascPerdida {
         Ubicacion puntoEncuentro= new Ubicacion();
         puntoEncuentro.setLatitud(500);
         puntoEncuentro.setLongitud(500);
-        raul.setDireccionEncuentroMascota(puntoEncuentro);
         raul.setDescripcionMascota("azul");
         raul.setDireccion("calle falsa 123");
-        PublicacionMascotaPerdida publicacion=new PublicacionMascotaPerdida(raul,null,"asa");
+        PublicacionMascotaPerdida publicacion=new PublicacionMascotaPerdida(raul,null,"asa",puntoEncuentro);
 
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(raul);

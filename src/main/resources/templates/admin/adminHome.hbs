@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{#if admin}}
   <title>Admin Home</title>
+  {{/if}}
+  {{#if voluntario}}
+  <title>Voluntario Home</title>
+  {{/if}}
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -48,7 +53,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a class="brand-link">
       <span class="brand-text font-weight-light">Rescate de Patitas</span>
     </a>
 
@@ -57,7 +62,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block">Bienvenido {{adminNombre}}</a>
+          <a class="d-block">Bienvenido {{#if admin}} {{adminNombre}} {{/if}} {{#if voluntario}} {{voluntarioNombre}} {{/if}}</a>
         </div>
       </div>
 
@@ -66,6 +71,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          {{#if admin}}
           <li class="nav-item">
             <a href="/listaUsuarios" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -74,6 +80,7 @@
               </p>
             </a>
           </li>
+          {{/if}}
           <li class="nav-item">
             <a href="/listaVoluntarios" class="nav-link">
               <i class="nav-icon fas fa-hands-helping"></i>
@@ -82,6 +89,7 @@
               </p>
             </a>
           </li>
+          {{#if admin}}
           <li class="nav-item">
             <a href="/listadoOrganizaciones" class="nav-link">
               <i class="nav-icon fas fa-sitemap"></i>
@@ -90,27 +98,30 @@
               </p>
             </a>
           </li>
+          {{/if}}
+          {{#if voluntario}}
           <li class="nav-item">
-            <a href="/listaCaracteristicas" class="nav-link">
-              <i class="nav-icon fas fa-address-card"></i>
-              <p>
-                Caracteristicas
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/listaPublicaciones" class="nav-link">
+            <a href="/listaPublicacionesAdopcion" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
-                Publicaciones
+                Publicaciones adopcion a aprobar
               </p>
             </a>
           </li>
           <li class="nav-item">
-          <a href="/listaPreguntas" class="nav-link">
+            <a href="/listaPublicacionesPerdidas" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Publicaciones mascotas perdidas a aprobar
+              </p>
+            </a>
+          </li>
+          {{/if}}
+          <li class="nav-item">
+          <a href="/voluntario/listaPreguntas" class="nav-link">
               <i class="nav-icon fas fa-question-circle"></i>
               <p>
-                Preguntas
+                {{#if admin}} Preguntas {{/if}} {{#if voluntario}} Preguntas de la organizacion {{/if}}
               </p>
             </a>
           </li>
@@ -133,7 +144,7 @@
           <!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a {{#if admin}} href="/adminHome" {{/if}} {{#if voluntario}} href="/voluntarioHome" {{/if}} >Home</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div>
@@ -149,6 +160,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
+          {{#if admin}}
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-green">
@@ -175,6 +187,22 @@
               <a href="/listaUsuarios" class="small-box-footer">Ver mas <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          {{/if}}
+          {{#if voluntario}}
+          <div class="col-lg-3 col-6">
+          <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+              <h3>{{cantPublicaciones}}</h3>
+              <p>Publicaciones</p>
+              </div>
+              <div class="icon">
+              <i class="document-text-outline"></i>
+              </div>
+            <a href="/listaPublicacionesPorAprobar" class="small-box-footer">Ver mas <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          {{/if}}
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">

@@ -1,11 +1,13 @@
 package domain.entities.organizacion;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 
 
 import java.io.File;
 
+import domain.entities.PreguntasAdopcion.RespuestaAdopcion;
 import domain.entities.entidadPersistente.EntidadPersistente;
 import domain.entities.fotos.Foto;
 import domain.entities.generadorQR.*;
@@ -21,7 +23,7 @@ public class Mascota extends EntidadPersistente {
     private String nombre;
 
     @Column
-    private boolean sexo;
+    private String sexo;
 
     @Column
     private String apodo;
@@ -40,26 +42,27 @@ public class Mascota extends EntidadPersistente {
     private String descripcion;
 
     @Column
-    private boolean especie;
+    private String especie;
 
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_mascota", referencedColumnName = "id")
-    private List<Foto> fotos;
+    private List<Foto> fotos=new ArrayList<>();
 
-    @ElementCollection
-    private Map<String,String> caracteristicas;
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_mascota", referencedColumnName = "id")
+    private List<RespuestaAdopcion> caracteristicas;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "estado_mascota_id")
     private EstadoMascota estado;
 
-    public Mascota(String nombre, String sexo, String apodo, String descripcion, int edad, String especie, List<Foto> fotos, Map<String,String> caracteristicas, Duenio duenio, EstadoMascota estado){
+    public Mascota(String nombre, String sexo, String apodo, String descripcion, int edad, String especie, List<Foto> fotos, List<RespuestaAdopcion> caracteristicas, Duenio duenio, EstadoMascota estado){
         this.nombre = nombre;
-        this.setSexo(sexo);
+        this.sexo=sexo;
         this.apodo = apodo;
         this.descripcion = descripcion;
         this.edad = edad;
-        this.setEspecie(especie);
+        this.especie=especie;
         this.fotos = fotos;
         this.caracteristicas= caracteristicas;
         this.duenio = duenio;
@@ -109,16 +112,7 @@ public class Mascota extends EntidadPersistente {
         }
     }
 
-    public void setSexo(String sexo) {
-        switch (sexo) {
-            case "Hembra":
-                this.sexo = false;
-                break;
-            case "Macho":
-                this.sexo = true;
-                break;
-        }
-    }
+
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -126,10 +120,6 @@ public class Mascota extends EntidadPersistente {
 
     public void setDuenio(Duenio duenio) {
         this.duenio = duenio;
-    }
-
-    public boolean isSexo() {
-        return sexo;
     }
 
     public String getApodo() {
@@ -164,34 +154,11 @@ public class Mascota extends EntidadPersistente {
         this.descripcion = descripcion;
     }
 
-    public boolean isEspecie() {
-        return especie;
-    }
-
-    public void setEspecie(String especie) {
-        switch (especie){
-            case "Perro":
-                this.especie= false;
-                break;
-            case "Gato":
-                this.especie=true;
-                break;
-        }
-    }
-
-    public List<Foto> getFotos() {
-        return fotos;
-    }
-
-    public void setFoto(Foto foto) {
-        fotos.add(foto);
-    }
-
-    public Map<String, String> getCaracteristicas() {
+    public List<RespuestaAdopcion> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(Map<String, String> caracteristicas) {
+    public void setCaracteristicas(List<RespuestaAdopcion> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 
@@ -203,135 +170,40 @@ public class Mascota extends EntidadPersistente {
         this.estado = estado;
     }
 
-    /*private Mascota(MascotaBuilder builder) {
-        this.nombre = builder.nombre;
-        this.sexo = builder.sexo;
-        this.apodo = builder.apodo;
-        this.descripcion = builder.descripcion;
-        this.edad = builder.edad;
-        this.especie = builder.especie;
-        this.fotos = builder.fotos;
-        this.caracteristicas= builder.caracteristicas;
-        this.idMascota=  builder.idMascota;
-        this.duenio = builder.duenio;
-        this.estado = builder.estado;
-        this.qr = new GeneradorQR();
-    }
-    public void setDuenio(Duenio duenio) {
-        this.duenio = duenio;
+    public GeneradorQR getQr() {
+        return qr;
     }
 
-    public void setEstado(EstadoMascota estado){
-        this.estado = estado;
+    public void setQr(GeneradorQR qr) {
+        this.qr = qr;
     }
 
-
-    public String getDescripcion() {
-        return descripcion;
+    public void setEdad(Integer edad) {
+        this.edad = edad;
     }
-   
-   
-    public List<String> getFotos() {
+
+    public List<Foto> getFotos() {
         return fotos;
     }
 
-    public Duenio getDuenio() {
-        return duenio;
+    public void setFotos(List<Foto> fotos) {
+        this.fotos = fotos;
     }
 
-    public Integer getIdMascota() {
-        return idMascota;
+    public String getSexo() {
+        return sexo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
+    public String getEspecie() {
+        return especie;
+    }
 
-
-
-    public static class MascotaBuilder{
-        private String nombre;
-        private Integer idMascota;
-        private boolean sexo;
-        private String apodo;
-        private String descripcion;
-        private boolean especie;
-        private List<String> fotos;
-        private Map<String,String> caracteristicas;
-        private Integer edad;
-        private Duenio duenio;
-        private EstadoMascota estado;
-        
-        public MascotaBuilder(List<String> fotos , String descripcion){
-            this.descripcion = descripcion;
-            this.fotos = fotos;
-        }
-
-        public MascotaBuilder nombre(String name){
-            this.nombre = name;
-            return this;
-        }
-
-        public MascotaBuilder idMascota(Integer idMascota){
-            this.idMascota= idMascota;
-            return this;
-        }
-
-        public MascotaBuilder sexo(String sexo){
-            switch (sexo){
-                case "Hembra":
-                    this.especie= false;
-                    break;
-                case "Macho":
-                    this.especie=true;
-                    break;
-            }
-            return this;
-        }
-        public MascotaBuilder apodo(String apodo){
-            this.nombre = apodo;
-            return this;
-        }
-        public MascotaBuilder especie(String especie){
-            switch (especie){
-                case "Perro":
-                    this.especie= false;
-                    break;
-                case "Gato":
-                    this.especie=true;
-                    break;
-            }
-            return this;
-        }
-        public MascotaBuilder caracteristicas(Map<String,String> caracteristicas){
-            this.caracteristicas = caracteristicas;
-            return this;
-        }
-        public MascotaBuilder edad(Integer edad){
-            this.edad= edad;
-            return this;
-        }
-        public MascotaBuilder fotos(List<String> fotos){
-            this.fotos= fotos;
-            return this;
-        }
-        public MascotaBuilder duenio(Duenio  duenio){
-            this.duenio =duenio;
-            return this;
-        }
-        public MascotaBuilder estado(EstadoMascota estado){
-            this.estado =estado;
-            return this;
-        }
-
-        public Mascota build(){
-            return new Mascota(this);
-        }
-
-        public MascotaBuilder() {
-        }
-
-    }*/
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
 }
 

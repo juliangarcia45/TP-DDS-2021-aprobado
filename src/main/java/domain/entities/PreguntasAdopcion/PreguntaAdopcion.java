@@ -14,11 +14,8 @@ public class PreguntaAdopcion extends EntidadPersistente {
     @Column
     private String pregunta;
 
-    @ElementCollection
-    private List<String> opciones=new ArrayList<>();
-
-    @ManyToOne
-    private Organizacion organizacion;
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Opcion> opciones=new ArrayList<>();
 
     @Column(name="tipo_pregunta")
     @Enumerated(value = EnumType.STRING)
@@ -32,19 +29,27 @@ public class PreguntaAdopcion extends EntidadPersistente {
     public PreguntaAdopcion() {
     }
 
-    public void agregarOpcion(String opcion){
-        opciones.add(opcion);
+    public String getPregunta() {
+        return pregunta;
     }
 
-    public void eliminarOpcion(String opcion){
-        opciones.remove(opcion);
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
     }
 
-    public void asignarOrganizacion(Organizacion organizacion){
-        this.organizacion = organizacion;
+    public List<Opcion> getOpciones() {
+        return opciones;
     }
 
-    public Organizacion getOrganizacion(){
-        return this.organizacion;
+    public void setOpciones(List<Opcion> opciones) {
+        this.opciones = opciones;
+    }
+
+    public TipoPregunta getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoPregunta tipo) {
+        this.tipo = tipo;
     }
 }

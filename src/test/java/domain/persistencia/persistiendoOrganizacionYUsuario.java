@@ -1,6 +1,7 @@
 package domain.persistencia;
 
 import bd.BDUtils.EntityManagerHelper;
+import domain.entities.PreguntasAdopcion.Opcion;
 import domain.entities.PreguntasAdopcion.PreguntaAdopcion;
 import domain.entities.PreguntasAdopcion.RespuestaAdopcion;
 import domain.entities.PreguntasAdopcion.TipoPregunta;
@@ -39,8 +40,7 @@ public class persistiendoOrganizacionYUsuario {
         Organizacion organizacion=new Organizacion();
         Voluntario vol=new Voluntario("vol","123456");
         Administrador admin=new Administrador("admin","123456");
-        organizacion.agregarAdmin(admin);
-        organizacion.agregarVoluntario(vol);
+        vol.setOrganizacion(organizacion);
         Ubicacion lugarOrg= new Ubicacion();
         lugarOrg.setLatitud(500);
         lugarOrg.setLongitud(500);
@@ -52,10 +52,10 @@ public class persistiendoOrganizacionYUsuario {
 
         //Pregunta y respuesta
         PreguntaAdopcion pregunta=new PreguntaAdopcion("??", TipoPregunta.SINGLE);
-        pregunta.agregarOpcion("as");
-        pregunta.asignarOrganizacion(organizacion);
+        pregunta.getOpciones().add(new Opcion("as",pregunta));
+        organizacion.getPreguntas().add(pregunta);
         RespuestaAdopcion respuesta=new RespuestaAdopcion(pregunta,new ArrayList<>());
-        respuesta.agregarValor("a");
+        respuesta.getOpciones().add(new Opcion("a",pregunta));
         publi.agregarRespuesta(respuesta);
         organizacion.addPublicacion(publi);
         publi.aprobarPublicacion();

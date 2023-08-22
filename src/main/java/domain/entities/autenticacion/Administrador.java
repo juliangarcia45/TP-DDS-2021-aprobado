@@ -14,10 +14,6 @@ import java.util.Map;
 @PrimaryKeyJoinColumn(name="id")
 public class Administrador extends Usuario{
 
-    @ManyToOne
-    @JoinColumn(name="organizacion_id", referencedColumnName = "id")
-    private Organizacion organizacion;
-
     @Transient
     public static Map<String, String> nombreMap = new HashMap<String, String>();
 
@@ -58,13 +54,6 @@ public class Administrador extends Usuario{
             return null;
         }
         return mapAux;
-    }
-    public Organizacion getOrganizacion() {
-        return organizacion;
-    }
-
-    public void setOrganizacion(Organizacion organizacion) {
-        this.organizacion = organizacion;
     }
 
     public Administrador() {

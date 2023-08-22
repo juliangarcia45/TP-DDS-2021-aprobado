@@ -19,10 +19,6 @@ public class Rescatista extends Usuario {
     @Column
     String descripcionMascota;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="puntoEncuentro_id",referencedColumnName = "id")
-    Ubicacion direccionEncuentroMascota;
-
     @ElementCollection
     List<Foto> fotoMascota;
 
@@ -42,8 +38,8 @@ public class Rescatista extends Usuario {
       return mascotaPerdida.generateQR();
    }
 
-   public void informarMascotaPerdida(){
-       GestorPublicaciones.generarPublicacionMascotaPerdida(this,this.getDescripcionMascota(),this.getFotoMascota());
+   public void informarMascotaPerdida(Ubicacion puntoEncuentro){
+       GestorPublicaciones.generarPublicacionMascotaPerdida(this,this.getDescripcionMascota(),this.getFotoMascota(),puntoEncuentro);
    }
    
     public void setHogaresResponseApi(HogaresResponseApi hogaresResponseApi) {
@@ -52,14 +48,6 @@ public class Rescatista extends Usuario {
 
     public List<HogarDeTransito> buscarHogarDeTransito(String latitud, String longitud) throws IOException {
         return this.hogaresResponseApi.getRespuestaApi();
-    }
-
-
-    public Ubicacion getDireccionEncuentroMascota() {
-        return direccionEncuentroMascota;
-    }
-    public void setDireccionEncuentroMascota(Ubicacion direccionEncuentroMascota) {
-        this.direccionEncuentroMascota = direccionEncuentroMascota;
     }
 
     public String getDescripcionMascota() {

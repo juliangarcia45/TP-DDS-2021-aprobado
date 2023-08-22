@@ -24,9 +24,9 @@ public class obtenerPublicacionesMascotasEnAdopcionTest {
         calli.setApodo("calli");
         calli.setEdad(14);
         calli.setDescripcion("a");
-        Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null);
+        Publicacion donPepe = new PublicacionMascotaPerdida(clark, null, null,null);
         
-        Publicacion donJonny = new PublicacionMascotaPerdida(clark, null, null);
+        Publicacion donJonny = new PublicacionMascotaPerdida(clark, null, null,null);
 
         Publicacion yuumi = new PublicacionMascotaEnAdopcion(null, calli);
 

@@ -1,10 +1,7 @@
 package domain.Repositorios;
 
 import domain.Repositorios.Daos.DAO;
-import domain.entities.organizacion.EstadoPublicacion;
-import domain.entities.organizacion.Publicacion;
-import domain.entities.organizacion.PublicacionMascotaEnAdopcion;
-import domain.entities.organizacion.TipoPublicacion;
+import domain.entities.organizacion.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -36,8 +33,5 @@ public class RepositorioDePublicacionesEnAdopcion extends Repositorio<Publicacio
         publicacionQuery.where(condicionEstadoPublicacion);
 
         return new BusquedaCondicional(null, publicacionQuery);
-    }
-    public void agregarPublicacion(Publicacion unaPublicacion){
-        this.dao.agregar(unaPublicacion);
     }
 }

@@ -14,8 +14,6 @@ import domain.entities.organizacion.*;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RescatistaController {
@@ -42,7 +40,7 @@ public class RescatistaController {
             Ubicacion encuentroMascota= new Ubicacion();
             encuentroMascota.setLatitud(Double.parseDouble(latitudEncMascota));
             encuentroMascota.setLongitud(Double.parseDouble(longitudEncMascota));
-            rescatistaEnSesion.setDireccionEncuentroMascota(encuentroMascota);
+
 
             //fotos
             for (String image: listaFotos) {

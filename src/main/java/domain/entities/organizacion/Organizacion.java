@@ -1,4 +1,5 @@
 package domain.entities.organizacion;
+import domain.entities.PreguntasAdopcion.PreguntaAdopcion;
 import domain.entities.autenticacion.Administrador;
 import domain.entities.entidadPersistente.EntidadPersistente;
 import net.coobird.thumbnailator.Thumbnails;
@@ -17,11 +18,7 @@ public class Organizacion extends EntidadPersistente {
     @Column
     private String nombre;
 
-    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
-    private List<Voluntario> voluntarios=new ArrayList<>();
 
-    @OneToMany(mappedBy = "organizacion",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
-    private List<Administrador> administradores=new ArrayList<>();
 
     @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     @JoinColumn(name="organizacion_id", referencedColumnName="id")
@@ -33,6 +30,10 @@ public class Organizacion extends EntidadPersistente {
     @Column
     private String direccion;
 
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(name="Organizacion_Preguntas")
+    private List<PreguntaAdopcion> preguntas=new ArrayList<>();
+
     @Transient
     private Integer anchoFoto;
 
@@ -41,15 +42,6 @@ public class Organizacion extends EntidadPersistente {
 
     @Transient
     private String formatoEstandar;
-
-    public void agregarVoluntario(Voluntario voluntario){
-        this.voluntarios.add(voluntario);
-        voluntario.setOrganizacion(this);
-    }
-    public void agregarAdmin(Administrador administrador){
-        this.administradores.add(administrador);
-        administrador.setOrganizacion(this);
-    }
 
     public String getNombre() {
         return nombre;
@@ -92,32 +84,33 @@ public class Organizacion extends EntidadPersistente {
     public List<Publicacion> publicacionesAprob(){
         return this.obtenerPublicacionesSegun(EstadoPublicacion.APROBADO);
     }
+    public List<Publicacion> publicacionesEnEspera(){
+        return this.obtenerPublicacionesSegun(EstadoPublicacion.EN_ESPERA);
+    }
+
+
+
     
     public List<Publicacion> obtenerPublicacionesSegun(EstadoPublicacion estado ){
         return this.getListaPublicaciones().stream().filter(Publicacion -> Publicacion.getEstado()==estado).collect(Collectors.toList());
     }
     
-    public List<Publicacion> publicacionesDeMascotasPerdidas(){
+    public List<Publicacion> publicacionesDeMascotasPerdidasAprobadas(){
         return this.publicacionesAprob().stream().filter(publicacion -> publicacion instanceof PublicacionMascotaPerdida).collect(Collectors.toList());
     }
-    public List<Publicacion> publicacionesDeMascotasEnAdopcion(){
+
+    public List<Publicacion> publicacionesDeMascotasPerdidasEnEspera(){
+        return this.publicacionesEnEspera().stream().filter(publicacion -> publicacion instanceof PublicacionMascotaPerdida).collect(Collectors.toList());
+    }
+
+    public List<Publicacion> publicacionesDeMascotasEnAdopcionAprobadas(){
         return this.publicacionesAprob().stream().filter(publicacion -> publicacion instanceof PublicacionMascotaEnAdopcion).collect(Collectors.toList());
     }
 
-
-    public List<Administrador> getAdministradores() {
-        return administradores;
-    }
-    public void setAdministradores(List<Administrador> administradores) {
-        this.administradores = administradores;
+    public List<Publicacion> publicacionesDeMascotasEnAdopcionEnEspera(){
+        return this.publicacionesEnEspera().stream().filter(publicacion -> publicacion instanceof PublicacionMascotaEnAdopcion).collect(Collectors.toList());
     }
 
-    public List<Voluntario> getVoluntarios() {
-        return voluntarios;
-    }
-    public void setVoluntarios(List<Voluntario> voluntarios) {
-        this.voluntarios = voluntarios;
-    }
 
     public Ubicacion getUbicacion() {
         return ubicacion;
@@ -132,6 +125,14 @@ public class Organizacion extends EntidadPersistente {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public List<PreguntaAdopcion> getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(List<PreguntaAdopcion> preguntas) {
+        this.preguntas = preguntas;
     }
 
     public Organizacion() {

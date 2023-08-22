@@ -13,26 +13,33 @@ public class RespuestaAdopcion extends EntidadPersistente {
     @JoinColumn(name="pregunta_id", referencedColumnName = "id")
     PreguntaAdopcion pregunta;
 
-    @ElementCollection
-    List<String> valor=new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "respuesta_con_opciones",
+            joinColumns = {
+                    @JoinColumn(name = "respuesta_id", referencedColumnName = "id") },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "opcion_id", referencedColumnName = "id") })
+    List<Opcion> opciones=new ArrayList<>();
 
-    public RespuestaAdopcion(PreguntaAdopcion pregunta,List<String> valor) {
-        this.pregunta=pregunta;
-        this.valor = valor;
+    public PreguntaAdopcion getPregunta() {
+        return pregunta;
     }
 
     public void setPregunta(PreguntaAdopcion pregunta) {
         this.pregunta = pregunta;
     }
 
-    public void agregarValor(String valor){
-        this.valor.add(valor);
+    public List<Opcion> getOpciones() {
+        return opciones;
     }
-    public void eliminarValor(String valor){
-        this.valor.remove(valor);
+
+    public void setOpciones(List<Opcion> opciones) {
+        this.opciones = opciones;
     }
-    public List<String> getValor() {
-        return valor;
+
+    public RespuestaAdopcion(PreguntaAdopcion pregunta, List<Opcion> opciones) {
+        this.pregunta = pregunta;
+        this.opciones = opciones;
     }
 
     public RespuestaAdopcion() {

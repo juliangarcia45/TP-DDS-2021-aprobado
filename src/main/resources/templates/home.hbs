@@ -31,28 +31,15 @@
 
 							<nav id="nav">
 								<ul>
-									<li class="current"><a href="index.html">Welcome</a></li>
+								    {{#if duenio}}
+									<li class="current"><a href="/duenio/home">Bienvenido</a></li>
 									<li>
-										<a href="#">Mascotas</a>
-										<ul>
-											<li><a href="adopcionMasotas.html">Quiero adoptar</a></li>
-											<li><a href="darEnAdopcion.html">Quiero dar en adopcion</a></li>
-											<li><a href="registroMascota.html">Quiero registrar a mi mascota</a></li>
-											<li><a href="mascotaPerdida.html">Encontre una mascota perdida</a></li>
-											<li>
-												<a href="#">Sarasa</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-										</ul>
+										<a href="/duenio/misMascotas">Mis Mascotas</a>
 									</li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="signIn">Login</a></li>
-									<li><a href="adminPage.html">Admin</a></li>
+									<li><a href="right-sidebar.html">Adopcion de Mascotas</a></li>
+									<li><a href="signIn">Mascotas Perdidas</a></li>
+									<li><a href="/logout">Log Out</a></li>
+									{{/if}}
 								</ul>
 							</nav>
 
@@ -203,12 +190,12 @@
 
 		<!-- Scripts -->
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="js/jquery.min.js"></script>
+			<script src="/js/jquery.dropotron.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
 
 	</body>
 </html>

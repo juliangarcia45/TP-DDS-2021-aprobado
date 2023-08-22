@@ -51,6 +51,7 @@ public class AdminController {
         parametros.put("cantVoluntarios",cantVoluntarios);
         parametros.put("cantUsuarios",cantUsuarios);
         parametros.put("cantOrganizaciones",cantOrganizaciones);
+        parametros.put("admin",true);
         return new ModelAndView(parametros,"admin/adminHome.hbs");
     }
     public Response verificarAdmin(Request request, Response response){
@@ -211,6 +212,7 @@ public class AdminController {
     public ModelAndView agregarUsuario(Request request, Response response){
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("registrar",true);
+        parametros.put("admin",true);
         if(faltanDatosUser){
             parametros.put("faltanDatos",true);
         }
@@ -425,6 +427,7 @@ public class AdminController {
         parametros.put("usuario",usuario);
         parametros.put("contactos",contactos);
         parametros.put("editar",true);
+        parametros.put("admin",true);
         if(faltanDatosUser){
             parametros.put("faltanDatos",true);
         }
@@ -440,6 +443,7 @@ public class AdminController {
     }
 
     public Response actualizarUsuario(Request request, Response response) throws ParseException {
+        String id= request.queryParams("id");
         String nombreDeUsuario = request.queryParams("usuario");
         String contrasenia = request.queryParams("contrasenia");
         String nombre = request.queryParams("nombre");
@@ -461,165 +465,178 @@ public class AdminController {
         if(nombreDeUsuario.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(contrasenia.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(nombre.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(apellido.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(fecString.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(docString.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(docTipoString.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(direccion.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(nombreContacto.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(apellidoContacto.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(emailContacto.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(telefonoContacto.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(sms.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(wpp.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(mail.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
         if(tipoUsuario.isEmpty()){
             faltanDatosUser=true;
             response.status(400);
-            response.redirect("/agregarUsuario");
+            response.redirect("/editarUsuario/"+id);
             return response;
         }
 
         //registro al usuario si no esta registrado
-        if (!repoUser.estaRegistradoBoolean(nombreDeUsuario)){
-            MedioDeNotificacion mensTexto = new MedioDeNotificacion();
-            MedioDeNotificacion whatsapp= new MedioDeNotificacion();
-            MedioDeNotificacion email= new MedioDeNotificacion();
-            List<MedioDeNotificacion> medios = new ArrayList<>();
-            if (sms.equals("SMS")){
-                mensTexto.setEstrategiaNotificacion(new Sms());
-                medios.add(mensTexto);
-            }
-            if (wpp.equals("WPP")){
-                whatsapp.setEstrategiaNotificacion(new WhatsApp());
-                medios.add(whatsapp);
-            }
-            if (mail.equals("MAIL")){
-                email.setEstrategiaNotificacion(new Email());
-                medios.add(email);
-            }
-            Contacto contacto=new Contacto(nombreContacto,apellidoContacto,emailContacto,telefonoContacto,medios);
-            List<Contacto> contactos=new ArrayList<>();
-            contactos.add(contacto);
-            if(tipoUsuario.equals("DUENIO")){
-                Duenio duenio=new Duenio(nombreDeUsuario,contrasenia);
-                duenio.setNombre(nombre);
-                duenio.setApellido(apellido);
-                duenio.setDocumento(new Documento(Float.parseFloat(docString),docTipoString));
-                duenio.setDireccion(direccion);
-                duenio.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
-                duenio.setMediosDeContacto(contactos);
-                repoUser.modificar(duenio);
-            }else if(tipoUsuario.equals("RESCATISTA")){
-                Rescatista rescatista=new Rescatista(nombreDeUsuario,contrasenia);
-                rescatista.setNombre(nombre);
-                rescatista.setApellido(apellido);
-                rescatista.setDocumento(new Documento(Float.parseFloat(docString),docTipoString));
-                rescatista.setDireccion(direccion);
-                rescatista.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
-                rescatista.setMediosDeContacto(contactos);
-                repoUser.modificar(rescatista);
-            }else if(tipoUsuario.equals("VOLUNTARIO")){
-                Voluntario voluntario=new Voluntario(nombreDeUsuario,contrasenia);
-                voluntario.setNombre(nombre);
-                voluntario.setApellido(apellido);
-                voluntario.setDocumento(new Documento(Float.parseFloat(docString),docTipoString));
-                voluntario.setDireccion(direccion);
-                voluntario.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
-                voluntario.setMediosDeContacto(contactos);
-                repoUser.modificar(voluntario);
-            } else{
-                Administrador administrador=new Administrador(nombreDeUsuario,contrasenia);
-                administrador.setNombre(nombre);
-                administrador.setApellido(apellido);
-                administrador.setDocumento(new Documento(Float.parseFloat(docString),docTipoString));
-                administrador.setDireccion(direccion);
-                administrador.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
-                administrador.setMediosDeContacto(contactos);
-                repoUser.modificar(administrador);
-            }
-            response.status(200);
-            response.redirect("/listaUsuarios");
+        MedioDeNotificacion mensTexto = new MedioDeNotificacion();
+        MedioDeNotificacion whatsapp= new MedioDeNotificacion();
+        MedioDeNotificacion email= new MedioDeNotificacion();
+        List<MedioDeNotificacion> medios = new ArrayList<>();
+        if (sms.equals("SMS")){
+            mensTexto.setEstrategiaNotificacion(new Sms());
+            medios.add(mensTexto);
         }else{
-            usuarioEnUso=true;
-            response.status(400);
-            response.redirect("/agregarUsuario");
+            for(MedioDeNotificacion medio:medios){
+                if(medio.getEstrategiaNotificacion().getClass()==Sms.class){
+                    medios.remove(medio);
+                }
+            }
         }
+        if (wpp.equals("WPP")){
+            whatsapp.setEstrategiaNotificacion(new WhatsApp());
+            medios.add(whatsapp);
+        }else{
+            for(MedioDeNotificacion medio:medios){
+                if(medio.getEstrategiaNotificacion().getClass()==WhatsApp.class){
+                    medios.remove(medio);
+                }
+            }
+        }
+        if (mail.equals("MAIL")){
+            email.setEstrategiaNotificacion(new Email());
+            medios.add(email);
+        }else{
+            for(MedioDeNotificacion medio:medios){
+                if(medio.getEstrategiaNotificacion().getClass()==Email.class){
+                    medios.remove(medio);
+                }
+            }
+        }
+
+        Contacto contacto=new Contacto(nombreContacto,apellidoContacto,emailContacto,telefonoContacto,medios);
+        List<Contacto> contactos=new ArrayList<>();
+        contactos.add(contacto);
+        if(tipoUsuario.equals("DUENIO")){
+            Duenio duenio=new Duenio(nombreDeUsuario,contrasenia);
+            duenio.setNombre(nombre);
+            duenio.setApellido(apellido);
+            duenio.setDocumento(new Documento(Float.parseFloat(docString),docTipoString));
+            duenio.setDireccion(direccion);
+            duenio.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
+            duenio.setMediosDeContacto(contactos);
+            repoUser.modificar(duenio);
+        }else if(tipoUsuario.equals("RESCATISTA")){
+            Rescatista rescatista=new Rescatista(nombreDeUsuario,contrasenia);
+            rescatista.setNombre(nombre);
+            rescatista.setApellido(apellido);
+            rescatista.setDocumento(new Documento(Float.parseFloat(docString),docTipoString));
+            rescatista.setDireccion(direccion);
+            rescatista.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
+            rescatista.setMediosDeContacto(contactos);
+            repoUser.modificar(rescatista);
+        }else if(tipoUsuario.equals("VOLUNTARIO")){
+            Voluntario voluntario=new Voluntario(nombreDeUsuario,contrasenia);
+            voluntario.setNombre(nombre);
+            voluntario.setApellido(apellido);
+            voluntario.setDocumento(new Documento(Float.parseFloat(docString),docTipoString));
+            voluntario.setDireccion(direccion);
+            voluntario.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
+            voluntario.setMediosDeContacto(contactos);
+            repoUser.modificar(voluntario);
+        } else{
+            Administrador administrador=new Administrador(nombreDeUsuario,contrasenia);
+            administrador.setNombre(nombre);
+            administrador.setApellido(apellido);
+            administrador.setDocumento(new Documento(Float.parseFloat(docString),docTipoString));
+            administrador.setDireccion(direccion);
+            administrador.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fecString));
+            administrador.setMediosDeContacto(contactos);
+            repoUser.modificar(administrador);
+        }
+        response.status(200);
+        response.redirect("/listaUsuarios");
         return response;
     }
 
@@ -631,6 +648,7 @@ public class AdminController {
         parametros.put("usuario",usuario);
         parametros.put("contactos",contactos);
         parametros.put("ver",true);
+        parametros.put("admin",true);
         return new ModelAndView(parametros,"admin/listadoUsuariosAgregar.hbs");
     }
 

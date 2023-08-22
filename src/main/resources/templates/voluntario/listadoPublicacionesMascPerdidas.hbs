@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publicaciones | Rescate de Patitas</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="css/admin/adminlte.min.css">
+</head>
+
+<body class="dark-mode sidebar-mini">
+<div class="wrapper">
+  <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="#" class="dropdown-item dropdown-footer">Log out</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <span class="brand-text font-weight-light">Rescate de Patitas</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a href="#" class="d-block">Bienvenido {{voluntarioNombre}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="/listaVoluntarios" class="nav-link">
+            <i class="nav-icon fas fa-hands-helping"></i>
+            <p>
+              Voluntarios
+            </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/listaPublicacionesAdopcion" class="nav-link ">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+              Publicaciones adopcion a aprobar
+            </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/listaPublicacionesPerdidas" class="nav-link active">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+              Publicaciones mascotas perdidas a aprobar
+            </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/voluntario/listaPreguntas" class="nav-link">
+            <i class="nav-icon fas fa-question-circle"></i>
+            <p>
+              Preguntas de la organizacion
+            </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Publicaciones</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/adminHome">Home</a></li>
+              <li class="breadcrumb-item active">Publicaciones </li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+            <thead>
+            <tr>
+              <th style="width: 1%">
+                #
+              </th>
+              <th style="width: 20%">
+                Publicacion
+              </th>
+              <th style="width: 20%">
+                Tipo Publicacion
+              </th>
+              <th style="width: 20%">
+                Estado Publicacion
+              </th>
+              <th style="width: 20%">
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            {{#each publicaciones}}
+              <td>
+                {{id}}
+              </td>
+              <td>
+                  {{descripcion}}
+              </td>
+              <td>
+                  {{tipoDePublicacion}}
+              </td>
+              <td>
+                  {{estado}}
+              </td>
+
+              <td class="project-actions text-right">
+                <a class="btn btn-primary btn-sm" href="/verPublicacion/{{id}}">
+                  <i class="fas fa-folder">
+                  </i>
+                  Ver publicacion
+                </a>
+                <a class="btn btn-danger btn-sm" data-toggle="modal" data-action="delete-modal" data-modal="#modal-default" data-id="{{id}}" data-name="{{name}}" data-url="/borrarPublicacionPerdida">
+                  <i class="fas fa-trash">
+                  </i>
+                  Delete
+                </a>
+              </td>
+            </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+
+  </aside>
+  <!-- /.control-sidebar -->
+<div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title eliminacion_modal--title"></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Esta seguro que quiere eliminar esta publicacion?</p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <form id="deleteModalForm" method="">
+                            <input type="hidden" class="eliminacion_modal--id" value="">
+                            <input type="hidden" class="eliminacion_modal--url" value="">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Continuar</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+</div>  <!-- Main Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2021 <a href="#">Rescate de Patitas</a>.</strong> All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<script>
+        jQuery(document).ready(function($) {
+            $('[data-action="delete-modal"]').click(function() {
+                var modal = $($(this).data("modal"));
+                var id = $(this).data("id");
+                var name = $(this).data("name");
+                var url = $(this).data("url");
+
+                modal.find('.eliminacion_modal--title').text("Eliminacion de publicacion " + name);
+                modal.find('.eliminacion_modal--id').val(id);
+                modal.find('.eliminacion_modal--url').val(url);
+                modal.modal();
+                return false;
+            });
+
+
+            $("#deleteModalForm").submit(function(e) {
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+                var form = $(this);
+                var url = form.find('.eliminacion_modal--url').val();
+                var id = form.find('.eliminacion_modal--id').val();
+
+                $.ajax({
+                    type:"delete",
+                    url: url + "/" + id,
+                    success: function (respuesta) {
+                        location.reload(true);
+                    }
+                });
+            });
+
+            $('[name=duallistbox_demo1]').bootstrapDualListbox();
+        });
+</script>
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="js/adminlte.min.js"></script>
+</body>
+</html>

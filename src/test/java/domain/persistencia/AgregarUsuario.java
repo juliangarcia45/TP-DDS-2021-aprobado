@@ -2,13 +2,14 @@ package domain.persistencia;
 
 import static org.junit.Assert.*;
 
+import bd.BDUtils.EntityManagerHelper;
+import domain.entities.PreguntasAdopcion.Opcion;
+import domain.entities.PreguntasAdopcion.PreguntaAdopcion;
+import domain.entities.PreguntasAdopcion.TipoPregunta;
 import domain.entities.autenticacion.Administrador;
-import domain.entities.organizacion.Rescatista;
+import domain.entities.organizacion.*;
 import org.junit.Test;
 
-import domain.entities.organizacion.TipoUsuario;
-import domain.entities.organizacion.Documento;
-import domain.entities.organizacion.Duenio;
 import domain.Repositorios.RepositorioDeUsuarios;
 import domain.Repositorios.Daos.DAO;
 import domain.Repositorios.Daos.DAOHibernate;
@@ -46,8 +47,8 @@ public class  AgregarUsuario {
     public void agregarUsuarioDuenio() {
         this.nombre = "nathaas";
         this.apellido ="apellidoDeUsuario";
-        this.nombreDeUsuario = "nombreDeUsuario";
-        this.contrasenia = "contrasenia";
+        this.nombreDeUsuario = "tumamasa";
+        this.contrasenia = "contrasenia12";
         this.documento = new Documento(12312312,"DNI");
         this.fechaNacimiento = new Date();
         this.tipo= TipoUsuario.DUENIO;
@@ -105,7 +106,7 @@ public class  AgregarUsuario {
     public void agregarUsuarioAdmin(){
         this.nombre = "admin";
         this.apellido = "apellidoDeadmin";
-        this.nombreDeUsuario = "tumama";
+        this.nombreDeUsuario = "admin";
         this.contrasenia = "seniasada";
         this.documento = new Documento(12312312, "DNI");
         this.fechaNacimiento = new Date();
@@ -126,6 +127,49 @@ public class  AgregarUsuario {
         admin.setDireccion(direccion);
 
         repoUser.modificar(admin);
+    }
+
+    @Test
+    public void agregarUsuarioVoluntario(){
+        this.nombre = "voluntario";
+        this.apellido = "apellidoDevoluntario";
+        this.nombreDeUsuario = "voluntario";
+        this.contrasenia = "seniasada";
+        this.documento = new Documento(12312312, "DNI");
+        this.fechaNacimiento = new Date();
+        this.direccion="lol";
+
+        List<MedioDeNotificacion> medios = new ArrayList<>();
+        MedioDeNotificacion medio = new MedioDeNotificacion();
+        medio.setEstrategiaNotificacion(new Sms());
+        medios.add(medio);
+        this.contactos.add(new Contacto(nombreContacto, apellidoContacto, emailContacto, telefonoContacto, medios));
+
+        Organizacion organizacion=new Organizacion();
+        Ubicacion lugarOrg= new Ubicacion();
+        lugarOrg.setLatitud(500);
+        lugarOrg.setLongitud(500);
+        organizacion.setUbicacion(lugarOrg);
+        organizacion.setDireccion("Calle falsa 123");
+        organizacion.setNombre("asdas");
+        PreguntaAdopcion pregunta=new PreguntaAdopcion("azul?", TipoPregunta.SINGLE);
+        pregunta.getOpciones().add(new Opcion("si",pregunta));
+        organizacion.getPreguntas().add(pregunta);
+
+        Voluntario voluntario=new Voluntario(nombreDeUsuario,contrasenia);
+        voluntario.setNombre(nombre);
+        voluntario.setApellido(apellido);
+        voluntario.setFechaNacimiento(fechaNacimiento);
+        voluntario.setDocumento(documento);
+        voluntario.setMediosDeContacto(contactos);
+        voluntario.setDireccion(direccion);
+        voluntario.setOrganizacion(organizacion);
+
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().persist(organizacion);
+        EntityManagerHelper.commit();
+
+        repoUser.agregar(voluntario);
     }
 
     @Test
